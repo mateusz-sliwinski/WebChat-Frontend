@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { UserService } from "../services/user.services";
-import { first } from "rxjs/operators";
 
 @Component({
     selector: 'app-login',
@@ -27,6 +26,6 @@ private _userService: any;
     return this.user!.controls;
   }
   onSubmit(){
-    this._userService.login('admin@wp.pl','admin').pipe(first()).subs
+    this._userService.login(this.f["email"].value,this.f["password"].value)
   }
 }
