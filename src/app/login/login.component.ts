@@ -11,9 +11,7 @@ export class LoginComponent implements OnInit{
 
   user!: FormGroup;
 
-private _userService: any;
-
- constructor(private authService: UserService) { }
+ constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.user = new FormGroup({
@@ -25,7 +23,12 @@ private _userService: any;
   get f(){
     return this.user!.controls;
   }
-  onSubmit(){
-    this._userService.login(this.f["email"].value,this.f["password"].value)
+
+  onSubmit() {
+    this.userService.login(this.f["email"].value, this.f["password"].value).subscribe(
+      data => {
+        console.log(data)
+      }
+    )
   }
 }

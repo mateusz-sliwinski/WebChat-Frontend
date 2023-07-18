@@ -16,7 +16,7 @@ export class UserService {
     constructor(private http:HttpClient){}
 
     login(email:string, password:string){
-        return this.http.post<any>(this.api_url + 'accounts/login/',{email,password}, httpOptions).pipe(
+        return this.http.post<any>(this.api_url + 'accounts/login/', {email,password}, httpOptions).pipe(
             map((user: { token: any; }) => {
                 if (user && user.token){
                     localStorage.setItem('curretUser', JSON.stringify(user))
