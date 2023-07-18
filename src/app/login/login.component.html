@@ -1,2 +1,14 @@
-<p> Login component</p>
-test login
+<h1> User Login</h1>
+
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="email"> email </label>
+        <input type="text" formControlName="email">
+    </div>
+    <div>
+        <label for="password"> password </label>
+        <input type="text" formControlName="password">
+    </div>
+    
+    <button type="submit"> Login </button>
+</form>
