@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
  
 const httpOptions = {
@@ -29,5 +30,9 @@ export class UserService {
     logout(){
         localStorage.removeItem('currentUser');
     }
+
+    create(data: any): Observable<any> {
+        return this.http.post(this.api_url + 'accounts/register/' , data);
+      }
 }
 

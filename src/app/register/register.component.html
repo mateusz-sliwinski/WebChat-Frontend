@@ -1,0 +1,30 @@
+<h1> User Register</h1>
+
+<form [formGroup]="register" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="email"> email </label>
+        <input type="text" formControlName="email">
+    </div>
+    <div>
+        <label for="password1"> password1 </label>
+        <input type="text" formControlName="password1">
+    </div>
+    <div>
+        <label for="password2"> password2 </label>
+        <input type="text" formControlName="password2">
+    </div>
+    <div>
+        <label for="first_name"> first_name</label>
+        <input type="text" formControlName="first_name">
+    </div>
+    <div>
+        <label for="last_name"> last_name </label>
+        <input type="text" formControlName="last_name">
+    </div>
+
+    <div>
+        <label for="birth_date"> Birth Date </label>
+        <input type="date" formControlName="birth_date">
+    </div>
+    <button type="submit"> register</button>
+</form>
