@@ -25,10 +25,6 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit() {
-    this.userService.login(this.f["email"].value, this.f["password"].value).subscribe(
-      data => {
-        console.log(data)
-      }
-    )
+    this.userService.login(this.f["email"].value, this.f["password"].value)
   }
 }
