@@ -1,6 +1,6 @@
 <h1> User Login</h1>
 
-<form *ngIf="user" [formGroup]="user" (ngSubmit)="onSubmit()">
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
     <div>
         <label for="email"> email </label>
         <input type="text" formControlName="email">

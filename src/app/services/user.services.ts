@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 
  
 const httpOptions = {
-    headers:new HttpHeaders({
+    headers: new HttpHeaders({
         'Content-Type': 'application/json'
     })
 }
@@ -17,9 +17,9 @@ export class UserService {
 
     login(email:string, password:string){
         return this.http.post<any>(this.api_url + 'accounts/login/', {email,password}, httpOptions).pipe(
-            map((user: { token: any; }) => {
-                if (user && user.token){
-                    localStorage.setItem('curretUser', JSON.stringify(user))
+            map(user => {
+                if (user && user.access){
+                    localStorage.setItem('currentUser', JSON.stringify(user))
                 }
                 return user
             })
