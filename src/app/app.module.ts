@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { UserService } from './services/user.services';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { AccountActivationComponent } from './account_activation/account_activation.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    AccountActivationComponent
   ],
   imports: [
     BrowserModule,

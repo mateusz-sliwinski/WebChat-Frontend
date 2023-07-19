@@ -34,5 +34,10 @@ export class UserService {
     create(data: any): Observable<any> {
         return this.http.post(this.api_url + 'accounts/register/' , data);
       }
+
+      activateAccount(key: string): Observable<any> {
+        const endpoint = `${this.api_url}accounts/account-confirm-email/${key}/`;
+        return this.http.post(endpoint, null);
+      }
 }
 
