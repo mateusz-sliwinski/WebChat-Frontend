@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
 import { ChatComponent } from './chat/chat.component';
+import { RoomComponent } from './room/room.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ChatComponent } from './chat/chat.component';
     HomeComponent,
     RegisterComponent,
     AccountActivationComponent,
-    ChatComponent
+    ChatComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
