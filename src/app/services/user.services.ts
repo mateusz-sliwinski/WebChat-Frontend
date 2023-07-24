@@ -6,9 +6,10 @@ import { Observable } from 'rxjs';
  
 const httpOptions = {
     headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     })
 }
+
 @Injectable({
     providedIn:'root'
 })
@@ -35,9 +36,9 @@ export class UserService {
         return this.http.post(this.api_url + 'accounts/register/' , data);
       }
 
-      activateAccount(key: string): Observable<any> {
+      activateAccount(key: any): Observable<any> {
         const endpoint = `${this.api_url}accounts/account-confirm-email/${key}/`;
-        return this.http.post(endpoint, null);
+        return this.http.post(endpoint, key);
       }
 }
 

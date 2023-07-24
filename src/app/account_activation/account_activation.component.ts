@@ -25,7 +25,7 @@ export class AccountActivationComponent implements OnInit {
     });
   }
 
-  activateAccount(key: string): void {
+  activateAccount(key: any): void {
     this.userService.activateAccount(key).subscribe(
       () => {
         this.message = 'Account activated successfully.';

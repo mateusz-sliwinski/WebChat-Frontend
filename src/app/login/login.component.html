@@ -1,5 +1,7 @@
 <h1> User Login</h1>
-
+<div *ngIf="message">
+    {{ message }}
+  </div>
 <form [formGroup]="user" (ngSubmit)="onSubmit()">
     <div>
         <label for="email"> email </label>

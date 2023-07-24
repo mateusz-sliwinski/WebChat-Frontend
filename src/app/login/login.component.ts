@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit{
   user!: FormGroup;
 
  constructor(private userService: UserService) { }
+ message: string | undefined;
 
   ngOnInit(): void {
     this.user = new FormGroup({
@@ -25,6 +26,15 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit() {
-    this.userService.login(this.f["email"].value, this.f["password"].value)
+    this.userService.login(this.f["email"].value, this.f["password"].value).subscribe(
+      () => {
+        this.message = 'login successfully.';
+      },
+      (error) => {
+        console.error('Error login:', error);
+        this.message = 'Error login .';
+      }
+    );
+    
   }
 }
