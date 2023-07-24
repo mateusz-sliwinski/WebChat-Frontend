@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.services';
 
 @Component({
@@ -13,7 +13,8 @@ export class AccountActivationComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private router: Router,
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
@@ -25,10 +26,10 @@ export class AccountActivationComponent implements OnInit {
     });
   }
 
-  activateAccount(key: any): void {
+  activateAccount(key: string): void {
     this.userService.activateAccount(key).subscribe(
       () => {
-        this.message = 'Account activated successfully.';
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.error('Error activating account:', error);
