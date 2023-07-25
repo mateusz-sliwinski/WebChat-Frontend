@@ -12,11 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 export class ChatComponent implements OnInit {
   message: string = 'ghgh';
   roomName: string = '';
-  connected: boolean = false;
-  author: string = '';
   messages: any[] = [];
+  username: string = 'admin';
+  socket$: any;
 
-  constructor(private WebSocketService: WebSocketService, private route:ActivatedRoute ) {}
+
+  constructor(private webSocketService: WebSocketService, private route:ActivatedRoute ) {}
 
 
   
@@ -25,20 +26,17 @@ export class ChatComponent implements OnInit {
       this.roomName = params.get('roomName') as string;
     })
 
+    this.webSocketService.connectWebSocket(this.roomName);
 
-    this.WebSocketService.getMessages().subscribe(
-      (data: any) => {
-        // Otrzymane dane z WebSocket
-        this.message = data.message;
-      },
-      (error: any) => {
-        console.error(error);
-      }
-    );
   }
 
-  sendMessage() {
-    const messageToSend = { text: 'Hello from Angular!' };
-    this.WebSocketService.sendMessage(messageToSend);
+  
+  onChatMessageSubmit() {
+    const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
+    const message = messageInputDom.value;
+    this.webSocketService.sendMessage(message, this.username);
+    messageInputDom.value = '';
   }
+ 
+
 }

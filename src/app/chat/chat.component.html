@@ -1,3 +1,19 @@
 <p>chat works!</p>
 
 <h2>Chat Room: {{ roomName }}</h2>
+
+<div>
+    <ul id="chat-log">
+      <!-- Chat messages will be dynamically added here -->
+    </ul>
+  </div>
+  
+  <div>
+    <input
+      type="text"
+      id="chat-message-input"
+     
+      placeholder="Type your message..."
+    />
+    <button id="chat-message-submit" (click)="onChatMessageSubmit()">Send</button>
+  </div>

@@ -19,8 +19,10 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "@types/uuid": "^9.0.2",
+    "reconnecting-websocket": "^4.4.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "ws": "^8.13.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
