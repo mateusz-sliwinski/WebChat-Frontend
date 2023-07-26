@@ -46,9 +46,9 @@ export class UserService {
         return this.http.post(url, { email });
       }
     
-      confirmPasswordReset(uidb64: string, token: string, password1: string, password2:string): Observable<any> {
+      confirmPasswordReset(uidb64: string, token: string, new_password1: string, new_password2:string): Observable<any> {
         const url = `${this.api_url}accounts/user/password/reset/confirm/${uidb64}/${token}/`;
-        return this.http.post(url, { password1: password1, password2:password2 });
+        return this.http.post(url, {token:token,uid:uidb64, new_password1: new_password1, new_password2:new_password2 });
       }
 
     }

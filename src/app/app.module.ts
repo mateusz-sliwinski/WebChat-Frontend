@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { PasswordResetConfirmComponent } from './password-reset-confirm/password-reset-confirm.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     RegisterComponent,
     AccountActivationComponent,
     PasswordResetComponent,
+    PasswordResetConfirmComponent,
   ],
   imports: [
     BrowserModule,
