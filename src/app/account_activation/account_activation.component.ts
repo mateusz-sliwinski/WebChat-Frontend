@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../services/user.services';
+import { UserService } from '../_services/user.services';
 
 @Component({
   selector: 'app-account-activation',
