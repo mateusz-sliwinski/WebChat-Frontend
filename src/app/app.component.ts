@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private userService: UserService) { }
   ngOnInit(): void {
     this.userService.isLoggedIn$.subscribe(isLoggedIn => {
-      this.isLoggedIn = isLoggedIn; // Subskrybujemy zmiany w stanie zalogowania
+      this.isLoggedIn = this.userService.isUserLoggedIn();
     });
     };
   

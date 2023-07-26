@@ -16,8 +16,8 @@ const httpOptions = {
 export class UserService {
     api_url: string = 'http://127.0.0.1:8000/'
 
-    private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Subject przechowujący stan zalogowania
-    isLoggedIn$ = this.isLoggedInSubject.asObservable(); // Observable, który będzie emitować zmiany w stanie zalogowania
+    private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+    isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
     constructor(private http:HttpClient){}
 
@@ -27,7 +27,6 @@ export class UserService {
                 if (user && user.access){
                     localStorage.setItem('currentUser', JSON.stringify(user))
                     this.isLoggedInSubject.next(true);
-
                 }
                 return user
             })
@@ -59,4 +58,7 @@ export class UserService {
         return this.http.post(url, {token:token, uid:uidb64, new_password1: new_password1, new_password2:new_password2 });
       }
 
+      isUserLoggedIn(): boolean {
+        return localStorage.getItem('currentUser') !== null; 
+      }
     }
