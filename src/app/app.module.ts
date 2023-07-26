@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { PasswordResetConfirmComponent } from './password-reset-confirm/password-reset-confirm.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -23,6 +24,8 @@ import { PasswordResetConfirmComponent } from './password-reset-confirm/password
     AccountActivationComponent,
     PasswordResetComponent,
     PasswordResetConfirmComponent,
+    SidebarComponent,
+  
   ],
   imports: [
     BrowserModule,
