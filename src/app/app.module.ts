@@ -10,6 +10,7 @@ import { UserService } from './services/user.services';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AccountActivationComponent } from './account_activation/account_activat
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    AccountActivationComponent
+    AccountActivationComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,

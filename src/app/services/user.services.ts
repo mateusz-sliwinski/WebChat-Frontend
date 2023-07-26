@@ -38,7 +38,17 @@ export class UserService {
 
       activateAccount(key: any): Observable<any> {
         const endpoint = `${this.api_url}accounts/verify-email/`;
-        return this.http.post(endpoint, {key},httpOptions);
+        return this.http.post(endpoint, {key}, httpOptions);
       }
-}
+    
+      resetPassword(email: string): Observable<any> {
+        const url = `${this.api_url}accounts/user/password/reset/`;
+        return this.http.post(url, { email });
+      }
+    
+      confirmPasswordReset(uidb64: string, token: string, password1: string, password2:string): Observable<any> {
+        const url = `${this.api_url}accounts/user/password/reset/confirm/${uidb64}/${token}/`;
+        return this.http.post(url, { password1: password1, password2:password2 });
+      }
 
+    }
