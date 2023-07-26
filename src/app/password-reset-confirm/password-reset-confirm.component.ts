@@ -47,11 +47,7 @@ export class PasswordResetConfirmComponent implements OnInit {
       },
       error => {
         this.message = 'password failed to reset';
-        console.log(this.uidb64)
-        console.log(this.token)
-        console.log(this.f['new_password1'].value)
-        console.log(this.f['new_password2'].value)
-        console.error(error)
+
       }
     );
   }

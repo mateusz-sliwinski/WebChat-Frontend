@@ -6,11 +6,15 @@ import { UserService } from './services/user.services';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
+  isLoggedIn?: boolean = false
 
   constructor(private userService: UserService) { }
   ngOnInit(): void {
-
+    this.userService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn; // Subskrybujemy zmiany w stanie zalogowania
+    });
     };
   
   logout(){

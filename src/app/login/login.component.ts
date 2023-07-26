@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { UserService } from "../services/user.services";
+import { Router } from "@angular/router";
+
 
 @Component({
     selector: 'app-login',
@@ -11,8 +13,9 @@ export class LoginComponent implements OnInit{
 
   user!: FormGroup;
 
- constructor(private userService: UserService) { }
+ constructor(private userService: UserService, private router:Router) { }
  message: string | undefined;
+
 
   ngOnInit(): void {
     this.user = new FormGroup({
@@ -29,6 +32,7 @@ export class LoginComponent implements OnInit{
     this.userService.login(this.f["email"].value, this.f["password"].value).subscribe(
       () => {
         this.message = 'login successfully.';
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.error('Error login:', error);

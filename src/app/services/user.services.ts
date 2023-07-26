@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
  
 const httpOptions = {
@@ -15,6 +15,10 @@ const httpOptions = {
 })
 export class UserService {
     api_url: string = 'http://127.0.0.1:8000/'
+
+    private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Subject przechowujący stan zalogowania
+    isLoggedIn$ = this.isLoggedInSubject.asObservable(); // Observable, który będzie emitować zmiany w stanie zalogowania
+
     constructor(private http:HttpClient){}
 
     login(email:string, password:string){
@@ -22,6 +26,8 @@ export class UserService {
             map(user => {
                 if (user && user.access){
                     localStorage.setItem('currentUser', JSON.stringify(user))
+                    this.isLoggedInSubject.next(true);
+
                 }
                 return user
             })
@@ -30,6 +36,8 @@ export class UserService {
 
     logout(){
         localStorage.removeItem('currentUser');
+        this.isLoggedInSubject.next(false);
+
     }
 
     create(data: any): Observable<any> {
@@ -48,7 +56,7 @@ export class UserService {
     
       confirmPasswordReset(uidb64: string, token: string, new_password1: string, new_password2:string): Observable<any> {
         const url = `${this.api_url}accounts/user/password/reset/confirm/${uidb64}/${token}/`;
-        return this.http.post(url, {token:token,uid:uidb64, new_password1: new_password1, new_password2:new_password2 });
+        return this.http.post(url, {token:token, uid:uidb64, new_password1: new_password1, new_password2:new_password2 });
       }
 
     }
