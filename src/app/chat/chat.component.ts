@@ -7,7 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+
 })
 export class ChatComponent implements OnInit {
   message: string = 'ghgh';
@@ -28,7 +29,7 @@ export class ChatComponent implements OnInit {
 
     this.webSocketService.connectWebSocket(this.roomName);
 
- 
+   
 
   }
 

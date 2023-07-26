@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import ReconnectingWebSocket  from 'reconnecting-websocket';
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 
@@ -10,25 +11,29 @@ import { Observable } from 'rxjs';
 export class WebSocketService {
   callbacks: any = {};
   private chatSocket!: ReconnectingWebSocket; 
-  
+  public messages = new Subject<any>();
+
   
   constructor() { }
 
   connectWebSocket(roomName: string) {
     const url = 'ws://localhost:8000/ws/chat/' + roomName + '/';
     this.chatSocket = new ReconnectingWebSocket(url);
-
-    this.chatSocket.onopen = (e) => {
+    this.chatSocket.addEventListener('open', () => {
+      console.log('WebSocket connected!');
       this.fetchMessages('admin', 1);
-    };
-
-    this.chatSocket.onmessage = (e) => {
-      // Handle incoming messages here, or emit events to the component.
-    };
-
-    this.chatSocket.onclose = (e) => {
-      console.error('Chat socket closed unexpectedly');
-    };
+    });
+    this.chatSocket.addEventListener('message', (event) => {
+      // Handle incoming messages here
+      this.messages = event.data;
+      console.log('Received message:', event.data);
+    });
+    this.chatSocket.addEventListener('error', (event) => {
+      console.error('WebSocket error:', event);
+    });
+    this.chatSocket.addEventListener('close', (event) => {
+      console.log('WebSocket closed:', event.code, event.reason);
+    });
 
   }
 
@@ -57,6 +62,7 @@ export class WebSocketService {
 
   newChatMessages(message: any) {
     this.sendMessage({ command: 'new_message', from: message.from, message: message.content });
+    console.log('send')
   }
 
   addCallbacks(messagesCallback: any, newMessageCallback: any){
@@ -72,7 +78,9 @@ export class WebSocketService {
     }
   }
 
-
+    public subscribeToMessages() {
+      return this.chatSocket;
+    }
   // fetchMessages(username: string) {
   //   this.chatSocket.send(JSON.stringify({ command: 'fetch_messages' }));
   //   console.log('wysyłam');
