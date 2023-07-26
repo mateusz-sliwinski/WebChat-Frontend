@@ -12,6 +12,10 @@ import { UserService } from '../_services/user.services';
 
 export class AccountActivationComponent implements OnInit {
   message: string | undefined;
+  messages: string[] = [
+    "Please contact the administration!",
+  ];
+  currentIndex: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,8 +30,14 @@ export class AccountActivationComponent implements OnInit {
         this.activateAccount(key);
       }
     });
-  }
 
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.messages.length;
+      this.message = this.messages[this.currentIndex];
+    }, 7000); 
+  }
+  
+  
   activateAccount(key: string): void {
     this.userService.activateAccount(key).subscribe(
       () => {
