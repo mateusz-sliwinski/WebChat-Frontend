@@ -15,7 +15,7 @@ const routes: Routes = [
   { path:'register', component:RegisterComponent,canActivate: [AuthGuard] },
   { path:'activate-account/:key', component:AccountActivationComponent, canActivate: [AuthGuard]},
   { path: 'reset-password', component: PasswordResetComponent,canActivate: [AuthGuard] },
-  { path: 'accounts/user/password/reset/confirm/:uidb64/:token', component: PasswordResetConfirmComponent,canActivate: [AuthGuard] }
+  { path: 'accounts/user/password/reset/confirm/:uidb64/:token', component: PasswordResetConfirmComponent, canActivate: [AuthGuard] }
 
 
 ];

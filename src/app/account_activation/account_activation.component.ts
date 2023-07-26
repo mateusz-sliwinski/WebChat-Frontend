@@ -6,7 +6,9 @@ import { UserService } from '../_services/user.services';
   selector: 'app-account-activation',
   templateUrl: './account_activation.component.html',
   styleUrls: ['./account_activation.component.css']
+  
 })
+
 
 export class AccountActivationComponent implements OnInit {
   message: string | undefined;
@@ -37,4 +39,5 @@ export class AccountActivationComponent implements OnInit {
       }
     );
   }
+  
 }

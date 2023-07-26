@@ -17,3 +17,13 @@ background: #eee;
     --mdb-btn-focus-color: #fff;
     --mdb-btn-active-bg: #3566b6;
 }
+
+.custom-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    padding: 30px;
+  }
