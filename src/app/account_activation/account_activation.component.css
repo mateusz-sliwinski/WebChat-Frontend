@@ -5,3 +5,26 @@ body {
     height: 100vh;
     padding: 0px;
   }
+  .toasts {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .toasts img {
+    animation: ghostAnimation 3s linear infinite;
+  }
+  
+  @keyframes ghostAnimation {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
