@@ -28,13 +28,15 @@ export class ChatComponent implements OnInit {
 
     this.webSocketService.connectWebSocket(this.roomName);
 
+ 
+
   }
 
   
   onChatMessageSubmit() {
     const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
     const message = messageInputDom.value;
-    this.webSocketService.sendMessage(message, this.username);
+    this.webSocketService.sendMessage({message: message, user:this.username});
     messageInputDom.value = '';
   }
  
