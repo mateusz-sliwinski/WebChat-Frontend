@@ -29,15 +29,13 @@
                 <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
                 <label class="form-check-label" for="form1Example3"> Remember me </label>
               </div>
-              <a routerLink="/reset-password">Forgot password?</a>
-
             </div>
   
             <button type="submit" class="btn btn-primary btn-lg btn-block button" >Sign in</button>
-            <a routerLink="/register">You dont have an account yet??</a>
+            <a class="btn btn-lg" routerLink="/register">You dont have an account yet??</a>
 
           </form>
-          <button class="btn btn-lg btn-primary btn-block" (click)="openModal()" data-bs-toggle="modal" data-bs-target="#exampleModal"> Forgot Password?</button>
+          <a class="btn btn-lg" (click)="openModal()" data-bs-toggle="modal" data-bs-target="#exampleModal"> Forgot Password?</a>
         </div>
       </div>
       
