@@ -25,7 +25,8 @@ export class WebSocketService {
     });
     this.chatSocket.addEventListener('message', (event) => {
       // Handle incoming messages here
-      this.messages = event.data;
+      this.messages = event.data['messages'];
+      console.log('moje', this.messages);
       console.log('Received message:', event.data);
     });
     this.chatSocket.addEventListener('error', (event) => {
