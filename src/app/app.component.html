@@ -1,3 +1,17 @@
-<router-outlet></router-outlet>
-<button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
-<!-- <app-sidebar></app-sidebar> -->
+<div class="container">
+    <div class="row">
+      <div class="col-2">
+        sidebar
+        <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
+      </div>
+      <div class="col-8" >
+        home
+        <router-outlet></router-outlet>
+        <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+      </div>
+      <div class="col-2">
+        chats
+      </div>
+    </div>
+  </div>
+
