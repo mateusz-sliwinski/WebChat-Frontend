@@ -9,19 +9,29 @@ import { PasswordResetConfirmComponent } from './password-reset-confirm/password
 import { AuthGuard } from './_helpers/auth-guard.component';
 
 const routes: Routes = [
-  { path:'login', component:LoginComponent ,canActivate: [AuthGuard]},
-  { path:'', component:HomeComponent },
-  { path:'home', component:HomeComponent },
-  { path:'register', component:RegisterComponent,canActivate: [AuthGuard] },
-  { path:'activate-account/:key', component:AccountActivationComponent, canActivate: [AuthGuard]},
-  { path: 'reset-password', component: PasswordResetComponent,canActivate: [AuthGuard] },
-  { path: 'accounts/user/password/reset/confirm/:uidb64/:token', component: PasswordResetConfirmComponent, canActivate: [AuthGuard] }
-
-
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  {
+    path: 'activate-account/:key',
+    component: AccountActivationComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'reset-password',
+    component: PasswordResetComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'accounts/user/password/reset/confirm/:uidb64/:token',
+    component: PasswordResetConfirmComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

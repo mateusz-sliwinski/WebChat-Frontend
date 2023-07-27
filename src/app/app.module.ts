@@ -14,7 +14,6 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { PasswordResetConfirmComponent } from './password-reset-confirm/password-reset-confirm.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +24,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PasswordResetComponent,
     PasswordResetConfirmComponent,
     SidebarComponent,
-  
   ],
   imports: [
     BrowserModule,
@@ -33,9 +31,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-
   ],
   providers: [UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

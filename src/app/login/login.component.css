@@ -1,29 +1,29 @@
 .divider:after,
 .divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
 
-.button{
-    width: -webkit-fill-available;
-    --mdb-btn-bg: #3b71ca;
-    --mdb-btn-color: #fff;
-    --mdb-btn-box-shadow: 0 4px 9px -4px #3b71ca;
-    --mdb-btn-hover-bg: #386bc0;
-    --mdb-btn-hover-color: #fff;
-    --mdb-btn-focus-bg: #386bc0;
-    --mdb-btn-focus-color: #fff;
-    --mdb-btn-active-bg: #3566b6;
+.button {
+  width: -webkit-fill-available;
+  --mdb-btn-bg: #3b71ca;
+  --mdb-btn-color: #fff;
+  --mdb-btn-box-shadow: 0 4px 9px -4px #3b71ca;
+  --mdb-btn-hover-bg: #386bc0;
+  --mdb-btn-hover-color: #fff;
+  --mdb-btn-focus-bg: #386bc0;
+  --mdb-btn-focus-color: #fff;
+  --mdb-btn-active-bg: #3566b6;
 }
 
 .custom-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 60%;
-    padding: 30px;
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  padding: 30px;
+}

@@ -5,22 +5,17 @@ import { UserService } from '../_services/user.services';
 @Component({
   selector: 'app-account-activation',
   templateUrl: './account_activation.component.html',
-  styleUrls: ['./account_activation.component.css']
-  
+  styleUrls: ['./account_activation.component.css'],
 })
-
-
 export class AccountActivationComponent implements OnInit {
   message: string | undefined;
-  messages: string[] = [
-    "Please contact the administration!",
-  ];
+  messages: string[] = ['Please contact the administration!'];
   currentIndex: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +29,9 @@ export class AccountActivationComponent implements OnInit {
     setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.messages.length;
       this.message = this.messages[this.currentIndex];
-    }, 7000); 
+    }, 7000);
   }
-  
-  
+
   activateAccount(key: string): void {
     this.userService.activateAccount(key).subscribe(
       () => {
@@ -49,5 +43,4 @@ export class AccountActivationComponent implements OnInit {
       }
     );
   }
-  
 }
