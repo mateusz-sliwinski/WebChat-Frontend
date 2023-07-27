@@ -30,14 +30,19 @@
                 <label class="form-check-label" for="form1Example3"> Remember me </label>
               </div>
               <a routerLink="/reset-password">Forgot password?</a>
+
             </div>
   
-            <button type="submit" class="btn btn-primary btn-lg btn-block button">Sign in</button>
-
+            <button type="submit" class="btn btn-primary btn-lg btn-block button" >Sign in</button>
+            <a routerLink="/register">You dont have an account yet??</a>
 
           </form>
+          <button class="btn btn-lg btn-primary btn-block" (click)="openModal()" data-bs-toggle="modal" data-bs-target="#exampleModal"> Forgot Password?</button>
         </div>
       </div>
+      
     </div>
+    <app-password-reset *ngIf="isModalVisible"></app-password-reset>
 
   </section>
+
