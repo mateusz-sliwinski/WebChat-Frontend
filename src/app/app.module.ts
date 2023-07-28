@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
-import { UserService } from './services/user.services';
+import { UserService } from './_services/user.services';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { PasswordResetConfirmComponent } from './password-reset-confirm/password-reset-confirm.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChatComponent } from './chat/chat.component';
 import { RoomComponent } from './room/room.component';
-
 
 @NgModule({
   declarations: [
@@ -21,6 +23,9 @@ import { RoomComponent } from './room/room.component';
     HomeComponent,
     RegisterComponent,
     AccountActivationComponent,
+    PasswordResetComponent,
+    PasswordResetConfirmComponent,
+    SidebarComponent,
     ChatComponent,
     RoomComponent
   ],
@@ -30,9 +35,8 @@ import { RoomComponent } from './room/room.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-
   ],
   providers: [UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

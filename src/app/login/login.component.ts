@@ -1,18 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { UserService } from "../services/user.services";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from '../_services/user.services';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit{
-
+export class LoginComponent implements OnInit {
   user!: FormGroup;
 
- constructor(private userService: UserService) { }
- message: string | undefined;
+  constructor(private userService: UserService, private router: Router) {}
+  message: string | undefined;
+
+  isModalVisible = true;
 
   ngOnInit(): void {
     this.user = new FormGroup({
@@ -21,20 +23,26 @@ export class LoginComponent implements OnInit{
     });
   }
 
-  get f(){
+  get f() {
     return this.user!.controls;
   }
 
   onSubmit() {
-    this.userService.login(this.f["email"].value, this.f["password"].value).subscribe(
-      () => {
-        this.message = 'login successfully.';
-      },
-      (error) => {
-        console.error('Error login:', error);
-        this.message = 'Error login .';
-      }
-    );
-    
+    this.userService
+      .login(this.f['email'].value, this.f['password'].value)
+      .subscribe(
+        () => {
+          this.message = 'login successfully.';
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          console.error('Error login:', error);
+          this.message = 'Error login .';
+        }
+      );
+  }
+
+  openModal() {
+    this.isModalVisible = true;
   }
 }
