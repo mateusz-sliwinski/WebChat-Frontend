@@ -23,16 +23,16 @@ export class WebSocketService {
       console.log('WebSocket connected!');
       this.fetchMessages('admin', 1);
     });
-    this.chatSocket.addEventListener('message', (event) => {
+    this.chatSocket.addEventListener('message', (event:any) => {
       // Handle incoming messages here
       this.messages = event.data['messages'];
       console.log('moje', this.messages);
       console.log('Received message:', event.data);
     });
-    this.chatSocket.addEventListener('error', (event) => {
+    this.chatSocket.addEventListener('error', (event:any) => {
       console.error('WebSocket error:', event);
     });
-    this.chatSocket.addEventListener('close', (event) => {
+    this.chatSocket.addEventListener('close', (event:any) => {
       console.log('WebSocket closed:', event.code, event.reason);
     });
 
