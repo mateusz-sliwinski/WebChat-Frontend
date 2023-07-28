@@ -11,7 +11,8 @@ import { Subject } from 'rxjs';
 export class WebSocketService {
   callbacks: any = {};
   private chatSocket!: ReconnectingWebSocket; 
-  public messages = new Subject<any>();
+  messages:any;
+  user:string = 'admin';
 
   
   constructor() { }
@@ -23,10 +24,23 @@ export class WebSocketService {
       console.log('WebSocket connected!');
       this.fetchMessages('admin', 1);
     });
+
+
     this.chatSocket.addEventListener('message', (event:any) => {
       // Handle incoming messages here
       this.messages = event.data['messages'];
+    
+      this.messages = JSON.parse(event.data);
       console.log('moje', this.messages);
+
+      if (this.messages['command'] === 'messages') {
+        for (let i=0; i<this.messages['messages'].length; i++) {
+          console.log(this.messages['messages'][i]);
+          this.createMessage(this.messages['messages'][i]);
+        }
+      } else if (this.messages['command'] === 'new_message'){
+        this.createMessage(this.messages['message']);
+      }
       console.log('Received message:', event.data);
     });
     this.chatSocket.addEventListener('error', (event:any) => {
@@ -81,6 +95,30 @@ export class WebSocketService {
 
     public subscribeToMessages() {
       return this.chatSocket;
+    }
+
+    createMessage(data: any) {
+      const author = data['participant'];
+  
+      const msgListTag = document.createElement('li');
+      const imgTag = document.createElement('img');
+      const pTag = document.createElement('p');
+      pTag.textContent = data.content;
+      imgTag.src = 'http://emilcarlsson.se/assets/mikeross.png';
+  
+      if (author === this.user) {
+        msgListTag.className = 'sent halo';
+      } else {
+        msgListTag.className = 'replies halo';
+      }
+      msgListTag.appendChild(imgTag);
+      msgListTag.appendChild(pTag);
+  
+      const chatLog = document.querySelector('#chat-log');
+      if (chatLog) {
+        
+        chatLog.appendChild(msgListTag);
+      }
     }
   // fetchMessages(username: string) {
   //   this.chatSocket.send(JSON.stringify({ command: 'fetch_messages' }));
