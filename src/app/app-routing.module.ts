@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
-import { RoomComponent } from './room/room.component';
+import { RoomComponent } from './chat-room/chat-room.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';

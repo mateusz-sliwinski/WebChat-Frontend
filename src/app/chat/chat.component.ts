@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebSocketService } from '../services/websocket.service';
+import { WebSocketService } from '../_services/websocket.service';
 import { ActivatedRoute } from '@angular/router';
 
 

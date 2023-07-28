@@ -14,7 +14,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { PasswordResetConfirmComponent } from './password-reset-confirm/password-reset-confirm.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChatComponent } from './chat/chat.component';
-import { RoomComponent } from './room/room.component';
+import { RoomComponent } from './chat-room/chat-room.component';
 
 @NgModule({
   declarations: [
