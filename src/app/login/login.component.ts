@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {}
   message: string | undefined;
 
-  isModalVisible = false;
+  isModalVisible = true;
 
   ngOnInit(): void {
     this.user = new FormGroup({
@@ -44,6 +44,5 @@ export class LoginComponent implements OnInit {
 
   openModal() {
     this.isModalVisible = true;
-    console.log('true');
   }
 }
