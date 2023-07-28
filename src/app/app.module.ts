@@ -13,6 +13,8 @@ import { AccountActivationComponent } from './account_activation/account_activat
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { PasswordResetConfirmComponent } from './password-reset-confirm/password-reset-confirm.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ChatComponent } from './chat/chat.component';
+import { RoomComponent } from './room/room.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PasswordResetComponent,
     PasswordResetConfirmComponent,
     SidebarComponent,
+    ChatComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
