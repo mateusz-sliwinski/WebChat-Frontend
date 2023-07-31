@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, } from '@angular/core';
 import { WebSocketService } from '../_services/websocket.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -33,8 +33,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   onChatMessageSubmit() {
     const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
     const message = messageInputDom.value;
-    this.webSocketService.newChatMessages(message, this.username , Number(this.roomName));
-    messageInputDom.value = '';
+    console.log('le ',message.length);
+    if (message.length>0){
+      this.webSocketService.newChatMessages(message, this.username , Number(this.roomName));
+      messageInputDom.value = '';
+    }
+    
   }
 
 

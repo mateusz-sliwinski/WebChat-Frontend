@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable  } from '@angular/core';
 import ReconnectingWebSocket  from 'reconnecting-websocket';
 import { Observable } from 'rxjs';
 import { Subject,BehaviorSubject } from 'rxjs';
@@ -96,7 +96,7 @@ export class WebSocketService {
 
     createMessage(data: any) {
       const author = data['participant'];
-  
+
       const msgListTag = document.createElement('li');
       const imgTag = document.createElement('img');
       const pTag = document.createElement('p');
