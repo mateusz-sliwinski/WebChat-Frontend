@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { WebSocketService } from '../_services/websocket.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,22 +11,23 @@ import { ActivatedRoute } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   message: string = 'ghgh';
   roomName: string = '';
   messages: any[] = [];
-  username: string = 'admin';
+  username: string = '';
   socket$: any;
 
 
-  constructor(private webSocketService: WebSocketService, private route:ActivatedRoute ) {}
-
+  constructor(public webSocketService: WebSocketService, private route:ActivatedRoute ) {}
+ 
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.roomName = params.get('roomName') as string;
     })
-    this.webSocketService.connectWebSocket(this.roomName);
+    this.getUser();
+    this.webSocketService.connectWebSocket(this.roomName, this.username);
   }
 
   onChatMessageSubmit() {
@@ -36,5 +37,22 @@ export class ChatComponent implements OnInit {
     messageInputDom.value = '';
   }
 
+  aa(){
+    this.message = this.webSocketService.mess();
+    console.log('sdfdsfs',this.message);
+  }
 
+  ngOnDestroy(): void {
+    this.webSocketService.closeWebSocket();
+  }
+
+
+  getUser(){
+    const storedUser = localStorage.getItem('currentUser');
+      if (storedUser) {
+        this.username = JSON.parse(storedUser).user['username']
+      } else {
+        console.log('nie zalogowany');
+      }
+  }
 }

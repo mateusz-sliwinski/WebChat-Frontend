@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import ReconnectingWebSocket  from 'reconnecting-websocket';
 import { Observable } from 'rxjs';
-import { Subject } from 'rxjs';
+import { Subject,BehaviorSubject } from 'rxjs';
 
 
 
@@ -17,19 +17,17 @@ export class WebSocketService {
   
   constructor() { }
 
-  connectWebSocket(roomName: string) {
+  connectWebSocket(roomName: string, username: string) {
     const url = 'ws://localhost:8000/ws/chat/' + roomName + '/';
     this.chatSocket = new ReconnectingWebSocket(url);
     this.chatSocket.addEventListener('open', () => {
       console.log('WebSocket connected!');
-      this.fetchMessages('admin', 1);
+      this.fetchMessages(username, 1);
     });
 
 
     this.chatSocket.addEventListener('message', (event:any) => {
-      // Handle incoming messages here
-      this.messages = event.data['messages'];
-    
+      console.log('send message');
       this.messages = JSON.parse(event.data);
       console.log('moje', this.messages);
 
@@ -52,15 +50,11 @@ export class WebSocketService {
 
   }
 
-  // public getMessage(): Observable<any> {
-  //   // Odbieranie wiadomości od serwera
-  //   return this.chatSocket.asObservable();
-  // }
 
   socketNewMessage(data:any){
     const parsedData = JSON.parse(data);
     const command = parsedData.command;
-    if (Object.keys(this.callbacks).length ===0 ){
+    if (Object.keys(this.callbacks).length === 0 ){
       return
     } 
     if (command === 'messages'){
@@ -107,9 +101,9 @@ export class WebSocketService {
       imgTag.src = 'http://emilcarlsson.se/assets/mikeross.png';
   
       if (author === this.user) {
-        msgListTag.className = 'sent halo';
+        msgListTag.className = 'sent';
       } else {
-        msgListTag.className = 'replies halo';
+        msgListTag.className = 'replies';
       }
       msgListTag.appendChild(imgTag);
       msgListTag.appendChild(pTag);
@@ -128,4 +122,11 @@ export class WebSocketService {
   //   this.chatSocket.send(JSON.stringify({ command: 'new_message', message, from}));
   // }
 
+  public closeWebSocket(){
+    this.chatSocket.close();
+  }
+
+  public mess(){
+    return this.messages;
+  }
 }

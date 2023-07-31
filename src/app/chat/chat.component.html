@@ -70,7 +70,10 @@
 		</div>
 		<div class="messages">
 			<ul id="chat-log">
-
+				<p *ngIf="webSocketService.messages; else noMessages">messages</p>
+				<ng-template #noMessages>
+					<p>no messages</p>
+				</ng-template>
 			</ul>
 		</div>
 		<div class="message-input">
