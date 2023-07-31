@@ -33,26 +33,21 @@ export class ChatComponent implements OnInit, OnDestroy {
   onChatMessageSubmit() {
     const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
     const message = messageInputDom.value;
-    this.webSocketService.sendMessage({message: message, user:this.username});
+    this.webSocketService.newChatMessages(message, this.username , Number(this.roomName));
     messageInputDom.value = '';
   }
 
-  aa(){
-    this.message = this.webSocketService.mess();
-    console.log('sdfdsfs',this.message);
-  }
 
   ngOnDestroy(): void {
     this.webSocketService.closeWebSocket();
   }
-
 
   getUser(){
     const storedUser = localStorage.getItem('currentUser');
       if (storedUser) {
         this.username = JSON.parse(storedUser).user['username']
       } else {
-        console.log('nie zalogowany');
+        console.log('user not found');
       }
   }
 }

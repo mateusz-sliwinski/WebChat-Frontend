@@ -14,7 +14,7 @@
 		<div id="profile">
 			<div class="wrap">
 				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p>Mike Ross</p>
+				<p>{{ username }}</p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="status-options">
 					<ul>
@@ -70,10 +70,10 @@
 		</div>
 		<div class="messages">
 			<ul id="chat-log">
-				<p *ngIf="webSocketService.messages; else noMessages">messages</p>
+				<!-- <p *ngIf="webSocketService.messages; else noMessages">messages</p>
 				<ng-template #noMessages>
 					<p>no messages</p>
-				</ng-template>
+				</ng-template> -->
 			</ul>
 		</div>
 		<div class="message-input">

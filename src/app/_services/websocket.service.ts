@@ -20,16 +20,17 @@ export class WebSocketService {
   connectWebSocket(roomName: string, username: string) {
     const url = 'ws://localhost:8000/ws/chat/' + roomName + '/';
     this.chatSocket = new ReconnectingWebSocket(url);
+    this.user = username;
     this.chatSocket.addEventListener('open', () => {
       console.log('WebSocket connected!');
-      this.fetchMessages(username, 1);
+      this.fetchMessages(username, Number(roomName));
     });
 
 
     this.chatSocket.addEventListener('message', (event:any) => {
       console.log('send message');
       this.messages = JSON.parse(event.data);
-      console.log('moje', this.messages);
+      // console.log('moje', this.messages);
 
       if (this.messages['command'] === 'messages') {
         for (let i=0; i<this.messages['messages'].length; i++) {
@@ -39,7 +40,7 @@ export class WebSocketService {
       } else if (this.messages['command'] === 'new_message'){
         this.createMessage(this.messages['message']);
       }
-      console.log('Received message:', event.data);
+      // console.log('Received message:', event.data);
     });
     this.chatSocket.addEventListener('error', (event:any) => {
       console.error('WebSocket error:', event);
@@ -69,9 +70,10 @@ export class WebSocketService {
     this.sendMessage({ command: 'fetch_messages', usename: username, chatId:chatId });
   }
 
-  newChatMessages(message: any) {
-    this.sendMessage({ command: 'new_message', from: message.from, message: message.content });
-    console.log('send')
+  newChatMessages(content:string, username: string, chatId: number) {
+    // this.sendMessage({ command: 'new_message', from: message.from, message: message.content });
+    this.sendMessage({ command: 'new_message',  username: username, chatId:chatId, content:content});
+    console.log('send saddsadsadadasd')
   }
 
   addCallbacks(messagesCallback: any, newMessageCallback: any){
@@ -81,6 +83,7 @@ export class WebSocketService {
 
   sendMessage(data:any){
     try{
+      console.log('co tu siedzi',data);
         this.chatSocket.send(JSON.stringify(data))
     }catch (err){
       console.log(err);
