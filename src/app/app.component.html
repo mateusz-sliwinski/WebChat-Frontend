@@ -1,13 +1,16 @@
 
   <div class="row">
-  <div class="col-3"> 
+  <div class="col-2"> 
     asdas
       <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
     </div> 
   
-    <div class="col-9">
+    <div class="col-8">
       ad
       <router-outlet></router-outlet>
       <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
     </div>
+    <div class="col-2"> 
+        <app-users *ngIf="isLoggedIn"></app-users>
+      </div> 
   </div>
