@@ -75,4 +75,8 @@ export class UserService {
   isUserLoggedIn(): boolean {
     return localStorage.getItem('currentUser') !== null;
   }
+
+  usersList(): Observable<any> {
+    return this.http.get<any>(this.api_url + 'accounts/user/list');
+  }
 }
