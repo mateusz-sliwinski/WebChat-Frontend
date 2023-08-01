@@ -6,7 +6,7 @@
         </span>
   
         <div class="text logo-text">
-          <span class="name">Codinglab</span>
+          <span class="name">name</span>
           <span class="profession">Web developer</span>
         </div>
       </div>
@@ -29,6 +29,13 @@
               <span class="text nav-text">home</span>
             </a>
           </li>
+          <li class="nav-link">
+          
+            
+              <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+
+          </li>
+          
           <!-- Add other menu items here -->
           <li class="mode">
             <div class="sun-moon">

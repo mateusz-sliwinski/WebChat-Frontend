@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { UserService } from '../_services/user.services';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,7 +7,19 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
-  constructor() {}
+  isLoggedIn?: boolean = false;
+  
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.userService.isLoggedIn$.subscribe((isLoggedIn) => {
+      this.isLoggedIn = this.userService.isUserLoggedIn();
+    });
+  }
+
+  logout() {
+    this.userService.logout();
+  }
 
   isSidebarClosed = false;
   modeText = 'Dark mode';
@@ -19,5 +32,5 @@ export class SidebarComponent {
     document.body.classList.toggle('dark');
     this.modeText = document.body.classList.contains('dark') ? 'Light mode' : 'Dark mode';
   }
-  ngOnInit() {}
+
 }
