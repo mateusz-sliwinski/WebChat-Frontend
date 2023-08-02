@@ -6,8 +6,8 @@
         </span>
   
         <div class="text logo-text">
-          <span class="name">name</span>
-          <span class="profession">Web developer</span>
+          <span class="name">Chat</span>
+          <span class="profession">page</span>
         </div>
       </div>
   
@@ -17,20 +17,28 @@
       <div class="menu">
         <ul class="menu-links">
           <li class="nav-link">
-            <a href="#">
+            <a routerLink="/home" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
               <i class="bx bx-home-alt icon"></i>
-              <span class="text nav-text">Dashboard</span>
+              <span class="text nav-text">Home</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a routerLink="/chat" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
+              <i class="bx bx-home-alt icon"></i>
+              <span class="text nav-text">Chat</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="#">
+            <a routerLink="/users" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
               <i class="bx bx-home-alt icon"></i>
-              <span class="text nav-text">home</span>
+              <span class="text nav-text">Users</span>
             </a>
           </li>
           <li class="nav-link">
-          
             
               <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
 

@@ -20,7 +20,6 @@ export class UsersComponent implements OnInit {
     this.userService.usersList().subscribe(
       (data) => {
         this.usersList = data;
-        console.log(this.usersList); 
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
