@@ -8,6 +8,7 @@ import { UserService } from '../_services/user.services';
 })
 export class UsersComponent implements OnInit {
   usersList: any;
+  username: any;
 
   constructor(private userService: UserService) { }
 
@@ -19,11 +20,23 @@ export class UsersComponent implements OnInit {
   getDataFromApi(): void {
     this.userService.usersList().subscribe(
       (data) => {
-        this.usersList = data;
+        this.getUser()
+        this.usersList = data.filter((user: { username: string; }) => user.username !== this.username);
+        console.log(this.usersList);
+        
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
       }
     );
+  }
+
+  getUser(){
+    const storedUser = localStorage.getItem('currentUser');
+      if (storedUser) {
+        this.username = JSON.parse(storedUser).user['username']
+      } else {
+        console.log('user not found');
+      }
   }
 }

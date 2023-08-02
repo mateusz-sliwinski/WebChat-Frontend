@@ -323,7 +323,7 @@ body {
   color: #f5f5f5;
 }
 #frame #sidepanel #contacts {
-  height: calc(100% - 177px);
+  height: calc(100% - 577px);
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -341,7 +341,7 @@ body {
   height: calc(100% - 334px);
 }
 #frame #sidepanel #contacts::-webkit-scrollbar {
-  width: 55px;
+  width: 8px;
   background: #2c3e50;
 }
 #frame #sidepanel #contacts::-webkit-scrollbar-thumb {
