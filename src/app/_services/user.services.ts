@@ -79,4 +79,17 @@ export class UserService {
   usersList(): Observable<any> {
     return this.http.get<any>(this.api_url + 'accounts/user/list');
   }
+
+  addToFriend(from: string, to: string, token: string): Observable<any> {
+    const endpoint = `${this.api_url}accounts/friends/create/`;
+
+    const data = { 
+          csrfmiddlewaretoken: token, 
+          from_user: from,
+          to_user: to ,
+          status: 'Accepted',
+        };
+
+    return this.http.post<any>(endpoint,data );
+  }
 }

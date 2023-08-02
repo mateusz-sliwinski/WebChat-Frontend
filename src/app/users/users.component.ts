@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.services';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-users',
@@ -8,9 +9,12 @@ import { UserService } from '../_services/user.services';
 })
 export class UsersComponent implements OnInit {
   usersList: any;
-  username: any;
+  user: any;
+  csrfToken: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private cookieService: CookieService) {
+    this.csrfToken = this.cookieService.get('csrftoken');
+  }
 
   ngOnInit(): void {
     this.getDataFromApi();
@@ -21,9 +25,7 @@ export class UsersComponent implements OnInit {
     this.userService.usersList().subscribe(
       (data) => {
         this.getUser()
-        this.usersList = data.filter((user: { username: string; }) => user.username !== this.username);
-        console.log(this.usersList);
-        
+        this.usersList = data.filter((user: { username: string; }) => user.username !== this.user['username']);
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
@@ -34,9 +36,15 @@ export class UsersComponent implements OnInit {
   getUser(){
     const storedUser = localStorage.getItem('currentUser');
       if (storedUser) {
-        this.username = JSON.parse(storedUser).user['username']
+        this.user = JSON.parse(storedUser).user;
+        
       } else {
         console.log('user not found');
       }
   }
+
+  addFriend(user: any): void {
+    this.userService.addToFriend(this.user['pk'] , user['id'], this.csrfToken).subscribe();
+  }
+
 }

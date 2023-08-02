@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './_services/user.services';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClientXsrfModule  } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
@@ -36,6 +36,10 @@ import { UsersComponent } from './users/users.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'csrftoken', 
+      headerName: 'X-CSRFToken',
+    }),
     ReactiveFormsModule,
   ],
   providers: [UserService],
