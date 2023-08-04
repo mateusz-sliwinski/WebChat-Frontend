@@ -17,15 +17,16 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDataFromApi();
+    this.getUser()
+    this.getUsersList();
   }
 
 
-  getDataFromApi(): void {
-    this.userService.usersList().subscribe(
+  getUsersList(): void {
+    this.userService.usersList(this.user).subscribe(
       (data) => {
-        this.getUser()
         this.usersList = data.filter((user: { username: string; }) => user.username !== this.user['username']);
+        console.log(this.usersList);
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);

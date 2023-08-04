@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -76,20 +76,24 @@ export class UserService {
     return localStorage.getItem('currentUser') !== null;
   }
 
-  usersList(): Observable<any> {
-    return this.http.get<any>(this.api_url + 'accounts/user/list');
+  usersList(user:any): Observable<any> {
+    const params = new HttpParams().set('username', user.username.toString());
+    return this.http.get<any>(this.api_url + 'accounts/user/list', { params });
   }
 
   addToFriend(from: string, to: string, token: string): Observable<any> {
     const endpoint = `${this.api_url}accounts/friends/create/`;
+    
+    const headers = new HttpHeaders({
+      'X-CSRFToken': token,
+    });
 
     const data = { 
-          csrfmiddlewaretoken: token, 
           from_user: from,
           to_user: to ,
           status: 'Accepted',
         };
 
-    return this.http.post<any>(endpoint,data );
+    return this.http.post<any>(endpoint,data, {headers});
   }
 }
