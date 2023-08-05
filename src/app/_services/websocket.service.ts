@@ -28,13 +28,9 @@ export class WebSocketService {
 
 
     this.chatSocket.addEventListener('message', (event:any) => {
-      console.log('send message');
       this.messages = JSON.parse(event.data);
-      // console.log('moje', this.messages);
-
       if (this.messages['command'] === 'messages') {
         for (let i=0; i<this.messages['messages'].length; i++) {
-          console.log(this.messages['messages'][i]);
           this.createMessage(this.messages['messages'][i]);
         }
       } else if (this.messages['command'] === 'new_message'){
@@ -71,9 +67,7 @@ export class WebSocketService {
   }
 
   newChatMessages(content:string, username: string, chatId: number) {
-    // this.sendMessage({ command: 'new_message', from: message.from, message: message.content });
     this.sendMessage({ command: 'new_message',  username: username, chatId:chatId, content:content});
-    console.log('send saddsadsadadasd')
   }
 
   addCallbacks(messagesCallback: any, newMessageCallback: any){
@@ -83,7 +77,6 @@ export class WebSocketService {
 
   sendMessage(data:any){
     try{
-      console.log('co tu siedzi',data);
         this.chatSocket.send(JSON.stringify(data))
     }catch (err){
       console.log(err);

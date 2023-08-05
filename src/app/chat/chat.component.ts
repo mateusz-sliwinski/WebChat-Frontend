@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  message: string = 'ghgh';
+  message: string = '';
   roomName: string = '';
   messages: any[] = [];
   username: string = '';
@@ -33,7 +33,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   onChatMessageSubmit() {
     const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
     const message = messageInputDom.value;
-    console.log('le ',message.length);
     if (message.length>0){
       this.webSocketService.newChatMessages(message, this.username , Number(this.roomName));
       messageInputDom.value = '';

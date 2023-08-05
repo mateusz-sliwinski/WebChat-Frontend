@@ -81,19 +81,39 @@ export class UserService {
     return this.http.get<any>(this.api_url + 'accounts/user/list', { params });
   }
 
+  friendsList(user:any): Observable<any> {
+    const params = new HttpParams().set('username', user.username.toString());
+    const token = 'twój_token_jwt_lub_token_authentication';
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any>(this.api_url + 'accounts/friends/list/', {params });
+  }
+
   addToFriend(from: string, to: string, token: string): Observable<any> {
     const endpoint = `${this.api_url}accounts/friends/create/`;
     
     const headers = new HttpHeaders({
       'X-CSRFToken': token,
     });
-
     const data = { 
           from_user: from,
           to_user: to ,
           status: 'Accepted',
         };
-
     return this.http.post<any>(endpoint,data, {headers});
+  }
+
+  getRoom(user:any, current_user:any): Observable<any> {
+
+    const params = new HttpParams()
+  .set('username', user.username.toString())
+  .append('current_user', current_user.username.toString());
+    
+    // const token = 'twój_token_jwt_lub_token_authentication';
+    // const headers = new HttpHeaders({
+    //   'Authorization': `Bearer ${token}`
+    // });
+    return this.http.get<any>(this.api_url + 'chat/room/', {params: params  });
   }
 }
