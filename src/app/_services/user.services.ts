@@ -81,7 +81,7 @@ export class UserService {
     const storedUser = localStorage.getItem('currentUser');
       if (storedUser) {
         this.user = JSON.parse(storedUser)
-        console.log('user',this.user)
+        return this.user;
       } else {
         console.log('user not found');
       }

@@ -9,18 +9,19 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
   isLoggedIn?: boolean = false;
+  user: any;
   
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = this.userService.isUserLoggedIn();
+      this.user= this.userService.getUser()
     });
   }
 
   logout() {
     this.userService.logout();
-    this.router.navigate(['/login']);
   }
 
   isSidebarClosed = false;

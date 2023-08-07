@@ -19,8 +19,8 @@
           <li class="nav-link">
             <a routerLink="/home" routerLinkActive="active" 
             ariaCurrentWhenActive="page">
-              <i class="bx bx-home-alt icon"></i>
-              <span class="text nav-text">My profile</span>
+            <i class="bx bx-user icon"></i>
+              <span class="text nav-text">{{user.user.username}}</span>
             </a>
           </li>
           <li class="nav-link">
@@ -33,7 +33,7 @@
           <li class="nav-link">
             <a routerLink="/chat" routerLinkActive="active" 
             ariaCurrentWhenActive="page">
-              <i class="bx bx-home-alt icon"></i>
+            <i class="bx bx-chat icon"></i>
               <span class="text nav-text">Chat</span>
             </a>
           </li>
@@ -46,10 +46,13 @@
             </a>
           </li>
           <li class="nav-link">
-            
-              <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
-
+            <a routerLink="/login" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
+            <i class="bx bx-log-out icon"></i>
+              <span  class="text nav-text" *ngIf="isLoggedIn" (click)="logout()">aa</span>
+           </a>
           </li>
+          
           
           <!-- Add other menu items here -->
           <li class="mode">
