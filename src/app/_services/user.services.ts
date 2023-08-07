@@ -13,6 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
+  user: any;
   api_url: string = 'http://127.0.0.1:8000/';
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
@@ -74,6 +75,16 @@ export class UserService {
 
   isUserLoggedIn(): boolean {
     return localStorage.getItem('currentUser') !== null;
+  }
+
+  getUser(){
+    const storedUser = localStorage.getItem('currentUser');
+      if (storedUser) {
+        this.user = JSON.parse(storedUser)
+        console.log('user',this.user)
+      } else {
+        console.log('user not found');
+      }
   }
 
   usersList(user:any): Observable<any> {
