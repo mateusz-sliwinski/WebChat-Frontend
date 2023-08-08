@@ -21,12 +21,14 @@ export class RoomComponent {
   }
 
   ngOnInit(): void {
-    this.getUser()
+    // downloads the currently logged in user and friends list
+    this.user = this.userService.getUser()
     this.getFriendsList();
   }
 
 
   getFriendsList(): void {
+    // Sends post to backend and assigns friend list without currently logged in
     this.userService.friendsList(this.user).subscribe(
       (data) => {
         this.usersList = data.filter((user: { username: string; }) => user.username !== this.user['username']);
@@ -37,25 +39,15 @@ export class RoomComponent {
     );
   }
 
-  getUser(){
-    const storedUser = localStorage.getItem('currentUser');
-      if (storedUser) {
-        this.user = JSON.parse(storedUser).user;
-      } else {
-        console.log('user not found');
-      }
-  }
-
-
   goToChatRoom(user:any): void {
-    console.log('user chat    ',user)
+    // Sent post to backend to find room for both friends and then go to it
     this.userService.getRoom(user,this.user).subscribe(
       (data) => {  
         this.room = data[0]['id'].toString();
         this.router.navigate(['/chat', this.room]);
       },
       (error) => {
-        console.error('Wystąpił błąd podczas pobierania danych z API:', error);
+        console.error('An error occurred while downloading data from the API:', error);
       }
 
     );

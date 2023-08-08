@@ -18,7 +18,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   username: string = '';
   socket$: any;
 
-
   constructor(public webSocketService: WebSocketService, private route:ActivatedRoute ) {}
  
 
@@ -31,6 +30,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onChatMessageSubmit() {
+    // Takes a non-empty html message and sends it to the websockets
     const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
     const message = messageInputDom.value;
     if (message.length>0){
@@ -39,9 +39,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
     
   }
-
-
+  
   ngOnDestroy(): void {
+    // Closes connection to websokets
     this.webSocketService.closeWebSocket();
   }
 

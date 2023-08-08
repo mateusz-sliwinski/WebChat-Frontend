@@ -26,7 +26,6 @@ export class UsersComponent implements OnInit {
     this.userService.usersList(this.user).subscribe(
       (data) => {
         this.usersList = data.filter((user: { username: string; }) => user.username !== this.user['username']);
-        console.log(this.usersList);
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);

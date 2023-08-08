@@ -110,13 +110,6 @@ export class WebSocketService {
         chatLog.appendChild(msgListTag);
       }
     }
-  // fetchMessages(username: string) {
-  //   this.chatSocket.send(JSON.stringify({ command: 'fetch_messages' }));
-  //   console.log('wysyłam');
-  // }
-  // sendMessage(message: string, from: string) {
-  //   this.chatSocket.send(JSON.stringify({ command: 'new_message', message, from}));
-  // }
 
   public closeWebSocket(){
     this.chatSocket.close();
