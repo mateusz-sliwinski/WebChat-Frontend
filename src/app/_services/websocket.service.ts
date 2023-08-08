@@ -91,18 +91,41 @@ export class WebSocketService {
       const author = data['participant'];
 
       const msgListTag = document.createElement('li');
+      
+      const divCardBody = document.createElement('div');
+      divCardBody.className = 'card-body';
+      
+      const pMessage = document.createElement('p');
+      pMessage.className = 'mb-0';
+      pMessage.textContent = data.content;
+      
       const imgTag = document.createElement('img');
-      const pTag = document.createElement('p');
-      pTag.textContent = data.content;
       imgTag.src = 'http://emilcarlsson.se/assets/mikeross.png';
+      imgTag.width=60;
+      imgTag.className = 'rounded-circle d-flex align-self-start me-3 shadow-1-strong'
+
+
+      divCardBody.appendChild(pMessage);
+
+      const divCard = document.createElement('div');
+      divCard.className = 'card mask-custom';
+
+      divCard.appendChild(divCardBody);
+
+   
   
       if (author === this.user) {
-        msgListTag.className = 'sent';
+        msgListTag.className = 'd-flex justify-content-between mb-4 sender';
+        msgListTag.appendChild(divCard);
+        msgListTag.appendChild(imgTag);
+        
       } else {
-        msgListTag.className = 'replies';
+        msgListTag.className = 'd-flex justify-content-between mb-4 replies';
+        msgListTag.appendChild(imgTag);
+        msgListTag.appendChild(divCard);
+        
       }
-      msgListTag.appendChild(imgTag);
-      msgListTag.appendChild(pTag);
+ 
   
       const chatLog = document.querySelector('#chat-log');
       if (chatLog) {

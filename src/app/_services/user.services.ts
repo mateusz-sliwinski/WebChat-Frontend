@@ -103,6 +103,13 @@ export class UserService {
     return this.http.get<any>(this.api_url + 'accounts/friends/list/', {params });
   }
 
+  invitationsList(user:any): Observable<any> {
+    console.log(user.username);
+    const params = new HttpParams().set('username', user.username.toString());
+
+    return this.http.get<any>(this.api_url + 'accounts/friends/pending/', {params });
+  }
+
   addToFriend(from: string, to: string, token: string): Observable<any> {
     const endpoint = `${this.api_url}accounts/friends/create/`;
     
