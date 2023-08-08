@@ -1,150 +1,127 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.creative-landing {
-  font-family: Arial, sans-serif;
-}
-
-.header {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  transition: background-color 0.3s;
-  width: 100%;
-  padding: 10px;
-}
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto; /* Usunięto padding i max-width */
-  padding: 0 20px;
-  width: 100%;
-}
-
-.logo img {
-  width: 80px;
-}
-
-.nav-links ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li {
-  margin-right: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #ffc107;
-}
-
-.cta-button {
-  display: block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #ffc107;
-  color: white;
-  font-weight: bold;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.parent-container {
-  text-align: center;
-  padding: 15vh 5vw;
-}
-
-.cta-button:hover {
-  background-color: #e0a800;
-}
-
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 5vh;
-  padding: 0 5vw;
-}
-
-.feature {
-  flex-basis: calc(33.33% - 20px);
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.feature h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.feature p {
-  font-size: 16px;
-  color: #555;
-}
-
-/* Responsywność */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
+.bg-img{
+    background-image: url(../../assets/background.png);
+    background-size: cover;
+    position: fixed;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .nav.active .nav-links {
-    display: flex;
-  }
-
-  .nav.active .menu-toggle {
-    transform: rotate(180deg);
-  }
-
-  .nav-links li {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
-  .menu-toggle {
-    display: block;
-    width: 20px;
-    height: 20px;
-    fill: white;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-
-  .nav.active .menu-toggle {
-    transform: rotate(180deg);
-  }
-
-  .nav.active .menu-toggle .bar {
-    fill: #ffc107;
-  }
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
+
+.bgPosition {
+position: absolute;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+background:
+#111;
+opacity: 0; 
+}
+
+.bg{
+    opacity: 1!important;
+    transition: 1s all ease;
+    animation-duration: 4s;
+    animation-name: example;
+}
+  
+@keyframes example{
+    0% {opacity: 0.1!important;}
+    10% {opacity: 0.2!important;}
+    20% {opacity: 0.3!important;}
+    30% {opacity: 0.4!important;}
+    40% { opacity: 0.5!important; }
+    50% { opacity: 0.6!important; }
+    60% { opacity: 0.7!important; }
+    70% { opacity: 0.8!important; }
+    80% { opacity: 0.9!important; }
+    90% { opacity: 0.99!important; }
+    100% { opacity: 1!important; }
+}
+
+header {
+    padding: 80px 0 70px;
+}
+
+.headerFixed{
+    background: #111;
+    border-bottom: 1px solid rgb(22, 22, 22);
+    padding: 20px 0;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+}
+
+.logo{
+    width: 100px;
+}
+
+.logo img{
+    width: 100%;
+}
+
+.banner{
+    padding: 80px 0 70px;
+}
+
+.banner-content h1{
+    font-size: 85px;
+    font-weight: 600;
+    color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #fff;
+}
+
+.banner-content p{
+    color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+    opacity: .7;
+    margin-top: 15px;
+    width: 400px;
+}
+
+.banner-content ul{
+    padding: 0;
+    margin: 40px 0 0;
+}
+.banner-content ul li{
+    display: inline-block;
+    width: 140px;
+}
+.banner-content ul li h2{
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    line-height: 1.1px;
+    font-size: 14px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.banner-content ul li p{
+    font-size: 15px;
+    opacity: 0.6;
+    font-weight: 600;
+}
+
+.gallery{
+    background-color: #111;
+}
+
+.gallery-container{
+    padding: 100px 0;
+    border-top: 1px solid #201b1b; 
+}
+
+.gallery-conteiner img{
+    width: 100%;
+}
+
+.gallery-container img {
+    margin: 0; /* Reset margins */
+    padding: 0; /* Reset padding */
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
