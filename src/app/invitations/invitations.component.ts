@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-import { UserService } from '../_services/user.services';
 import { Router } from '@angular/router';
+import { UserService } from '../_services/user.services';
 import { CookieService } from 'ngx-cookie-service';
-import { parse, stringify } from 'uuid';
 
 @Component({
-  selector: 'app-room',
-  templateUrl: './chat-room.component.html',
-  styleUrls: ['./chat-room.component.css']
+  selector: 'app-invitations',
+  templateUrl: './invitations.component.html',
+  styleUrls: ['./invitations.component.css']
 })
-export class RoomComponent {
-
+export class InvitationsComponent {
   room: string = '';
   usersList: any;
   user: any;

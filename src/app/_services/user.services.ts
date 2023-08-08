@@ -88,11 +88,13 @@ export class UserService {
   }
 
   usersList(user:any): Observable<any> {
+
     const params = new HttpParams().set('username', user.username.toString());
     return this.http.get<any>(this.api_url + 'accounts/user/list', { params });
   }
 
   friendsList(user:any): Observable<any> {
+    console.log(user.username);
     const params = new HttpParams().set('username', user.username.toString());
     const token = 'twój_token_jwt_lub_token_authentication';
     const headers = new HttpHeaders({

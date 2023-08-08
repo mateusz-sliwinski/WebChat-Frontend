@@ -10,6 +10,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { PasswordResetConfirmComponent } from './password-reset-confirm/password-reset-confirm.component';
 import { AuthGuard } from './_helpers/auth-guard.component';
 import { UsersComponent } from './users/users.component';
+import { InvitationsComponent } from './invitations/invitations.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path:'chat', component:RoomComponent },
   { path:'chat/:roomName', component:ChatComponent },
   { path:'users', component:UsersComponent },
+  { path:'invitations', component:InvitationsComponent },
   {
     path: 'activate-account/:key',
     component: AccountActivationComponent,

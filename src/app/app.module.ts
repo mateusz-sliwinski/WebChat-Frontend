@@ -16,6 +16,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChatComponent } from './chat/chat.component';
 import { RoomComponent } from './chat-room/chat-room.component';
 import { UsersComponent } from './users/users.component';
+import { InvitationsComponent } from './invitations/invitations.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UsersComponent } from './users/users.component';
     SidebarComponent,
     ChatComponent,
     RoomComponent,
-    UsersComponent
+    UsersComponent,
+    InvitationsComponent
   ],
   imports: [
     BrowserModule,
