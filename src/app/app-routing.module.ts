@@ -9,10 +9,11 @@ import { AccountActivationComponent } from './account_activation/account_activat
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { PasswordResetConfirmComponent } from './password-reset-confirm/password-reset-confirm.component';
 import { AuthGuard } from './_helpers/auth-guard.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: '', component: HomeComponent },
+  { path: '', component: LandingPageComponent, canActivate: [AuthGuard], },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path:'chat', component:RoomComponent },
