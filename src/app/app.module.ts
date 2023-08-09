@@ -17,6 +17,9 @@ import { ChatComponent } from './chat/chat.component';
 import { RoomComponent } from './chat-room/chat-room.component';
 import { UsersComponent } from './users/users.component';
 import { InvitationsComponent } from './invitations/invitations.component';
+import { BoardComponent } from './board/board.component';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { InvitationsComponent } from './invitations/invitations.component';
     RoomComponent,
     UsersComponent,
     InvitationsComponent
+    BoardComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,7 @@ import { InvitationsComponent } from './invitations/invitations.component';
     }),
     ReactiveFormsModule,
   ],
-  providers: [UserService],
+  providers: [UserService,  { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

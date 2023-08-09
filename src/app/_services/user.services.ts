@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
+
+import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -26,7 +27,6 @@ export class UserService {
       .post<any>(
         this.api_url + 'accounts/login/',
         { email, password },
-        httpOptions
       )
       .pipe(
         map((user) => {
@@ -38,10 +38,16 @@ export class UserService {
         })
       );
   }
+  
+  board(data: any): Observable<any> {
+    return this.http.post(this.api_url + 'board/posts/', data);
+  }
 
-  logout() {
+  logout(): Observable<any>  {
     localStorage.removeItem('currentUser');
     this.isLoggedInSubject.next(false);
+    const endpoint = `${this.api_url}accounts/logout/`;
+    return this.http.post(endpoint, {}, httpOptions);
   }
 
   create(data: any): Observable<any> {
