@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './_services/user.services';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClientXsrfModule  } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
@@ -15,6 +15,11 @@ import { PasswordResetConfirmComponent } from './password-reset-confirm/password
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChatComponent } from './chat/chat.component';
 import { RoomComponent } from './chat-room/chat-room.component';
+import { UsersComponent } from './users/users.component';
+import { InvitationsComponent } from './invitations/invitations.component';
+import { BoardComponent } from './board/board.component';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
 
 @NgModule({
   declarations: [
@@ -27,16 +32,23 @@ import { RoomComponent } from './chat-room/chat-room.component';
     PasswordResetConfirmComponent,
     SidebarComponent,
     ChatComponent,
-    RoomComponent
+    RoomComponent,
+    UsersComponent,
+    InvitationsComponent
+    BoardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'csrftoken', 
+      headerName: 'X-CSRFToken',
+    }),
     ReactiveFormsModule,
   ],
-  providers: [UserService],
+  providers: [UserService,  { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
