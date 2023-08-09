@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+
+import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -13,6 +14,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
+  user: any;
   api_url: string = 'http://127.0.0.1:8000/';
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
@@ -79,5 +81,65 @@ export class UserService {
 
   isUserLoggedIn(): boolean {
     return localStorage.getItem('currentUser') !== null;
+  }
+
+  getUser(){
+    const storedUser = localStorage.getItem('currentUser');
+      if (storedUser) {
+        this.user = JSON.parse(storedUser)
+        return this.user;
+      } else {
+        console.log('user not found');
+      }
+  }
+
+  usersList(user:any): Observable<any> {
+
+    const params = new HttpParams().set('username', user.username.toString());
+    return this.http.get<any>(this.api_url + 'accounts/user/list', { params });
+  }
+
+  friendsList(user:any): Observable<any> {
+    console.log(user.username);
+    const params = new HttpParams().set('username', user.username.toString());
+    const token = 'twój_token_jwt_lub_token_authentication';
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any>(this.api_url + 'accounts/friends/list/', {params });
+  }
+
+  invitationsList(user:any): Observable<any> {
+    console.log(user.username);
+    const params = new HttpParams().set('username', user.username.toString());
+
+    return this.http.get<any>(this.api_url + 'accounts/friends/pending/', {params });
+  }
+
+  addToFriend(from: string, to: string, token: string): Observable<any> {
+    const endpoint = `${this.api_url}accounts/friends/create/`;
+    
+    const headers = new HttpHeaders({
+      'X-CSRFToken': token,
+    });
+    const data = { 
+          from_user: from,
+          to_user: to ,
+          status: 'Accepted',
+        };
+    return this.http.post<any>(endpoint,data, {headers});
+  }
+
+  getRoom(user:any, current_user:any): Observable<any> {
+
+    const params = new HttpParams()
+  .set('username', user.username.toString())
+  .append('current_user', current_user.username.toString());
+    
+    // const token = 'twój_token_jwt_lub_token_authentication';
+    // const headers = new HttpHeaders({
+    //   'Authorization': `Bearer ${token}`
+    // });
+    return this.http.get<any>(this.api_url + 'chat/room/', {params: params  });
   }
 }

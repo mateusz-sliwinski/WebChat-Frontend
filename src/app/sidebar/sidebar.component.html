@@ -1,91 +1,80 @@
-<div class="row vh-100 overflow-auto bg-dark">
-  <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
-    <div
-      class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white"
-    >
-      <a
-        href="/"
-        class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none"
-      >
-        <span class="fs-5">B<span class="d-none d-sm-inline">rand</span></span>
-      </a>
-      <ul
-        class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start"
-        id="menu"
-      >
-        <li class="nav-item">
-          <a href="#" class="nav-link px-sm-0 px-2">
-            <i class="fs-5 bi-house"></i
-            ><span class="ms-1 d-none d-sm-inline">Home</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="#submenu1"
-            data-bs-toggle="collapse"
-            class="nav-link px-sm-0 px-2"
-          >
-            <i class="fs-5 bi-speedometer2"></i
-            ><span class="ms-1 d-none d-sm-inline">Dashboard</span>
-          </a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Opcja 1</a></li>
-            <li><a class="dropdown-item" href="#">Opcja 2</a></li>
-            <li><a class="dropdown-item" href="#">Opcja 3</a></li>
-          </ul>
-        </li>
-      </ul>
-      <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-        <a
-          href="#"
-          class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-          id="dropdownUser1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="https://github.com/mdo.png"
-            alt="hugenerd"
-            width="28"
-            height="28"
-            class="rounded-circle"
-          />
-          <span class="d-none d-sm-inline mx-1">Test</span>
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-dark text-small shadow"
-          aria-labelledby="dropdownUser1"
-        >
-          <li><a class="dropdown-item" href="#">N11...</a></li>
-          <li><a class="dropdown-item" href="#">S1ings</a></li>
-          <li><a class="dropdown-item" href="#">P1le</a></li>
-          <li>
-            <hr class="dropdown-divider" />
+<nav class="sidebar" [ngClass]="{'close': isSidebarClosed}">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="logo.png" alt="">
+        </span>
+  
+        <div class="text logo-text">
+          <span class="name">Chat</span>
+          <span class="profession">page</span>
+        </div>
+      </div>
+  
+      <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
+    </header>
+    <div class="menu-bar">
+      <div class="menu">
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a routerLink="/home" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
+            <i class="bx bx-user icon"></i>
+              <span class="text nav-text">{{user.user.email}}</span>
+            </a>
           </li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li class="nav-link">
+            <a routerLink="/home" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
+              <i class="bx bx-home-alt icon"></i>
+              <span class="text nav-text">Home</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a routerLink="/chat" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
+            <i class="bx bx-chat icon"></i>
+              <span class="text nav-text">Chat</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a routerLink="/users" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
+              <i class="bx bx-home-alt icon"></i>
+              <span class="text nav-text">Users</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a routerLink="/invitations" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
+              <i class="bx bx-home-alt icon"></i>
+              <span class="text nav-text">Invitations</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a routerLink="/login" routerLinkActive="active" 
+            ariaCurrentWhenActive="page">
+            <i class="bx bx-log-out icon"></i>
+              <span  class="text nav-text" *ngIf="isLoggedIn" (click)="logout()">Logout</span>
+           </a>
+          </li>
+          
+          
+          <!-- Add other menu items here -->
+          <li class="mode">
+            <div class="sun-moon">
+                <i class='bx bx-moon icon moon'></i>
+                <i class='bx bx-sun icon sun'></i>
+            </div>
+            <span class="mode-text text"></span>
+    
+            <div class="toggle-switch">
+                <span class="switch" (click)="toggleDarkMode()">dark</span>
+            </div>
+        </li>
         </ul>
       </div>
     </div>
-  </div>
-  <div class="col d-flex flex-column h-sm-100">
-    <main class="row overflow-auto"></main>
-    <footer class="row bg-light py-4 mt-auto">
-      <div class="col"></div>
-    </footer>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+  </nav>
