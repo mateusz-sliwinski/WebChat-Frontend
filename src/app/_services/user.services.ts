@@ -22,15 +22,18 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  
+
   login(email: string, password: string) {
     return this.http
       .post<any>(
         this.api_url + 'accounts/login/',
-        { email, password },
+        { email, password },{withCredentials:true}
       )
       .pipe(
         map((user) => {
           if (user && user.access) {
+            console.log(user);
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.isLoggedInSubject.next(true);
           }
@@ -110,24 +113,35 @@ export class UserService {
   }
 
   invitationsList(user:any): Observable<any> {
-    console.log(user.username);
     const params = new HttpParams().set('username', user.username.toString());
 
     return this.http.get<any>(this.api_url + 'accounts/friends/pending/', {params });
   }
 
   addToFriend(from: string, to: string, token: string): Observable<any> {
-    const endpoint = `${this.api_url}accounts/friends/create/`;
-    
+    const endpoint = `${this.api_url}accounts/friends/`;
+
     const headers = new HttpHeaders({
-      'X-CSRFToken': token,
+      'Content-Type': 'application/json',
+      'X-CSRFToken': token, 
     });
+    console.log(headers);
     const data = { 
           from_user: from,
           to_user: to ,
-          status: 'Accepted',
+          status: 'Pending',
         };
-    return this.http.post<any>(endpoint,data, {headers});
+    return this.http.post<any>(this.api_url + 'accounts/friends/', data, {headers} );
+  }
+
+  acceptInvitations(invitation:any): Observable<any> {
+    // Changes status to accepted 
+    const data = {
+      "from_user":invitation.from_user.id,
+      "to_user":invitation.to_user.id,
+      "status":"Accepted"
+    }
+    return this.http.put<any>(this.api_url + 'accounts/friends/update/'+invitation.id,data);
   }
 
   getRoom(user:any, current_user:any): Observable<any> {
@@ -136,10 +150,6 @@ export class UserService {
   .set('username', user.username.toString())
   .append('current_user', current_user.username.toString());
     
-    // const token = 'twój_token_jwt_lub_token_authentication';
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${token}`
-    // });
     return this.http.get<any>(this.api_url + 'chat/room/', {params: params  });
   }
 }

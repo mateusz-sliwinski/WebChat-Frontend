@@ -4,19 +4,19 @@
         <div class="col-md-8">
             <div class="people-nearby">
              
-              <div class="nearby-user" *ngFor="let user of usersList">
+              <div class="nearby-user" *ngFor="let friendship of friendsList">
                 <div class="row">
                   <div class="col-md-2 col-sm-2">
                     <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="user" class="profile-photo-lg">
                   </div>
                   <div class="col-md-7 col-sm-7">
                    
-                    <h5><a href="#" class="profile-link">{{user.first_name}} {{user.last_name}}</a></h5>
-                    <p>{{user.email}}</p>
-                    <p class="text-muted">{{user.date_joined}}</p>
+                    <h5><a href="#" class="profile-link">{{friendship.from_user.first_name}} {{friendship.from_user.last_name}}</a></h5>
+                    <p>{{friendship.from_user.email}}</p>
+                    <p class="text-muted">{{friendship.from_user.date_joined}}</p>
                   </div>
                   <div class="col-md-3 col-sm-3">
-                    <button class="btn btn-primary pull-right" >Open Chat</button>
+                    <button class="btn btn-primary pull-right" (click)="acceptToFriends(friendship)">Accept</button>
                   </div>
                 </div>
               </div>

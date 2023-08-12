@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class InvitationsComponent {
   room: string = '';
-  usersList: any;
+  friendsList: any;
   user: any;
   csrfToken: any;
 
@@ -26,15 +26,26 @@ export class InvitationsComponent {
 
 
   getInvitations(): void {
-    // Sends post to backend and assigns friend list without currently logged in
+    // Sends post to backend and assigns friend list
     this.userService.invitationsList(this.user.user).subscribe(
       (data) => {
-        this.usersList = data.filter((user: { username: string; }) => user.username !== this.user.user['username']);
-        console.log(this.usersList[0]);
+        this.friendsList = data;
       },
       (error) => {
-        console.error('Wystąpił błąd podczas pobierania danych z API:', error);
+        console.error('An error occurred while fetching data from the API:', error);
       }
+    );
+  }
+
+  acceptToFriends(friendship:any): void {
+
+    this.userService.acceptInvitations(friendship).subscribe(
+      (data) => {  
+      },
+      (error) => {
+        console.error('An error occurred while downloading data from the API:', error);
+      }
+
     );
   }
 
