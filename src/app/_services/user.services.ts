@@ -103,12 +103,8 @@ export class UserService {
   }
 
   friendsList(user:any): Observable<any> {
-    console.log(user.username);
-    const params = new HttpParams().set('username', user.username.toString());
-    const token = 'twój_token_jwt_lub_token_authentication';
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    console.log(user.pk);
+    const params = new HttpParams().set('pk', user.pk.toString());
     return this.http.get<any>(this.api_url + 'accounts/friends/list/', {params });
   }
 

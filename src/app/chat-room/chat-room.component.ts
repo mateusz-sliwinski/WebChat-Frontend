@@ -23,12 +23,12 @@ export class RoomComponent {
   ngOnInit(): void {
     // downloads the currently logged in user and friends list
     this.user = this.userService.getUser()
+
     this.getFriendsList();
   }
 
 
   getFriendsList(): void {
-    console.log('co jest');
     // Sends post to backend and assigns friend list without currently logged in
     this.userService.friendsList(this.user.user).subscribe(
       (data) => {
