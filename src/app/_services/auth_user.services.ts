@@ -16,6 +16,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
+
   user: any;
   api_url: string = 'http://localhost:8000/';
 
