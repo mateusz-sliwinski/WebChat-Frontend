@@ -7,8 +7,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-  }),
-};
+  },
+  ),
+  withCredentials: true,
+}
 
 @Injectable({
   providedIn: 'root',
@@ -31,25 +33,30 @@ export class UserService {
         { email, password },{withCredentials:true}
       )
       .pipe(
-        map((user) => {
-          if (user && user.access) {
-            console.log(user);
-            localStorage.setItem('currentUser', JSON.stringify(user));
+        map((user_all_data => {
+          console.log(user_all_data)
+
+          if (user_all_data && user_all_data.access) {
+            user_all_data.user.access = user_all_data.access;
+            delete user_all_data.access;
+            delete user_all_data.refresh;
+            localStorage.setItem('currentUser', JSON.stringify(user_all_data));
             this.isLoggedInSubject.next(true);
           }
-          return user;
+          return user_all_data;
         })
-      );
+      ));
   }
   
   board(data: any): Observable<any> {
     return this.http.post(this.api_url + 'board/posts/', data);
   }
 
-  logout(){
+  logout()  {
     localStorage.removeItem('currentUser');
     this.isLoggedInSubject.next(false);
     const endpoint = `${this.api_url}accounts/logout/`;
+
     return this.http.post(endpoint, {}, httpOptions);
   }
 
