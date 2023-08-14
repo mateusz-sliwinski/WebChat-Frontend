@@ -6,14 +6,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-  }),
-};
+  },
+  ),
+  withCredentials: true,
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  api_url: string = 'http://127.0.0.1:8000/';
+  api_url: string = 'http://localhost:8000/';
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
@@ -27,24 +29,30 @@ export class UserService {
         { email, password },
       )
       .pipe(
-        map((user) => {
-          if (user && user.access) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
+        map((user_all_data => {
+          console.log(user_all_data)
+
+          if (user_all_data && user_all_data.access) {
+            user_all_data.user.access = user_all_data.access;
+            delete user_all_data.access;
+            delete user_all_data.refresh;
+            localStorage.setItem('currentUser', JSON.stringify(user_all_data));
             this.isLoggedInSubject.next(true);
           }
-          return user;
+          return user_all_data;
         })
-      );
+      ));
   }
   
   board(data: any): Observable<any> {
     return this.http.post(this.api_url + 'board/posts/', data);
   }
 
-  logout(): Observable<any>  {
+  logout()  {
     localStorage.removeItem('currentUser');
     this.isLoggedInSubject.next(false);
     const endpoint = `${this.api_url}accounts/logout/`;
+
     return this.http.post(endpoint, {}, httpOptions);
   }
 
