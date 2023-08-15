@@ -140,11 +140,11 @@ export class UserService {
     return this.http.put<any>(this.api_url + 'accounts/friends/update/'+invitation.id,data);
   }
 
-  getRoom(user:any, current_user:any): Observable<any> {
+  getRoom(user:any): Observable<any> {
 
     const params = new HttpParams()
-  .set('username', user.username.toString())
-  .append('current_user', current_user.username.toString());
+  .set('uuid', user.id.toString());
+
     
     return this.http.get<any>(this.api_url + 'chat/room/', {params: params  });
   }

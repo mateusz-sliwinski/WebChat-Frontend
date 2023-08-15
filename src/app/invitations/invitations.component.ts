@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserService } from '../_services/user.services';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-invitations',
@@ -14,9 +12,7 @@ export class InvitationsComponent {
   status: string = '';
 
 
-  constructor(private router: Router,private userService: UserService,private cookieService: CookieService) {
-
-  }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     // downloads the currently logged in user and friends list

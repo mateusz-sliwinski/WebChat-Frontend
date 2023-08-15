@@ -32,7 +32,7 @@ export class RoomComponent {
     // Sends post to backend and assigns friend list without currently logged in
     this.userService.friendsList(this.user.user).subscribe(
       (data) => {
-        this.usersList = data.filter((user: { username: string; }) => user.username !== this.user.user['username']);
+        this.usersList = data;
         console.log(this.usersList);
       },
       (error) => {
@@ -44,7 +44,7 @@ export class RoomComponent {
   goToChatRoom(user:any): void {
     // Sent post to backend to find room for both friends and then go to it
     
-    this.userService.getRoom(user,this.user.user).subscribe(
+    this.userService.getRoom(user).subscribe(
       (data) => {  
         this.room = data[0]['id'].toString();
         this.router.navigate(['/chat', this.room]);
@@ -53,6 +53,17 @@ export class RoomComponent {
         console.error('An error occurred while downloading data from the API:', error);
       }
 
+    );
+  }
+
+  updateFriendship(friendship:any, status:string): void {
+    // get status and send it to friendship update view
+    console.log(status);
+    this.userService.updateInvitations(friendship, status).subscribe( () => {  
+      },
+      (error) => {
+        console.error('An error occurred while downloading data from the API:', error);
+      }
     );
   }
 }

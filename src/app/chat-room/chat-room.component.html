@@ -16,6 +16,7 @@
                     <p class="text-muted">{{user.date_joined}}</p>
                   </div>
                   <div class="col-md-3 col-sm-3">
+                    <button class="btn btn-danger" (click)="updateFriendship(user,'Rejected')">Delete</button>
                     <button class="btn btn-primary pull-right" (click)="goToChatRoom(user)">Open Chat</button>
                   </div>
                 </div>
