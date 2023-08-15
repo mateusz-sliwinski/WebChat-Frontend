@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
-import { UserService } from './_services/user.services';
-import { HttpClientModule,HttpClientXsrfModule  } from '@angular/common/http';
+import {HttpClientXsrfModule  } from '@angular/common/http';
+import { UserService } from './_services/auth_user.services';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
@@ -34,8 +34,8 @@ import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
     ChatComponent,
     RoomComponent,
     UsersComponent,
-    InvitationsComponent
-    BoardComponent
+    InvitationsComponent,
+    BoardComponent,
   ],
   imports: [
     BrowserModule,
