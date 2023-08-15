@@ -9,13 +9,13 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./invitations.component.css']
 })
 export class InvitationsComponent {
-  room: string = '';
   friendsList: any;
   user: any;
-  csrfToken: any;
+  status: string = '';
+
 
   constructor(private router: Router,private userService: UserService,private cookieService: CookieService) {
-    this.csrfToken = this.cookieService.get('csrftoken');
+
   }
 
   ngOnInit(): void {
@@ -37,15 +37,13 @@ export class InvitationsComponent {
     );
   }
 
-  acceptToFriends(friendship:any): void {
-
-    this.userService.acceptInvitations(friendship).subscribe(
-      (data) => {  
+  updateFriendship(friendship:any, status:string): void {
+    // get status and send it to friendship update view
+    this.userService.updateInvitations(friendship, status).subscribe( () => {  
       },
       (error) => {
         console.error('An error occurred while downloading data from the API:', error);
       }
-
     );
   }
 

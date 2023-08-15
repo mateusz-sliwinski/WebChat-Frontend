@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class UserService {
   user: any;
-  api_url: string = 'http://127.0.0.1:8000/';
+  api_url: string = 'http://localhost:8000/';
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
@@ -130,12 +130,12 @@ export class UserService {
     return this.http.post<any>(this.api_url + 'accounts/friends/', data, {headers} );
   }
 
-  acceptInvitations(invitation:any): Observable<any> {
+  updateInvitations(invitation:any, status:string): Observable<any> {
     // Changes status to accepted 
     const data = {
       "from_user":invitation.from_user.id,
       "to_user":invitation.to_user.id,
-      "status":"Accepted"
+      "status":status
     }
     return this.http.put<any>(this.api_url + 'accounts/friends/update/'+invitation.id,data);
   }
@@ -148,4 +148,5 @@ export class UserService {
     
     return this.http.get<any>(this.api_url + 'chat/room/', {params: params  });
   }
+
 }

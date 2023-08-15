@@ -16,7 +16,8 @@
                     <p class="text-muted">{{friendship.from_user.date_joined}}</p>
                   </div>
                   <div class="col-md-3 col-sm-3">
-                    <button class="btn btn-primary pull-right" (click)="acceptToFriends(friendship)">Accept</button>
+                    <button class="btn btn-danger " (click)="updateFriendship(friendship,'Rejected')">Reject</button>
+                    <button class="btn btn-primary pull-right" (click)="updateFriendship(friendship,'Accepted')">Accept</button>
                   </div>
                 </div>
               </div>
