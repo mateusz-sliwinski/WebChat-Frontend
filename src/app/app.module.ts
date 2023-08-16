@@ -32,11 +32,7 @@ import { DatePipe } from '@angular/common';
     AccountActivationComponent,
     PasswordResetComponent,
     PasswordResetConfirmComponent,
-    SidebarComponent,
     ChatComponent,
-    RoomComponent,
-    UsersComponent,
-    InvitationsComponent,
     BoardComponent,
   ],
   imports: [

@@ -19,7 +19,7 @@ export class UserService {
 
   user: any;
   api_url: string = 'http://localhost:8000/';
-
+  user: any;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
