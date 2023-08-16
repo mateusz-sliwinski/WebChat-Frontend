@@ -34,6 +34,7 @@ import { DatePipe } from '@angular/common';
     PasswordResetConfirmComponent,
     ChatComponent,
     BoardComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
