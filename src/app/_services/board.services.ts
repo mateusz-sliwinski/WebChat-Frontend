@@ -20,4 +20,8 @@ export class BoardService {
     const endpoint = `${this.api_url}board/posts/`;
     return this.http.post(endpoint, data, httpOptions);
   }
+
+  getPosts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.api_url}board/posts/`);
+  }
 }
