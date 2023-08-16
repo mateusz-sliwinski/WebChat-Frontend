@@ -30,6 +30,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onChatMessageSubmit() {
+    
     // Takes a non-empty html message and sends it to the websockets
     const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
     const message = messageInputDom.value;
@@ -37,6 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.webSocketService.newChatMessages(message, this.username , Number(this.roomName));
       messageInputDom.value = '';
     }
+    console.log('cos poszlo');
     
   }
   

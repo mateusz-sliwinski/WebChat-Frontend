@@ -48,11 +48,11 @@
 		
 			<li class="mb-3">
 			  <div class="form-outline form-white">
-				<textarea class="form-control" id="textAreaExample3" rows="4"></textarea>
+				<textarea id="chat-message-input" class="form-control" rows="2"></textarea>
 				<label class="form-label" for="textAreaExample3">Message</label>
 			  </div>
 			</li>
-			<button type="button" class="btn btn-light btn-lg btn-rounded float-end">Send</button>
+			<button  type="button" class="btn btn-light btn-lg btn-rounded float-end" (click)="onChatMessageSubmit()">Send</button>
 		  </ul>
   
 		</div>

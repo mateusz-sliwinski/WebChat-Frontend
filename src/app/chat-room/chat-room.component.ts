@@ -24,7 +24,6 @@ export class RoomComponent {
   ngOnInit(): void {
     // downloads the currently logged in user and friends list
     this.user = this.userService.getUser()
-    console.log(this.user)
     this.getFriendsList();
   }
 
@@ -35,7 +34,6 @@ export class RoomComponent {
       (data) => {
 
         this.usersList = data;
-        console.log(this.usersList);
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
@@ -45,8 +43,6 @@ export class RoomComponent {
 
   goToChatRoom(friend:any): void {
     // Sent post to backend to find room for both friends and then go to it
-    console.log(this.user);
-    console.log('chat');
     this.userService.getRoom(friend).subscribe(
       (data) => {  
         this.room = data[0]['id'].toString();
@@ -61,7 +57,6 @@ export class RoomComponent {
 
   updateFriendship(friendship:any, status:string): void {
     // get status and send it to friendship update view
-    console.log(status);
     this.userService.updateInvitations(friendship, status).subscribe( () => {  
       },
       (error) => {

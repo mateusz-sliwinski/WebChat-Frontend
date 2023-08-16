@@ -46,12 +46,13 @@ export class UserService {
     return this.http.post(this.api_url + 'board/posts/', data);
   }
 
-  logout(): Observable<any>  {
+  logout(){
     localStorage.removeItem('currentUser');
     this.isLoggedInSubject.next(false);
     const endpoint = `${this.api_url}accounts/logout/`;
     return this.http.post(endpoint, {}, httpOptions);
   }
+
 
   create(data: any): Observable<any> {
     return this.http.post(this.api_url + 'accounts/register/', data);
@@ -103,7 +104,6 @@ export class UserService {
   }
 
   friendsList(user:any): Observable<any> {
-    console.log(user.pk);
     const params = new HttpParams().set('pk', user.pk.toString());
     return this.http.get<any>(this.api_url + 'accounts/friends/list/', {params });
   }
@@ -141,11 +141,10 @@ export class UserService {
   }
 
   getRoom(user:any): Observable<any> {
-
     const params = new HttpParams()
-  .set('uuid', user.id.toString());
-
-    return this.http.get<any>(this.api_url + 'chat/room/', {params: params  });
+  .set('from_uuid', user.from_user.id.toString()).
+  append('to_uuid', user.to_user.id.toString());
+    return this.http.get<any>(this.api_url + 'chat/room/', {params: params});
   }
 
 }
