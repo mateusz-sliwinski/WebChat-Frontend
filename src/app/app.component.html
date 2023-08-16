@@ -1,16 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-      <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
-    </div>
-    <div class="col-8">
-      <app-board *ngIf="isLoggedIn"></app-board>
+<div class="row">
+    <div class="col-2 side"> 
       
-      <router-outlet></router-outlet>
- 
+        <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
+      </div> 
+      <div class="col-10 home">
+        <app-board *ngIf="isLoggedIn"></app-board>
+        <router-outlet></router-outlet>
+      </div>
+      
     </div>
-    <div class="col-2">
-
-    </div>
-    
-  </div>
