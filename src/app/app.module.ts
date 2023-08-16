@@ -17,6 +17,7 @@ import { RoomComponent } from './chat-room/chat-room.component';
 import { BoardComponent } from './board/board.component';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [UserService,  { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
+  providers: [UserService,DatePipe,  { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
