@@ -1,100 +1,63 @@
-<p>chat works!</p>
-
-<h2>Chat Room: {{ roomName }}</h2>
-
-<div>
-    <ul id="chat-log">
-      <!-- Chat messages will be dynamically added here -->
-    </ul>
-  </div>
+<section class="gradient-custom">
+	<div class="container py-5">
   
-
-
-<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-<script src="https://use.typekit.net/hoy3lrg.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-
-
-
-
-<div id="frame">
-	<div id="sidepanel">
-		<div id="profile">
-			<div class="wrap">
-				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p>Mike Ross</p>
-				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
-				<div id="status-options">
-					<ul>
-						<li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
-						<li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
-						<li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
-						<li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
-					</ul>
-				</div>
-				<div id="expanded">
-					<label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="mikeross" />
-					<label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="ross81" />
-					<label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
-					<input name="twitter" type="text" value="mike.ross" />
-				</div>
-			</div>
-		</div>
-		<div id="search">
-			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-			<input type="text" placeholder="Search contacts..." />
-		</div>
-		<div id="contacts">
-			<ul>
-				<li class="contact">
-					<div class="wrap">
-						<span class="contact-status online"></span>
-						<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-						<div class="meta">
-							<p class="name">Louis Litt</p>
-							<p class="preview">You just got LITT up, Mike.</p>
-						</div>
+	  <div class="row">
+  
+		<div class="col-md-6 col-lg-5 col-xl-5 mb-4 mb-md-0">
+  
+		  <h5 class="font-weight-bold mb-3 text-center text-white">Member</h5>
+  
+		  <div class="card mask-custom">
+			<div class="card-body">
+  
+			  <ul class="list-unstyled mb-0">
+				<li class="p-2 border-bottom" style="border-bottom: 1px solid rgba(255,255,255,.3) !important;">
+				  <a href="#!" class="d-flex justify-content-between link-light">
+					<div class="d-flex flex-row">
+					  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp" alt="avatar"
+						class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+					  <div class="pt-1">
+						<p class="fw-bold mb-0">John Doe</p>
+						<p class="small text-white">Hello, Are you there?</p>
+					  </div>
 					</div>
+					<div class="pt-1">
+					  <p class="small text-white mb-1">Just now</p>
+					  <span class="badge bg-danger float-end">1</span>
+					</div>
+				  </a>
 				</li>
-
-			</ul>
-		</div>
-		<div id="bottom-bar">
-			<button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-			<button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
-		</div>
-	</div>
-	<div class="content">
-		<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-			<p>{{ username }}</p>
-			<div class="social-media">
-				<i class="fa fa-facebook" aria-hidden="true"></i>
-				<i class="fa fa-twitter" aria-hidden="true"></i>
-				 <i class="fa fa-instagram" aria-hidden="true"></i>
+		
+		
+			
+				
+			  </ul>
+  
 			</div>
+		  </div>
+  
 		</div>
-		<div class="messages">
-			<ul  id="chat-log">
+  
+		<div class="col-md-6 col-lg-7 col-xl-7">
+			
+		  <ul class="list-unstyled text-white">
+			<div id="chat-log">
 
-			</ul>
-		</div>
-		<div class="message-input">
-			<div class="wrap">
-			<input id="chat-message-input" type="text" placeholder="Write your message..." />
-			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-			<button  (click)="onChatMessageSubmit()" id="chat-message-submit" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
 			</div>
+			
+		
+			<li class="mb-3">
+			  <div class="form-outline form-white">
+				<textarea class="form-control" id="textAreaExample3" rows="4"></textarea>
+				<label class="form-label" for="textAreaExample3">Message</label>
+			  </div>
+			</li>
+			<button type="button" class="btn btn-light btn-lg btn-rounded float-end">Send</button>
+		  </ul>
+  
 		</div>
+  
+	  </div>
+  
 	</div>
-</div>
+  </section>

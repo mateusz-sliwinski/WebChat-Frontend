@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-import { UserService } from '../_services/auth_user.services';
 import { Router } from '@angular/router';
+import { UserService } from '../_services/auth_user.services';
 import { CookieService } from 'ngx-cookie-service';
-import { parse, stringify } from 'uuid';
 
 @Component({
-  selector: 'app-room',
-  templateUrl: './chat-room.component.html',
-  styleUrls: ['./chat-room.component.css']
+  selector: 'app-invitations',
+  templateUrl: './invitations.component.html',
+  styleUrls: ['./invitations.component.css']
 })
-export class RoomComponent {
-
+export class InvitationsComponent {
   room: string = '';
   usersList: any;
   user: any;
@@ -23,17 +21,16 @@ export class RoomComponent {
   ngOnInit(): void {
     // downloads the currently logged in user and friends list
     this.user = this.userService.getUser()
-    this.getFriendsList();
+    this.getInvitations();
   }
 
 
-  getFriendsList(): void {
-    console.log('co jest');
+  getInvitations(): void {
     // Sends post to backend and assigns friend list without currently logged in
-    this.userService.friendsList(this.user.user).subscribe(
+    this.userService.invitationsList(this.user.user).subscribe(
       (data) => {
         this.usersList = data.filter((user: { username: string; }) => user.username !== this.user.user['username']);
-        console.log(this.usersList);
+        console.log(this.usersList[0]);
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
@@ -41,18 +38,4 @@ export class RoomComponent {
     );
   }
 
-  goToChatRoom(user:any): void {
-    // Sent post to backend to find room for both friends and then go to it
-    
-    this.userService.getRoom(user,this.user.user).subscribe(
-      (data) => {  
-        this.room = data[0]['id'].toString();
-        this.router.navigate(['/chat', this.room]);
-      },
-      (error) => {
-        console.error('An error occurred while downloading data from the API:', error);
-      }
-
-    );
-  }
 }
