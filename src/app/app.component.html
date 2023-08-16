@@ -4,9 +4,11 @@
     
       <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
     </div> 
-    <div class="col-10 home">
-      
+    <div class="col-7 home">
       <router-outlet></router-outlet>
+    </div>
+    <div class="col-3 friends">
+      <app-room></app-room>
     </div>
     
   </div>

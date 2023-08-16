@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation, } from '@angular/core';
 import { WebSocketService } from '../_services/websocket.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../_services/user.services';
 
 
 
@@ -15,30 +16,31 @@ export class ChatComponent implements OnInit, OnDestroy {
   message: string = '';
   roomName: string = '';
   messages: any[] = [];
-  username: string = '';
+  user:any;
   socket$: any;
 
-  constructor(public webSocketService: WebSocketService, private route:ActivatedRoute ) {}
+  constructor(
+    public webSocketService: WebSocketService,
+    private route:ActivatedRoute,
+    private userService:UserService) {}
  
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.roomName = params.get('roomName') as string;
     })
-    this.getUser();
-    this.webSocketService.connectWebSocket(this.roomName, this.username);
+    this.user = this.userService.getUser();
+    this.webSocketService.connectWebSocket(this.roomName, this.user.user.username);
   }
 
   onChatMessageSubmit() {
-    
     // Takes a non-empty html message and sends it to the websockets
     const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
     const message = messageInputDom.value;
     if (message.length>0){
-      this.webSocketService.newChatMessages(message, this.username , Number(this.roomName));
+      this.webSocketService.newChatMessages(message, this.user.user.username , Number(this.roomName));
       messageInputDom.value = '';
     }
-    console.log('cos poszlo');
     
   }
   
@@ -47,12 +49,4 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.webSocketService.closeWebSocket();
   }
 
-  getUser(){
-    const storedUser = localStorage.getItem('currentUser');
-      if (storedUser) {
-        this.username = JSON.parse(storedUser).user['username']
-      } else {
-        console.log('user not found');
-      }
-  }
 }
