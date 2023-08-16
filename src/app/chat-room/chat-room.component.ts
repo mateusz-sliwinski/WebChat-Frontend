@@ -66,4 +66,14 @@ export class RoomComponent {
       }
     );
   }
+
+  updateFriendship(friendship:any, status:string): void {
+    // get status and send it to friendship update view
+    this.userService.updateInvitations(friendship, status).subscribe( () => {  
+      },
+      (error) => {
+        console.error('An error occurred while downloading data from the API:', error);
+      }
+    );
+  }
 }

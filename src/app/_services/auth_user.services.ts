@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 
 import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
+=======
+import { HttpClient, HttpHeaders, HttpRequest,HttpParams } from '@angular/common/http';
+>>>>>>> 57e910b (fix changes from dev)
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -16,6 +20,11 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
+<<<<<<< HEAD
+=======
+  api_url: string = 'http://localhost:8000/';
+  user: any;
+>>>>>>> 57e910b (fix changes from dev)
 
   user: any;
   api_url: string = 'http://localhost:8000/';

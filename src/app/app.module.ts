@@ -46,7 +46,7 @@ import { DatePipe } from '@angular/common';
     }),
     ReactiveFormsModule,
   ],
-  providers: [UserService,DatePipe,  { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
+  providers: [UserService, DatePipe,  { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

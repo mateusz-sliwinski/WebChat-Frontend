@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../_services/auth_user.services';
 
-
 @Component({
   selector: 'app-invitations',
   templateUrl: './invitations.component.html',
@@ -30,6 +29,16 @@ export class InvitationsComponent {
       },
       (error) => {
         console.error('An error occurred while fetching data from the API:', error);
+      }
+    );
+  }
+
+  updateFriendship(friendship:any, status:string): void {
+    // get status and send it to friendship update view
+    this.userService.updateInvitations(friendship, status).subscribe( () => {  
+      },
+      (error) => {
+        console.error('An error occurred while downloading data from the API:', error);
       }
     );
   }
