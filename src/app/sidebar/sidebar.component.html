@@ -1,80 +1,67 @@
 <nav class="sidebar" *[ngClass]="{'close': isSidebarClosed}">
-    <header>
-      <div class="image-text">
-        <span class="image">
-          <img src="logo.png" alt="">
-        </span>
-  
-        <div class="text logo-text">
-          <span class="name">Chat</span>
-          <span class="profession">page</span>
-        </div>
-      </div>
-  
-      <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
-    </header>
-    <div class="menu-bar">
-      <div class="menu">
-        <ul class="menu-links">
-          <li class="nav-link">
-            <a routerLink="/home" routerLinkActive="active" 
-            ariaCurrentWhenActive="page">
-            <i class="bx bx-user icon"></i>
-              <span class="text nav-text">{{user.user.email}}</span>
-            </a>
-          </li>
-          <li class="nav-link">
-            <a routerLink="/home" routerLinkActive="active" 
-            ariaCurrentWhenActive="page">
-              <i class="bx bx-home-alt icon"></i>
-              <span class="text nav-text">Home</span>
-            </a>
-          </li>
-          <li class="nav-link">
-            <a routerLink="/chat" routerLinkActive="active" 
-            ariaCurrentWhenActive="page">
-            <i class="bx bx-chat icon"></i>
-              <span class="text nav-text">Chat</span>
-            </a>
-          </li>
+  <header>
+    <div class="image-text">
+      <span class="image">
+        <img src="logo.png" alt="">
+      </span>
 
-          <li class="nav-link">
-            <a routerLink="/users" routerLinkActive="active" 
-            ariaCurrentWhenActive="page">
-              <i class="bx bx-home-alt icon"></i>
-              <span class="text nav-text">Users</span>
-            </a>
-          </li>
-          <li class="nav-link">
-            <a routerLink="/invitations" routerLinkActive="active" 
-            ariaCurrentWhenActive="page">
-              <i class="bx bx-home-alt icon"></i>
-              <span class="text nav-text">Invitations</span>
-            </a>
-          </li>
-          <li class="nav-link">
-            <a routerLink="/login" routerLinkActive="active" 
-            ariaCurrentWhenActive="page">
-            <i class="bx bx-log-out icon"></i>
-              <span  class="text nav-text" *ngIf="isLoggedIn" (click)="logout()">Logout</span>
-           </a>
-          </li>
-          
-          
-          <!-- Add other menu items here -->
-          <li class="mode">
-            <div class="sun-moon">
-                <i class='bx bx-moon icon moon'></i>
-                <i class='bx bx-sun icon sun'></i>
-            </div>
-            <span class="mode-text text"></span>
-    
-            <div class="toggle-switch">
-                <span class="switch" (click)="toggleDarkMode()">dark</span>
-            </div>
-        </li>
-        </ul>
+      <div class="text logo-text">
+        <span class="name">Chat</span>
+        <span class="profession">page</span>
       </div>
     </div>
-   
-  </nav>
+
+    <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
+  </header>
+  <div class="menu-bar">
+    <div class="menu">
+      <ul class="menu-links">
+        <li class="nav-link">
+          <a routerLink="/home" routerLinkActive="active" 
+          ariaCurrentWhenActive="page">
+          <i class="bx bx-user icon"></i>
+            <span class="text nav-text">{{user.user.email}}</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a routerLink="/home" routerLinkActive="active" 
+          ariaCurrentWhenActive="page">
+            <i class="bx bx-home-alt icon"></i>
+            <span class="text nav-text">Home</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a routerLink="/chat" routerLinkActive="active" 
+          ariaCurrentWhenActive="page">
+          <i class="bx bx-chat icon"></i>
+            <span class="text nav-text">Friends</span>
+          </a>
+        </li>
+
+        <li class="nav-link">
+          <a routerLink="/users" routerLinkActive="active" 
+          ariaCurrentWhenActive="page">
+            <i class="bx bx-home-alt icon"></i>
+            <span class="text nav-text">Users</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a routerLink="/invitations" routerLinkActive="active" 
+          ariaCurrentWhenActive="page">
+            <i class="bx bx-home-alt icon"></i>
+            <span class="text nav-text">Invitations</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a routerLink="/login" routerLinkActive="active" 
+          ariaCurrentWhenActive="page">
+          <i class="bx bx-log-out icon"></i>
+            <span  class="text nav-text" *ngIf="isLoggedIn" (click)="logout()">Logout</span>
+         </a>
+        </li>
+            
+      </ul>
+    </div>
+  </div>
+ 
+</nav>

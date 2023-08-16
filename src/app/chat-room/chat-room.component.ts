@@ -15,6 +15,7 @@ export class RoomComponent {
   usersList: any;
   user: any;
   csrfToken: any;
+  aaa:string='asdsad';
 
   constructor(private router: Router,private userService: UserService,private cookieService: CookieService) {
     this.csrfToken = this.cookieService.get('csrftoken');
@@ -28,12 +29,11 @@ export class RoomComponent {
 
 
   getFriendsList(): void {
-    console.log('co jest');
     // Sends post to backend and assigns friend list without currently logged in
     this.userService.friendsList(this.user.user).subscribe(
       (data) => {
-        this.usersList = data.filter((user: { username: string; }) => user.username !== this.user.user['username']);
-        console.log(this.usersList);
+
+        this.usersList = data;
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
@@ -41,10 +41,9 @@ export class RoomComponent {
     );
   }
 
-  goToChatRoom(user:any): void {
+  goToChatRoom(friend:any): void {
     // Sent post to backend to find room for both friends and then go to it
-    
-    this.userService.getRoom(user,this.user.user).subscribe(
+    this.userService.getRoom(friend).subscribe(
       (data) => {  
         this.room = data[0]['id'].toString();
         this.router.navigate(['/chat', this.room]);
@@ -53,6 +52,16 @@ export class RoomComponent {
         console.error('An error occurred while downloading data from the API:', error);
       }
 
+    );
+  }
+
+  updateFriendship(friendship:any, status:string): void {
+    // get status and send it to friendship update view
+    this.userService.updateInvitations(friendship, status).subscribe( () => {  
+      },
+      (error) => {
+        console.error('An error occurred while downloading data from the API:', error);
+      }
     );
   }
 }
