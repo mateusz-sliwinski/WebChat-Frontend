@@ -15,6 +15,7 @@ export class RoomComponent {
   usersList: any;
   user: any;
   csrfToken: any;
+  aaa:string='asdsad';
 
   constructor(private router: Router,private userService: UserService,private cookieService: CookieService) {
     this.csrfToken = this.cookieService.get('csrftoken');
@@ -23,7 +24,7 @@ export class RoomComponent {
   ngOnInit(): void {
     // downloads the currently logged in user and friends list
     this.user = this.userService.getUser()
-
+    console.log(this.user)
     this.getFriendsList();
   }
 
@@ -32,6 +33,7 @@ export class RoomComponent {
     // Sends post to backend and assigns friend list without currently logged in
     this.userService.friendsList(this.user.user).subscribe(
       (data) => {
+
         this.usersList = data;
         console.log(this.usersList);
       },
@@ -41,10 +43,11 @@ export class RoomComponent {
     );
   }
 
-  goToChatRoom(user:any): void {
+  goToChatRoom(friend:any): void {
     // Sent post to backend to find room for both friends and then go to it
-    
-    this.userService.getRoom(user).subscribe(
+    console.log(this.user);
+    console.log('chat');
+    this.userService.getRoom(friend).subscribe(
       (data) => {  
         this.room = data[0]['id'].toString();
         this.router.navigate(['/chat', this.room]);

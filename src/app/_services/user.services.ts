@@ -145,7 +145,6 @@ export class UserService {
     const params = new HttpParams()
   .set('uuid', user.id.toString());
 
-    
     return this.http.get<any>(this.api_url + 'chat/room/', {params: params  });
   }
 
