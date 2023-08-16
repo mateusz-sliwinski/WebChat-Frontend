@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.services';
+import { UserService } from '../_services/auth_user.services';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({

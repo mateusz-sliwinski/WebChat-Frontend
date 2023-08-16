@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class UserService {
   api_url: string = 'http://localhost:8000/';
-
+  user: any;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
