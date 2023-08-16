@@ -47,10 +47,6 @@ export class UserService {
         })
       ));
   }
-  
-  board(data: any): Observable<any> {
-    return this.http.post(this.api_url + 'board/posts/', data);
-  }
 
   logout()  {
     localStorage.removeItem('currentUser');
