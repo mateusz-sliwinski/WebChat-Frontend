@@ -1,0 +1,16 @@
+<form [formGroup]="text" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+        <img src="assets/images/icons/user.png" alt="Profile Picture" class="profile-picture">
+        <input formControlName="body" placeholder="What's happening?" class="post-input">
+        <div class="attachment-container">
+            <label for="imageInput" class="attachment-label">
+                <img src="assets/images/icons/attachment.png" alt="Attachment Icon" class="attachment-icon">
+            </label>
+            <input type="file" id="imageInput" (change)="onFileSelected($event)" class="attachment-input" accept="image/*">
+            <div *ngIf="selectedFile" class="selected-file-info">
+                Selected file: {{ selectedFile.name }}
+            </div>
+        </div>
+        <button type="submit" class="post-button">Publish</button>
+    </div>
+</form>
