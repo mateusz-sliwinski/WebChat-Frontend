@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserService } from '../_services/user.services';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-invitations',
@@ -9,14 +7,12 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./invitations.component.css']
 })
 export class InvitationsComponent {
-  room: string = '';
-  usersList: any;
+  friendsList: any;
   user: any;
-  csrfToken: any;
+  status: string = '';
 
-  constructor(private router: Router,private userService: UserService,private cookieService: CookieService) {
-    this.csrfToken = this.cookieService.get('csrftoken');
-  }
+
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     // downloads the currently logged in user and friends list
@@ -26,14 +22,23 @@ export class InvitationsComponent {
 
 
   getInvitations(): void {
-    // Sends post to backend and assigns friend list without currently logged in
+    // Sends post to backend and assigns friend list
     this.userService.invitationsList(this.user.user).subscribe(
       (data) => {
-        this.usersList = data.filter((user: { username: string; }) => user.username !== this.user.user['username']);
-        console.log(this.usersList[0]);
+        this.friendsList = data;
       },
       (error) => {
-        console.error('Wystąpił błąd podczas pobierania danych z API:', error);
+        console.error('An error occurred while fetching data from the API:', error);
+      }
+    );
+  }
+
+  updateFriendship(friendship:any, status:string): void {
+    // get status and send it to friendship update view
+    this.userService.updateInvitations(friendship, status).subscribe( () => {  
+      },
+      (error) => {
+        console.error('An error occurred while downloading data from the API:', error);
       }
     );
   }

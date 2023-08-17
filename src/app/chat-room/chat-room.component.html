@@ -1,27 +1,22 @@
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="people-nearby">
-             
-              <div class="nearby-user" *ngFor="let user of usersList">
-                <div class="row">
-                  <div class="col-md-2 col-sm-2">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="user" class="profile-photo-lg">
-                  </div>
-                  <div class="col-md-7 col-sm-7">
-                   
-                    <h5><a href="#" class="profile-link">{{user.first_name}} {{user.last_name}}</a></h5>
-                    <p>{{user.email}}</p>
-                    <p class="text-muted">{{user.date_joined}}</p>
-                  </div>
-                  <div class="col-md-3 col-sm-3">
-                    <button class="btn btn-primary pull-right" (click)="goToChatRoom(user)">Open Chat</button>
-                  </div>
-                </div>
-              </div>
-         
-            </div>
-    	</div>
-	</div>
+<div class="row" *ngFor="let friend of usersList">
+  <div class="col-md-2 col-sm-2">
+    <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="user" class="profile-photo-lg">
+  </div>
+  <div class="col-md-7 col-sm-7">
+    <h5 *ngIf="friend.from_user.id!==user.user.pk; else too"><a class="profile-link"><p>
+      {{friend.from_user.first_name}}
+      {{friend.from_user.last_name}}
+    </p></a></h5>
+    <ng-template #too>
+      <h5><a class="profile-link"> <p>
+        {{friend.to_user.first_name}}
+        {{friend.to_user.last_name}}
+      </p></a></h5>
+    </ng-template>
+    
+  </div>
+  <div class="col-md-3 col-sm-3">
+    <button class="btn btn-danger" (click)="updateFriendship(friend,'Rejected')">Delete</button>
+    <button class="btn btn-primary pull-right" (click)="goToChatRoom(friend)">Open Chat</button>
+  </div>
 </div>

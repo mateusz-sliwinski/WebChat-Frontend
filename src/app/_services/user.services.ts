@@ -15,22 +15,25 @@ const httpOptions = {
 })
 export class UserService {
   user: any;
-  api_url: string = 'http://127.0.0.1:8000/';
+  api_url: string = 'http://localhost:8000/';
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
+  
+
   login(email: string, password: string) {
     return this.http
       .post<any>(
         this.api_url + 'accounts/login/',
-        { email, password },
+        { email, password },{withCredentials:true}
       )
       .pipe(
         map((user) => {
           if (user && user.access) {
+            console.log(user);
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.isLoggedInSubject.next(true);
           }
@@ -43,12 +46,13 @@ export class UserService {
     return this.http.post(this.api_url + 'board/posts/', data);
   }
 
-  logout(): Observable<any>  {
+  logout(){
     localStorage.removeItem('currentUser');
     this.isLoggedInSubject.next(false);
     const endpoint = `${this.api_url}accounts/logout/`;
     return this.http.post(endpoint, {}, httpOptions);
   }
+
 
   create(data: any): Observable<any> {
     return this.http.post(this.api_url + 'accounts/register/', data);
@@ -94,52 +98,49 @@ export class UserService {
   }
 
   usersList(user:any): Observable<any> {
-
     const params = new HttpParams().set('username', user.username.toString());
     return this.http.get<any>(this.api_url + 'accounts/user/list', { params });
   }
 
   friendsList(user:any): Observable<any> {
-    console.log(user.username);
-    const params = new HttpParams().set('username', user.username.toString());
-    const token = 'twój_token_jwt_lub_token_authentication';
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    const params = new HttpParams().set('pk', user.pk.toString());
     return this.http.get<any>(this.api_url + 'accounts/friends/list/', {params });
   }
 
   invitationsList(user:any): Observable<any> {
-    console.log(user.username);
     const params = new HttpParams().set('username', user.username.toString());
-
     return this.http.get<any>(this.api_url + 'accounts/friends/pending/', {params });
   }
 
   addToFriend(from: string, to: string, token: string): Observable<any> {
-    const endpoint = `${this.api_url}accounts/friends/create/`;
-    
     const headers = new HttpHeaders({
-      'X-CSRFToken': token,
+      'Content-Type': 'application/json',
+      'X-CSRFToken': token, 
     });
+    console.log(headers);
     const data = { 
           from_user: from,
           to_user: to ,
-          status: 'Accepted',
+          status: 'Pending',
         };
-    return this.http.post<any>(endpoint,data, {headers});
+    return this.http.post<any>(this.api_url + 'accounts/friends/', data, {headers} );
   }
 
-  getRoom(user:any, current_user:any): Observable<any> {
+  updateInvitations(invitation:any, status:string): Observable<any> {
+    // Changes status to accepted 
+    const data = {
+      "from_user":invitation.from_user.id,
+      "to_user":invitation.to_user.id,
+      "status":status
+    }
+    return this.http.put<any>(this.api_url + 'accounts/friends/update/'+invitation.id,data);
+  }
 
+  getRoom(user:any): Observable<any> {
     const params = new HttpParams()
-  .set('username', user.username.toString())
-  .append('current_user', current_user.username.toString());
-    
-    // const token = 'twój_token_jwt_lub_token_authentication';
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${token}`
-    // });
-    return this.http.get<any>(this.api_url + 'chat/room/', {params: params  });
+  .set('from_uuid', user.from_user.id.toString()).
+  append('to_uuid', user.to_user.id.toString());
+    return this.http.get<any>(this.api_url + 'chat/room/', {params: params});
   }
+
 }

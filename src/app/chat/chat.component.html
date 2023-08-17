@@ -1,63 +1,34 @@
-<section class="gradient-custom">
-	<div class="container py-5">
-  
-	  <div class="row">
-  
-		<div class="col-md-6 col-lg-5 col-xl-5 mb-4 mb-md-0">
-  
-		  <h5 class="font-weight-bold mb-3 text-center text-white">Member</h5>
-  
-		  <div class="card mask-custom">
-			<div class="card-body">
-  
-			  <ul class="list-unstyled mb-0">
-				<li class="p-2 border-bottom" style="border-bottom: 1px solid rgba(255,255,255,.3) !important;">
-				  <a href="#!" class="d-flex justify-content-between link-light">
-					<div class="d-flex flex-row">
-					  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp" alt="avatar"
-						class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-					  <div class="pt-1">
-						<p class="fw-bold mb-0">John Doe</p>
-						<p class="small text-white">Hello, Are you there?</p>
-					  </div>
-					</div>
-					<div class="pt-1">
-					  <p class="small text-white mb-1">Just now</p>
-					  <span class="badge bg-danger float-end">1</span>
-					</div>
-				  </a>
-				</li>
-		
-		
-			
-				
-			  </ul>
-  
-			</div>
-		  </div>
-  
-		</div>
-  
-		<div class="col-md-6 col-lg-7 col-xl-7">
-			
-		  <ul class="list-unstyled text-white">
-			<div id="chat-log">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-			</div>
-			
-		
-			<li class="mb-3">
-			  <div class="form-outline form-white">
-				<textarea class="form-control" id="textAreaExample3" rows="4"></textarea>
-				<label class="form-label" for="textAreaExample3">Message</label>
-			  </div>
-			</li>
-			<button type="button" class="btn btn-light btn-lg btn-rounded float-end">Send</button>
-		  </ul>
-  
-		</div>
-  
-	  </div>
-  
-	</div>
-  </section>
+
+        <div class="card chat-app">
+            <div class="chat">
+                <div class="chat-header clearfix">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                            </a>
+                            <div class="chat-about">
+                                <h6 class="m-b-0">aa</h6>
+                                <small>Last seen: 2 hours ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-history">
+                    <ul class="m-b-0" id="chat-log">
+                       
+                    </ul>
+                </div>
+                <div class="chat-message clearfix">
+                    <div class="input-group mb-0">
+                       
+                        <input id="chat-message-input" type="text" (keydown.enter)="onChatMessageSubmit()" class="form-control" placeholder="...">  
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-send" (click)="onChatMessageSubmit()"></i></span>
+                      </div>                                  
+                    </div>
+                </div>
+            </div>
+        </div>
