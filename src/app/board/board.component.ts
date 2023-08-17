@@ -14,7 +14,7 @@ export class BoardComponent {
   text!: FormGroup;
   selectedFile!: File;
   posts!: Observable<any[]>;
-  
+  postArray: any[] = [];
   constructor(private boardService: BoardService, private router: Router, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
@@ -42,6 +42,14 @@ export class BoardComponent {
         });
       })
     );
+    this.posts.subscribe((posts) => {
+      this.postArray = posts;
+    });
+  }
+
+
+  countLikes(post: any): number {
+    return post.like_post.length;
   }
 
   onSubmit() {
