@@ -4,6 +4,8 @@ import { BoardService } from '../_services/board.services';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-board',
@@ -15,7 +17,10 @@ export class BoardComponent {
   selectedFile!: File;
   posts!: Observable<any[]>;
   postArray: any[] = [];
-  constructor(private boardService: BoardService, private router: Router, private datePipe: DatePipe) {}
+  private likeSubject: Subject<string[]> = new Subject<string[]>();
+
+
+  constructor(private boardService: BoardService, private router: Router, private datePipe: DatePipe ) {}
 
   ngOnInit(): void {
     this.text = new FormGroup({
@@ -51,7 +56,17 @@ export class BoardComponent {
   countLikes(post: any): number {
     return post.like_post.length;
   }
-
+    
+likePost(postId: string) {
+  this.boardService.likePost(postId).subscribe(() => {
+    const postToUpdate = this.postArray.find(post => post.id === postId);
+    if (postToUpdate) {
+      console.log('Before update:', postToUpdate.like_post);
+      postToUpdate.like_post = [...postToUpdate.like_post, postId];
+      console.log('After update:', postToUpdate.like_post);
+    }
+  });
+}
   onSubmit() {
     const formData = new FormData();
     formData.append('body',this.f['body'].value);
@@ -67,4 +82,6 @@ export class BoardComponent {
       }
     );
   }
+
+
 }
