@@ -47,19 +47,9 @@ export class RoomComponent {
   goToChatRoom(friend:any): void {
     // Sent post to backend to find room for both friends and then go to it
     this.userService.getRoom(friend).subscribe(
-      (data) => {
+      (data) => {  
         this.room = data[0]['id'].toString();
         this.router.navigate(['/chat', this.room]);
-      },
-      (error) => {
-        console.error('An error occurred while downloading data from the API:', error);
-      }
-    );
-  }
-
-  updateFriendship(friendship:any, status:string): void {
-    // get status and send it to friendship update view
-    this.userService.updateInvitations(friendship, status).subscribe( () => {  
       },
       (error) => {
         console.error('An error occurred while downloading data from the API:', error);

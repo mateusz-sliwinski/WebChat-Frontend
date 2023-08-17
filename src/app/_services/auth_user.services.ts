@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-
 import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
-=======
-import { HttpClient, HttpHeaders, HttpRequest,HttpParams } from '@angular/common/http';
->>>>>>> 57e910b (fix changes from dev)
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -20,13 +15,6 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
-<<<<<<< HEAD
-=======
-  api_url: string = 'http://localhost:8000/';
-  user: any;
->>>>>>> 57e910b (fix changes from dev)
-
-  user: any;
   api_url: string = 'http://localhost:8000/';
   user: any;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
@@ -100,6 +88,7 @@ export class UserService {
     return localStorage.getItem('currentUser') !== null;
   }
 
+
   getUser(){
     const storedUser = localStorage.getItem('currentUser');
       if (storedUser) {
@@ -126,6 +115,8 @@ export class UserService {
   }
 
   addToFriend(from: string, to: string, token: string): Observable<any> {
+    const endpoint = `${this.api_url}accounts/friends/`;
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'X-CSRFToken': token, 
