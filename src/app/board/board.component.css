@@ -141,7 +141,6 @@ display: None;
   background-position: center;
   border-radius: 5px;
   margin-right: 10px;
-  margin-bottom: 5em;
 }
 
 .post-actions {
@@ -181,8 +180,8 @@ display: None;
 
 
 .heart-btn{
-  width: 8em;
-  height: 2.5em;
+  width: 3.25em;
+  height: 1em;
   font-size: 1.2em;
   margin-left: 5em; 
 }
@@ -246,13 +245,13 @@ input[type="checkbox"]{
 
 }
 input[type="checkbox"]:checked +button::before{
-  transform: rotate(45deg) translate(1em,-1.05em);
+  transform: rotate(45deg) translate(0.0001em,-0.75em);
   animation: glow 0.6s ease-in 0.4s forwards;
 
 }
 
 input[type="checkbox"]:checked +button::after{
-  transform: rotate(-45deg) translate(-1em,-1.05em);
+  transform: rotate(-45deg) translate(-0.0001em,-0.75em);
   animation: glow 0.6s ease-in 0.4s forwards;
 
 }
