@@ -35,7 +35,7 @@ export class BoardService {
     return this.http.get<any>(`${this.api_url}board/posts/${postId}/`);
   }
   
-  getCommentsForPost(postId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api_url}board/comments/${postId}/`);
+  getCommentsForPost(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.api_url}board/comments/`);
   }
 }

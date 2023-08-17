@@ -1,3 +1,53 @@
-<div class="post-details">
-    <h2>Id posta: {{ postId }}</h2>
+<!-- <div *ngIf="postDetails" class="post-details">
+    <div class="post-header">
+      <h2 class="username">{{ postDetails.owner }} {{ postDetails.owner_last_name }}</h2>
+      <p class="timestamp">{{ postDetails.formattedTimestamp }}</p>
+    </div>
+    <div class="post-content">
+      <p class="post-text">{{ postDetails.body }}</p>
+      <img [src]="postDetails.image" alt="Post Image" class="post-image" *ngIf="postDetails.image">
+    </div>
   </div>
+  
+  <div *ngIf="comments" class="comments-list">
+    <div class="comment" *ngFor="let comment of comments">
+      <p class="comment-text">{{ comment.body }}</p>
+      <p class="comment-author">{{ comment.owner }}</p>
+    </div>
+  </div> -->
+
+
+
+  <div class="container">
+    <div class="row">
+        <div class="post-list">
+            <div *ngIf="postDetails" class="post-details">
+            <div class="post-header">
+            <div class="user-avatar">
+              <img src="assets/images/icons/user.png" alt="User Avatar">
+              <h2 class="username">{{ postDetails.owner }} {{ postDetails.owner_last_name }}</h2>
+
+            </div>
+              
+            <p class="timestamp">{{ postDetails.formattedTimestamp }}</p>
+            </div>
+            <div class="post-content">
+  
+                <p class="post-text">{{ postDetails.body }}</p>
+                <img [src]="postDetails.image" alt="Post Image" class="post-image" *ngIf="postDetails.image">
+              <!-- <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p> -->
+  
+              <!-- <div class="post-actions">
+                <div></div>
+                <div class="heart-btn">
+                  <input type ="checkbox" (click)="likePost(post.id)" />
+                  <button  > <span>Like</span></button>
+                </div>
+                <div><a [routerLink]="['/commentary', post.id]">Comments</a></div>
+                <div><button class="action-button share-button">Share</button></div>
+                <div></div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
