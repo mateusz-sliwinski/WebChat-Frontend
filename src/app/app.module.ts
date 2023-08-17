@@ -21,6 +21,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
 import { HttpClientXsrfModule  } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { CommentaryComponent } from './commentary/commentary.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { DatePipe } from '@angular/common';
     ChatComponent,
     BoardComponent,
     SidebarComponent,
+    CommentaryComponent,
   ],
   imports: [
     BrowserModule,

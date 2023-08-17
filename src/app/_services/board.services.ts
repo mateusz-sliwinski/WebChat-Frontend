@@ -29,4 +29,13 @@ export class BoardService {
     const likeData = { postId };
     return this.http.post<any>(`${this.api_url}board/like/${postId}/`, likeData);
   }
+
+
+  getPostDetails(postId: string): Observable<any> {
+    return this.http.get<any>(`${this.api_url}board/posts/${postId}/`);
+  }
+  
+  getCommentsForPost(postId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.api_url}board/comments/${postId}/`);
+  }
 }

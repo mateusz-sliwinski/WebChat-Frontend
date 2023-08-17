@@ -27,11 +27,6 @@
 
 </form>
 
-
-
-
-
-
 <div class="container">
   <div class="row">
       <div class="post-list">
@@ -53,7 +48,10 @@
                 <input type ="checkbox" (click)="likePost(post.id)" />
                 <button  > <span>Like</span></button>
               </div>
-              <button class="action-button comment-button">Comment</button>
+              <!-- <button class="action-button comment-button">Comment</button> -->
+              
+              <a [routerLink]="['/commentary', post.id]">Komentarze</a>
+
               <button class="action-button share-button">Share</button>
             </div>
           </div>
