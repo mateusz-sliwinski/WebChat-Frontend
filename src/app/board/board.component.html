@@ -46,15 +46,15 @@
             </div>
             <p class="post-text">{{ post.body }}</p>
             <img [src]="post.image" alt="Post Image" class="post-image" *ngIf="post.image">
-            
+            <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>
+
             <div class="post-actions">
               <div class="heart-btn">
                 <input type ="checkbox"/>
-              <button> <span>Like</span></button>
+                <button> <span>Like</span></button>
               </div>
               <button class="action-button comment-button">Comment</button>
               <button class="action-button share-button">Share</button>
-              <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>
             </div>
           </div>
         </div>

@@ -132,6 +132,7 @@ display: None;
 .post-content {
   flex: 1; /* Wypełnia dostępną przestrzeń w kontenerze postu */
   flex-direction: column;
+  display: flex;
 }
 
 .post-image {
@@ -145,10 +146,27 @@ display: None;
 
 .post-actions {
   display: flex;
-  flex-direction: flex; /* Wyświetlanie elementów w kolumnie */
-  align-items: flex-start; /* Wyrównanie do lewej strony */
-  gap: 10px;
-  margin-top: auto; /* Przesunięcie do dolnej krawędzi kontenera */
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+  align-items: flex-end;
+}
+
+.action-button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.action-button {
+  flex-grow: 1;
+  margin-right: 10px;
+  padding: 10px 0;
+}
+
+.heart-button {
+  background-color: red; /* Możesz dostosować styl dla guzika Like */
 }
 
 .action-button {
