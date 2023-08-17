@@ -180,8 +180,8 @@ display: None;
 
 
 .heart-btn{
-  width: 3.25em;
-  height: 1em;
+  width: 2.75em;
+  height: 0.8em;
   font-size: 1.2em;
   margin-left: 5em; 
 }
@@ -197,7 +197,7 @@ button{
 .heart-btn button::before,.heart-btn button::after{
   content:'';
   position: absolute;
-  top:0;
+  top: 0.45em;
   width: 50%;
   height: 100%;
   background: #050505;
@@ -220,17 +220,18 @@ button{
 }
 
 .heart-btn button span {
-  position: relative;
   z-index: 1;
   display: inline-block;
-  font-size: 1.4em; 
+  font-size: 1em; 
   font-weight: bold; 
   text-transform: uppercase; 
   text-align: center; 
-  line-height: 2.5em; /* Ustawienie wysokości linii na wysokość przycisku minus 0.5em */
-  margin-top: -0.5em; /* Przesunięcie napisu delikatnie wyżej */
-  margin-left: 1.5em; /* Przesunięcie napisu delikatnie w prawo */
+  line-height: 0.5em; /* Ustawienie wysokości linii na wysokość przycisku minus 0.5em */
+  position: relative; /* Dodaj nową właściwość */
 }
+
+
+
 
 input[type="checkbox"]{
   position: absolute;
@@ -245,13 +246,13 @@ input[type="checkbox"]{
 
 }
 input[type="checkbox"]:checked +button::before{
-  transform: rotate(45deg) translate(0.0001em,-0.75em);
+  transform: rotate(45deg) translate(0.001em,-0.7em);
   animation: glow 0.6s ease-in 0.4s forwards;
 
 }
 
 input[type="checkbox"]:checked +button::after{
-  transform: rotate(-45deg) translate(-0.0001em,-0.75em);
+  transform: rotate(-45deg) translate(-0.001em,-0.7em);
   animation: glow 0.6s ease-in 0.4s forwards;
 
 }
