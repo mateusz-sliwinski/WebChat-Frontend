@@ -98,17 +98,25 @@ display: None;
   margin-top: 20px;
 }
 
+.user-avatar {
+  display: flex;
+}
+
+.user-avatar h2{
+  margin-top: 7px;
+}
+
 .user-avatar img {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
 .post-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 5px;
 }
 
@@ -136,20 +144,24 @@ display: None;
 }
 
 .post-image {
-  width: 380px;
-  height: 680px;
   background-size: cover;
   background-position: center;
   border-radius: 5px;
   margin-right: 10px;
+  display: flex;
 }
 
 .post-actions {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 10px;
-  align-items: flex-end;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 5px; 
+  margin-right: 10px;
+  min-height: 3em;
+  flex-wrap: wrap; 
+  overflow: hidden;
 }
 
 .action-button-group {
@@ -157,12 +169,16 @@ display: None;
   justify-content: space-between;
   width: 100%;
   flex-grow: 1;
+  flex-direction: column;
+  padding-top: 5px;
 }
 
 .action-button {
   flex-grow: 1;
   margin-right: 10px;
   padding: 10px 0;
+  margin-bottom: 5px; /* Dodaj odstęp między przyciskami */
+  padding: 8px 0; /* Zmniejsz padding przycisków */
 }
 
 .heart-button {
