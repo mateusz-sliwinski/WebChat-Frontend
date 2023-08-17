@@ -98,7 +98,6 @@ export class UserService {
   }
 
   usersList(user:any): Observable<any> {
-
     const params = new HttpParams().set('username', user.username.toString());
     return this.http.get<any>(this.api_url + 'accounts/user/list', { params });
   }
@@ -110,13 +109,10 @@ export class UserService {
 
   invitationsList(user:any): Observable<any> {
     const params = new HttpParams().set('username', user.username.toString());
-
     return this.http.get<any>(this.api_url + 'accounts/friends/pending/', {params });
   }
 
   addToFriend(from: string, to: string, token: string): Observable<any> {
-    const endpoint = `${this.api_url}accounts/friends/`;
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'X-CSRFToken': token, 
@@ -144,7 +140,6 @@ export class UserService {
     const params = new HttpParams()
   .set('from_uuid', user.from_user.id.toString()).
   append('to_uuid', user.to_user.id.toString());
-  console.log('servis');
     return this.http.get<any>(this.api_url + 'chat/room/', {params: params});
   }
 

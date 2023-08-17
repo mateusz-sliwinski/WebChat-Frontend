@@ -1,11 +1,6 @@
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="people-nearby">
-             
-              <div class="nearby-user" *ngFor="let friend of usersList">
-                <div class="row">
+
+                <div class="row" *ngFor="let friend of usersList">
                   <div class="col-md-2 col-sm-2">
                     <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="user" class="profile-photo-lg">
                   </div>
@@ -20,17 +15,10 @@
                         {{friend.to_user.last_name}}
                       </p></a></h5>
                     </ng-template>
-                    <p></p>
-                    <p class="text-muted"></p>
+                    
                   </div>
                   <div class="col-md-3 col-sm-3">
                     <button class="btn btn-danger" (click)="updateFriendship(friend,'Rejected')">Delete</button>
                     <button class="btn btn-primary pull-right" (click)="goToChatRoom(friend)">Open Chat</button>
                   </div>
                 </div>
-              </div>
-         
-            </div>
-    	</div>
-	</div>
-</div>

@@ -12,7 +12,8 @@ export class WebSocketService {
   callbacks: any = {};
   private chatSocket!: ReconnectingWebSocket; 
   messages:any;
-  user:string = 'admin';
+  public isConnected: boolean = false;
+  user:any;
 
   
   constructor() { }
@@ -23,6 +24,7 @@ export class WebSocketService {
     this.user = username;
     this.chatSocket.addEventListener('open', () => {
       console.log('WebSocket connected!');
+      this.isConnected = true;
       this.fetchMessages(username, Number(roomName));
     });
 
@@ -31,12 +33,12 @@ export class WebSocketService {
       this.messages = JSON.parse(event.data);
       if (this.messages['command'] === 'messages') {
         for (let i=0; i<this.messages['messages'].length; i++) {
+          // console.log(this.messages['messages'][i]);
           this.createMessage(this.messages['messages'][i]);
         }
       } else if (this.messages['command'] === 'new_message'){
         this.createMessage(this.messages['message']);
       }
-      // console.log('Received message:', event.data);
     });
     this.chatSocket.addEventListener('error', (event:any) => {
       console.error('WebSocket error:', event);
@@ -88,48 +90,39 @@ export class WebSocketService {
     }
 
     createMessage(data: any) {
-      const author = data['participant'];
 
+      const author = data['participant'];
       const msgListTag = document.createElement('li');
-      
+      msgListTag.className = 'clearfix';  
       const divCardBody = document.createElement('div');
-      divCardBody.className = 'card-body';
+
+      const imgTag = document.createElement('img');
       
       const pMessage = document.createElement('p');
-      pMessage.className = 'mb-0';
-      pMessage.textContent = data.content;
       
-      const imgTag = document.createElement('img');
-      imgTag.src = 'http://emilcarlsson.se/assets/mikeross.png';
-      imgTag.width=60;
-      imgTag.className = 'rounded-circle d-flex align-self-start me-3 shadow-1-strong'
-
-
-      divCardBody.appendChild(pMessage);
-
-      const divCard = document.createElement('div');
-      divCard.className = 'card mask-custom';
-
-      divCard.appendChild(divCardBody);
-
-   
-  
       if (author === this.user) {
-        msgListTag.className = 'd-flex justify-content-between mb-4 sender';
-        msgListTag.appendChild(divCard);
+        imgTag.src = 'https://bootdey.com/img/Content/avatar/avatar7.png'; 
+        pMessage.className = 'message other-message float-right';
+        pMessage.textContent = data.content;
+        imgTag.className = 'float-right'
+        divCardBody.appendChild(pMessage);
+        divCardBody.className = 'message-data text-right';
         msgListTag.appendChild(imgTag);
-        
+        msgListTag.appendChild(divCardBody);
+
       } else {
-        msgListTag.className = 'd-flex justify-content-between mb-4 replies';
-        msgListTag.appendChild(imgTag);
-        msgListTag.appendChild(divCard);
+        imgTag.src = 'https://bootdey.com/img/Content/avatar/avatar2.png'; 
+        pMessage.className = 'message other-message';
+        pMessage.textContent = data.content;
+        divCardBody.className = 'message-data';
+        divCardBody.appendChild(imgTag);
+        divCardBody.appendChild(pMessage);
+        msgListTag.appendChild(divCardBody);
         
       }
- 
-  
+
       const chatLog = document.querySelector('#chat-log');
-      if (chatLog) {
-        
+      if (chatLog) {  
         chatLog.appendChild(msgListTag);
       }
     }
