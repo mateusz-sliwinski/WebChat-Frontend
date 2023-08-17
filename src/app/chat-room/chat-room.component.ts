@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { UserService } from '../_services/user.services';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { parse, stringify } from 'uuid';
 import { WebSocketService } from '../_services/websocket.service';
 
 @Component({
@@ -37,7 +36,6 @@ export class RoomComponent {
     // Sends post to backend and assigns friend list without currently logged in
     this.userService.friendsList(this.user.user).subscribe(
       (data) => {
-
         this.usersList = data;
       },
       (error) => {
@@ -47,20 +45,15 @@ export class RoomComponent {
   }
 
   goToChatRoom(friend:any): void {
-
-    
     // Sent post to backend to find room for both friends and then go to it
     this.userService.getRoom(friend).subscribe(
       (data) => {
-        
         this.room = data[0]['id'].toString();
         this.router.navigate(['/chat', this.room]);
-        
       },
       (error) => {
         console.error('An error occurred while downloading data from the API:', error);
       }
-
     );
   }
 

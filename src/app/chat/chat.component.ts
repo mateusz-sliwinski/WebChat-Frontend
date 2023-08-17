@@ -13,13 +13,10 @@ import { UserService } from '../_services/user.services';
 
 })
 export class ChatComponent implements OnInit, OnDestroy {
-
   message: string = '';
   roomName: string = '';
   messages: any[] = [];
   user:any;
-
-
   socket$: any;
 
   constructor(
@@ -35,17 +32,15 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.webSocketService.closeWebSocket();
       this.webSocketService.isConnected=false;
     }
-   
+
     this.route.paramMap.subscribe(params => {
-      this.roomName = params.get('roomName') as string;
-      this.user = this.userService.getUser();
+    this.roomName = params.get('roomName') as string;
+    this.user = this.userService.getUser();
 
-      const chatLogElement = document.getElementById('chat-log');
-
+    const chatLogElement = document.getElementById('chat-log');
     if (chatLogElement) {
       chatLogElement.innerHTML = '';
     }
-      
       this.webSocketService.connectWebSocket(this.roomName, this.user.user.username);
     })
     
@@ -57,7 +52,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     const messageInputDom = document.getElementById('chat-message-input') as HTMLInputElement;
     const message = messageInputDom.value;
     if (message.length>0){
-      this.webSocketService.newChatMessages(message, this.user.user.username , Number(this.roomName));
+      this.webSocketService.newChatMessages(message, this.user.user.username , this.roomName);
       messageInputDom.value = '';
     }
     

@@ -8,7 +8,6 @@
       <router-outlet></router-outlet>
     </div>
     <div class="col-3 friends">
-      <app-room></app-room>
+      <app-room *ngIf="isLoggedIn"></app-room>
     </div>
-    
   </div>

@@ -20,12 +20,14 @@ export class WebSocketService {
 
   connectWebSocket(roomName: string, username: string) {
     const url = 'ws://localhost:8000/ws/chat/' + roomName + '/';
+    
     this.chatSocket = new ReconnectingWebSocket(url);
     this.user = username;
+
     this.chatSocket.addEventListener('open', () => {
       console.log('WebSocket connected!');
       this.isConnected = true;
-      this.fetchMessages(username, Number(roomName));
+      this.fetchMessages(username, roomName);
     });
 
 
@@ -64,11 +66,11 @@ export class WebSocketService {
     }
   }
 
-  fetchMessages(username: string, chatId: number) {
+  fetchMessages(username: string, chatId: string) {
     this.sendMessage({ command: 'fetch_messages', usename: username, chatId:chatId });
   }
 
-  newChatMessages(content:string, username: string, chatId: number) {
+  newChatMessages(content:string, username: string, chatId: string) {
     this.sendMessage({ command: 'new_message',  username: username, chatId:chatId, content:content});
   }
 
