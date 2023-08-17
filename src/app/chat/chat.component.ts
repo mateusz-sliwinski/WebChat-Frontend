@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation} from '@angular/core';
 import { WebSocketService } from '../_services/websocket.service';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../_services/user.services';
+import { UserService } from '../_services/auth_user.services';
 
 
 

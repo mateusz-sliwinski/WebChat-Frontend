@@ -37,6 +37,9 @@ import { CommentaryComponent } from './commentary/commentary.component';
     BoardComponent,
     SidebarComponent,
     CommentaryComponent,
+    RoomComponent,
+    UsersComponent,
+    InvitationsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<nav class="sidebar" *[ngClass]="{'close': isSidebarClosed}">
+<nav class="sidebar" [ngClass]="{'close': isSidebarClosed}">
     <header>
       <div class="image-text">
         <span class="image">
@@ -64,57 +64,5 @@
       </div>
     </div>
 
-    <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
-  </header>
-  <div class="menu-bar">
-    <div class="menu">
-      <ul class="menu-links">
-        <li class="nav-link">
-          <a routerLink="/home" routerLinkActive="active" 
-          ariaCurrentWhenActive="page">
-          <i class="bx bx-user icon"></i>
-            <span class="text nav-text">{{user.user.email}}</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a routerLink="/home" routerLinkActive="active" 
-          ariaCurrentWhenActive="page">
-            <i class="bx bx-home-alt icon"></i>
-            <span class="text nav-text">Home</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a routerLink="/chat" routerLinkActive="active" 
-          ariaCurrentWhenActive="page">
-          <i class="bx bx-chat icon"></i>
-            <span class="text nav-text">Friends</span>
-          </a>
-        </li>
-
-        <li class="nav-link">
-          <a routerLink="/users" routerLinkActive="active" 
-          ariaCurrentWhenActive="page">
-            <i class="bx bx-home-alt icon"></i>
-            <span class="text nav-text">Users</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a routerLink="/invitations" routerLinkActive="active" 
-          ariaCurrentWhenActive="page">
-            <i class="bx bx-home-alt icon"></i>
-            <span class="text nav-text">Invitations</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a routerLink="/login" routerLinkActive="active" 
-          ariaCurrentWhenActive="page">
-          <i class="bx bx-log-out icon"></i>
-            <span  class="text nav-text" *ngIf="isLoggedIn" (click)="logout()">Logout</span>
-         </a>
-        </li>
-            
-      </ul>
-    </div>
-  </div>
  
 </nav>
