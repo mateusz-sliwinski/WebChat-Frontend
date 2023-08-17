@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f5f8fa;
+  overflow-x: hidden;
 }
 
 .input-form {
@@ -123,7 +124,7 @@ display: None;
 
 .post-text {
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 5em;
   flex-grow: 1;
   word-wrap: break-word; /* Dzieli długie słowa, aby dopasować je do dostępnej przestrzeni */
   overflow-wrap: break-word;
@@ -140,11 +141,15 @@ display: None;
   background-position: center;
   border-radius: 5px;
   margin-right: 10px;
+  margin-bottom: 5em;
 }
 
 .post-actions {
   display: flex;
+  flex-direction: flex; /* Wyświetlanie elementów w kolumnie */
+  align-items: flex-start; /* Wyrównanie do lewej strony */
   gap: 10px;
+  margin-top: auto; /* Przesunięcie do dolnej krawędzi kontenera */
 }
 
 .action-button {
@@ -174,19 +179,12 @@ display: None;
 
 /* Like button css */
 
-body{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #111;
-}
 
 .heart-btn{
   width: 8em;
   height: 2.5em;
-  position: relative;
   font-size: 1.2em;
+  margin-left: 5em; 
 }
 
 button{
@@ -216,12 +214,25 @@ button{
   border-radius: 0 2em 2em 0;
 }
 .heart-btn{
-  position: absolute;
   z-index: 1;
   top:50%;
   left: 50%;
   transform: translate(-50%,-50%);
 }
+
+.heart-btn button span {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  font-size: 1.4em; 
+  font-weight: bold; 
+  text-transform: uppercase; 
+  text-align: center; 
+  line-height: 2.5em; /* Ustawienie wysokości linii na wysokość przycisku minus 0.5em */
+  margin-top: -0.5em; /* Przesunięcie napisu delikatnie wyżej */
+  margin-left: 1.5em; /* Przesunięcie napisu delikatnie w prawo */
+}
+
 input[type="checkbox"]{
   position: absolute;
   width: 100%;
