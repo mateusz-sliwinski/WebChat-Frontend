@@ -3,9 +3,10 @@
       
         <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
       </div> 
-      <div class="col-10 home">
+      <div class="col-8 home">
         <app-board *ngIf="isLoggedIn" class="app-board"></app-board>
         <router-outlet></router-outlet>
       </div>
-      
+          <div class="col-2"></div>
     </div>
+
