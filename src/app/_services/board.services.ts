@@ -28,6 +28,7 @@ export class BoardService {
   likePost(postId: string): Observable<any> {
     const likeData = { postId };
     return this.http.post<any>(`${this.api_url}board/like/${postId}/`, likeData);
+
   }
 
 
@@ -38,4 +39,10 @@ export class BoardService {
   getCommentsForPost(): Observable<any[]> {
     return this.http.get<any[]>(`${this.api_url}board/comments/`);
   }
+
+  createComment(commentData: any): Observable<any> {
+    const endpoint = `${this.api_url}board/comments/`;
+    return this.http.post(endpoint, commentData);
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../_services/board.services';
+import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-commentary',
@@ -11,10 +12,14 @@ export class CommentaryComponent implements OnInit {
   postId!: string;
   postDetails: any;
   comments: any[];
+  commentForm!: FormGroup;
 
   constructor(private route: ActivatedRoute, private boardService: BoardService) {
     this.comments = [];
+
+
   }
+  
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -22,8 +27,16 @@ export class CommentaryComponent implements OnInit {
       this.loadCommentsForPost(this.postId);
       this.loadPost()
     });
+
+    this.commentForm= new FormGroup({
+      body: new FormControl(''),
+    });
+
+
   }
 
+
+  
   loadPost() {
     this.boardService.getPostDetails(this.postId).subscribe(
       postDetails => {
@@ -46,5 +59,27 @@ export class CommentaryComponent implements OnInit {
     );
   }
 
+  onSubmit() {
+    if (this.commentForm.valid) {
+      const commentData = {
+        body: this.commentForm.value.body,
+        post: this.postId, // Przekazanie identyfikatora postu
+      };
+      this.createComment(commentData);
+    }
+  }
+
+  createComment(commentData: any) {
+    this.boardService.createComment(commentData).subscribe(
+      response => {
+        console.log('Comment created successfully:', response);
+        this.loadCommentsForPost(commentData.post);
+        this.commentForm.reset(); 
+      },
+      error => {
+        console.error('Error creating comment:', error);
+      }
+    );
+  }
 
 }

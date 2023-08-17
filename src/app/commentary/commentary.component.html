@@ -14,15 +14,14 @@
   
                 <p class="post-text">{{ postDetails.body }}</p>
                 <img [src]="postDetails.image" alt="Post Image" class="post-image" *ngIf="postDetails.image">
-              <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p> 
+              <!-- <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>  -->
   
               <div class="post-actions">
                 <div></div>
                 <div class="heart-btn">
-                  <input type ="checkbox" (click)="likePost(post.id)" />
+                  <!-- <input type ="checkbox" (click)="likePost(post.id)" /> -->
                   <button  > <span>Like</span></button>
                 </div>
-                <div><a [routerLink]="['/commentary', post.id]">Comments</a></div>
                 <div><button class="action-button share-button">Share</button></div>
                 <div></div>
               </div>
@@ -30,3 +29,28 @@
           </div>
         </div>
       </div>
+
+
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="container">
+        <div class="input-container">
+            <div class="profile-section">
+              <img src="assets/images/icons/user.png" alt="Profile Picture" class="profile-picture">
+        </div>
+      
+        <div class="content-section">
+            <div class="input-section">
+            <div class="textarea-and-button">
+            <input formControlName="body" placeholder="Add your answer!" class="post-input">
+            <button type="submit" class="post-button">Publish</button>
+            </div>
+        </div>
+        </div>
+        </div>
+      
+      </form>
+
+      <div *ngIf="comments" class="comments-list">
+        <div class="comment" *ngFor="let comment of comments">
+          <p class="comment-body">{{ comment.body }}</p>
+          <p class="comment-owner">{{ comment.owner }}</p>
+        </div>
