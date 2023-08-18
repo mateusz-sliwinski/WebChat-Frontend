@@ -2,22 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../_services/board.services';
 import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+import { UserInformationService } from '../_services/user.services';
 
 @Component({
   selector: 'app-commentary',
   templateUrl: './commentary.component.html',
   styleUrls: ['./commentary.component.css']
 })
+
+
 export class CommentaryComponent implements OnInit {
   postId!: string;
   postDetails: any;
   comments: any[];
   commentForm!: FormGroup;
+  formData: any = {};
 
-  constructor(private route: ActivatedRoute, private boardService: BoardService) {
+  constructor(private route: ActivatedRoute, private boardService: BoardService, private dataService: UserInformationService) {
     this.comments = [];
-
-
   }
   
 
@@ -31,8 +33,9 @@ export class CommentaryComponent implements OnInit {
     this.commentForm= new FormGroup({
       body: new FormControl(''),
     });
-
-
+    
+    this.formData = this.dataService.getData() || {};
+    console.log(this.formData)
   }
 
 

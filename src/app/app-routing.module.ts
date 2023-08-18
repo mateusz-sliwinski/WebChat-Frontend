@@ -16,7 +16,7 @@ import { BoardComponent } from './board/board.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: '', component: BoardComponent },
+  // { path: '', component: BoardComponent },
   { path: 'home', component: BoardComponent },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path:'chat', component:RoomComponent },

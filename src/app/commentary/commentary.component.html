@@ -31,26 +31,27 @@
       </div>
 
 
-      <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="container">
-        <div class="input-container">
-            <div class="profile-section">
-              <img src="assets/images/icons/user.png" alt="Profile Picture" class="profile-picture">
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="container">
+    <div class="command-box">
+      <div class="command-header">
+        <div class="profile-section">
+          <img src="assets/images/icons/user.png" alt="Profile Picture" class="profile-picture">
+          <h2 class="username"> {{ formData.user.first_name }} {{ formData.user.last_name }}</h2>
         </div>
-      
         <div class="content-section">
-            <div class="input-section">
+          <div class="input-section">
             <div class="textarea-and-button">
-            <input formControlName="body" placeholder="Add your answer!" class="post-input">
-            <button type="submit" class="post-button">Publish</button>
+              <textarea formControlName="body" placeholder="Answer!" class="post-input" cols="70" rows="3"></textarea>
+              <button type="submit" class="post-button">Publish</button>
             </div>
+          </div>
         </div>
-        </div>
-        </div>
-      
-      </form>
+      </div>
+  </div>
+</form>
 
-      <div *ngIf="comments" class="comments-list">
-        <div class="comment" *ngFor="let comment of comments">
-          <p class="comment-body">{{ comment.body }}</p>
-          <p class="comment-owner">{{ comment.owner }}</p>
-        </div>
+<div *ngIf="comments" class="comments-list">
+<div class="comment" *ngFor="let comment of comments">
+<p class="comment-body">{{ comment.body }}</p>
+<p class="comment-owner">{{ comment.owner }}</p>
+</div>
