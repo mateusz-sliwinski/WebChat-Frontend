@@ -50,8 +50,20 @@
   </div>
 </form>
 
-<div *ngIf="comments" class="comments-list">
-<div class="comment" *ngFor="let comment of comments">
-<p class="comment-body">{{ comment.body }}</p>
-<p class="comment-owner">{{ comment.owner }}</p>
+<form [formGroup]="commentForm" class="container" *ngIf="comments">
+  <div class="command-box">
+    <div class="command-header" *ngFor="let comment of comments">
+      <div class="command-box">
+      <div class="profile-section">
+        <img src="assets/images/icons/user.png" alt="Profile Picture" class="profile-picture">
+        <h2 class="username"> {{ comment.owner }} {{ comment.owner_last_name }}</h2>
+      </div>
+      <div class="content-section">
+        <div class="input-section">
+          <p class="comments-text">{{ comment.body }}</p>
+        </div>
+        </div>
+      </div>
+    </div>
 </div>
+</form>
