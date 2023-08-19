@@ -10,7 +10,7 @@ import { UserService } from '../_services/auth_user.services';
 export class RegisterComponent implements OnInit {
   register!: FormGroup;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.register = new FormGroup({
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       this.userService.create(formData).subscribe(
         response => {
           console.log('Registration successful:', response);
-          this.register.reset()
+          this.register.reset();
         },
         error => {
           console.error('Registration failed:', error);
