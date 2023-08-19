@@ -1,19 +1,24 @@
 <div class="container">
-  <div class="row">                    
+  <div class="row">
     <div class="col-md-4" *ngFor="let friend of usersList">
       <div class="card">
         <div class="card-body">
           <div class="row align-items-center">
-            <div class="col-md-2"> <!-- Kolumna na obrazek -->
-              <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="user" class="profile-photo-lg">
+            <div class="col-md-2">
+              <!-- Kolumna na obrazek -->
+              <img
+                src="https://bootdey.com/img/Content/avatar/avatar5.png"
+                alt="user"
+                class="profile-photo-lg" />
             </div>
-            <div class="col-md-10"> <!-- Kolumna na treść po prawej -->
+            <div class="col-md-10">
+              <!-- Kolumna na treść po prawej -->
               <div class="text-and-button">
-                <h5 *ngIf="friend.from_user.id!==user.user.pk; else too">
+                <h5 *ngIf="friend.from_user.id !== user.user.pk; else too">
                   <a class="profile-link">
                     <p>
-                      {{friend.from_user.first_name}}
-                      {{friend.from_user.last_name}}
+                      {{ friend.from_user.first_name }}
+                      {{ friend.from_user.last_name }}
                     </p>
                   </a>
                 </h5>
@@ -21,15 +26,23 @@
                   <h5>
                     <a class="profile-link">
                       <p>
-                        {{friend.to_user.first_name}}
-                        {{friend.to_user.last_name}}
+                        {{ friend.to_user.first_name }}
+                        {{ friend.to_user.last_name }}
                       </p>
                     </a>
                   </h5>
                 </ng-template>
                 <div class="two-buttons-one-user">
-                  <button class="btn btn-danger" (click)="updateFriendship(friend,'Rejected')">Delete</button>
-                  <button class="btn btn-primary pull-right" (click)="goToChatRoom(friend)">Open Chat</button>
+                  <button
+                    class="btn btn-danger"
+                    (click)="updateFriendship(friend, 'Rejected')">
+                    Delete
+                  </button>
+                  <button
+                    class="btn btn-primary pull-right"
+                    (click)="goToChatRoom(friend)">
+                    Open Chat
+                  </button>
                 </div>
               </div>
             </div>

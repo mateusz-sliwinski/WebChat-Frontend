@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpRequest,
+  HttpParams,
+} from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-  },
-  ),
+  }),
   withCredentials: true,
-}
+};
 
 @Injectable({
   providedIn: 'root',
@@ -22,17 +26,16 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  
-
   login(email: string, password: string) {
     return this.http
       .post<any>(
         this.api_url + 'accounts/login/',
-        { email, password },{withCredentials:true}
+        { email, password },
+        { withCredentials: true }
       )
       .pipe(
-        map((user_all_data => {
-          console.log(user_all_data)
+        map(user_all_data => {
+          console.log(user_all_data);
 
           if (user_all_data && user_all_data.access) {
             user_all_data.user.access = user_all_data.access;
@@ -43,17 +46,16 @@ export class UserService {
           }
           return user_all_data;
         })
-      ));
+      );
   }
 
-  logout()  {
+  logout() {
     localStorage.removeItem('currentUser');
     this.isLoggedInSubject.next(false);
     const endpoint = `${this.api_url}accounts/logout/`;
 
     return this.http.post(endpoint, {}, httpOptions);
   }
-
 
   create(data: any): Observable<any> {
     return this.http.post(this.api_url + 'accounts/register/', data);
@@ -88,30 +90,33 @@ export class UserService {
     return localStorage.getItem('currentUser') !== null;
   }
 
-
-  getUser(){
+  getUser() {
     const storedUser = localStorage.getItem('currentUser');
-      if (storedUser) {
-        this.user = JSON.parse(storedUser)
-        return this.user;
-      } else {
-        console.log('user not found');
-      }
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+      return this.user;
+    } else {
+      console.log('user not found');
+    }
   }
 
-  usersList(user:any): Observable<any> {
+  usersList(user: any): Observable<any> {
     const params = new HttpParams().set('username', user.username.toString());
     return this.http.get<any>(this.api_url + 'accounts/user/list', { params });
   }
 
-  friendsList(user:any): Observable<any> {
+  friendsList(user: any): Observable<any> {
     const params = new HttpParams().set('pk', user.pk.toString());
-    return this.http.get<any>(this.api_url + 'accounts/friends/list/', {params });
+    return this.http.get<any>(this.api_url + 'accounts/friends/list/', {
+      params,
+    });
   }
 
-  invitationsList(user:any): Observable<any> {
+  invitationsList(user: any): Observable<any> {
     const params = new HttpParams().set('username', user.username.toString());
-    return this.http.get<any>(this.api_url + 'accounts/friends/pending/', {params });
+    return this.http.get<any>(this.api_url + 'accounts/friends/pending/', {
+      params,
+    });
   }
 
   addToFriend(from: string, to: string, token: string): Observable<any> {
@@ -119,32 +124,36 @@ export class UserService {
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-CSRFToken': token, 
+      'X-CSRFToken': token,
     });
     console.log(headers);
-    const data = { 
-          from_user: from,
-          to_user: to ,
-          status: 'Pending',
-        };
-    return this.http.post<any>(this.api_url + 'accounts/friends/', data, {headers} );
-  }
-
-  updateInvitations(invitation:any, status:string): Observable<any> {
-    // Changes status to accepted 
     const data = {
-      "from_user":invitation.from_user.id,
-      "to_user":invitation.to_user.id,
-      "status":status
-    }
-    return this.http.put<any>(this.api_url + 'accounts/friends/update/'+invitation.id,data);
+      from_user: from,
+      to_user: to,
+      status: 'Pending',
+    };
+    return this.http.post<any>(this.api_url + 'accounts/friends/', data, {
+      headers,
+    });
   }
 
-  getRoom(user:any): Observable<any> {
+  updateInvitations(invitation: any, status: string): Observable<any> {
+    // Changes status to accepted
+    const data = {
+      from_user: invitation.from_user.id,
+      to_user: invitation.to_user.id,
+      status: status,
+    };
+    return this.http.put<any>(
+      this.api_url + 'accounts/friends/update/' + invitation.id,
+      data
+    );
+  }
+
+  getRoom(user: any): Observable<any> {
     const params = new HttpParams()
-  .set('from_uuid', user.from_user.id.toString()).
-  append('to_uuid', user.to_user.id.toString());
-    return this.http.get<any>(this.api_url + 'chat/room/', {params: params});
+      .set('from_uuid', user.from_user.id.toString())
+      .append('to_uuid', user.to_user.id.toString());
+    return this.http.get<any>(this.api_url + 'chat/room/', { params: params });
   }
-
 }

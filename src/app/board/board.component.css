@@ -227,19 +227,19 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #1DA1F2;
+  color: #1da1f2;
 }
 
 .like-button::before {
-  content: "\2764";
+  content: '\2764';
 }
 
 .comment-button::before {
-  content: "\270E";
+  content: '\270E';
 }
 
 .share-button::before {
-  content: "\21A9";
+  content: '\21A9';
 }
 
 /* Like Button CSS */
@@ -299,7 +299,7 @@ button {
   position: relative;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -311,17 +311,17 @@ input[type="checkbox"] {
   z-index: 2;
 }
 
-input[type="checkbox"]:checked + button::before {
+input[type='checkbox']:checked + button::before {
   transform: rotate(45deg) translate(0.001em, -0.7em);
   animation: glow 0.6s ease-in 0.4s forwards;
 }
 
-input[type="checkbox"]:checked + button::after {
+input[type='checkbox']:checked + button::after {
   transform: rotate(-45deg) translate(-0.001em, -0.7em);
   animation: glow 0.6s ease-in 0.4s forwards;
 }
 
-input[type="checkbox"]:checked + button span {
+input[type='checkbox']:checked + button span {
   opacity: 0;
 }
 

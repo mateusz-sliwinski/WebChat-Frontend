@@ -1,39 +1,39 @@
-body{
-  margin-top:20px;
-  background:#eee;
+body {
+  margin-top: 20px;
+  background: #eee;
 }
 /*==================================================
 Nearby People CSS
 ==================================================*/
 
-.people-nearby .google-maps{
-background: #f8f8f8;
-border-radius: 4px;
-border: 1px solid #f1f2f2;
-padding: 20px;
-margin-bottom: 20px;
+.people-nearby .google-maps {
+  background: #f8f8f8;
+  border-radius: 4px;
+  border: 1px solid #f1f2f2;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
-.people-nearby .google-maps .map{
-height: 300px;
-width: 100%;
-border: none;
+.people-nearby .google-maps .map {
+  height: 300px;
+  width: 100%;
+  border: none;
 }
 
-.people-nearby .nearby-user{
-padding: 20px 0;
-border-top: 1px solid #f1f2f2;
-border-bottom: 1px solid #f1f2f2;
-margin-bottom: 20px;
+.people-nearby .nearby-user {
+  padding: 20px 0;
+  border-top: 1px solid #f1f2f2;
+  border-bottom: 1px solid #f1f2f2;
+  margin-bottom: 20px;
 }
 
-img.profile-photo-lg{
-height: 80px;
-width: 80px;
-border-radius: 50%;
+img.profile-photo-lg {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
 }
 
-.two-buttons-one-user{
+.two-buttons-one-user {
   display: flex;
 }
 
@@ -61,7 +61,9 @@ border-radius: 50%;
   border-radius: 0;
   width: 100%; /* Ustaw pełną szerokość karty */
   margin-bottom: 20px; /* Dodaj odstęp między kartami */
-  box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+  box-shadow:
+    2px 2px 2px rgba(0, 0, 0, 0.1),
+    -1px 0 2px rgba(0, 0, 0, 0.05);
 }
 
 .card-body {
@@ -76,7 +78,7 @@ border-radius: 50%;
   top: 0;
   z-index: 30;
 }
-.row{
+.row {
   display: flex;
 }
 
@@ -114,8 +116,6 @@ border-radius: 50%;
   max-width: calc(33.3333% - 30px); /* 30px to odstępy między kolumnami */
   margin-bottom: 20px; /* Dodaj odstęp między wierszami */
 }
-
-
 
 @media (max-width: 1026px) {
   .col-md-4 {

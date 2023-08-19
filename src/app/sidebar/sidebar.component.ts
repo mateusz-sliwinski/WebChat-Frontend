@@ -10,13 +10,16 @@ import { Router } from '@angular/router';
 export class SidebarComponent {
   isLoggedIn?: boolean = false;
   user: any;
-  
-  constructor(private userService: UserService, private router: Router) {}
+
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.userService.isLoggedIn$.subscribe((isLoggedIn) => {
+    this.userService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = this.userService.isUserLoggedIn();
-      this.user= this.userService.getUser()
+      this.user = this.userService.getUser();
     });
   }
 
@@ -33,7 +36,8 @@ export class SidebarComponent {
 
   toggleDarkMode() {
     document.body.classList.toggle('dark');
-    this.modeText = document.body.classList.contains('dark') ? 'Light mode' : 'Dark mode';
+    this.modeText = document.body.classList.contains('dark')
+      ? 'Light mode'
+      : 'Dark mode';
   }
-
 }

@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(private userService: UserService) {}
   ngOnInit(): void {
-    this.userService.isLoggedIn$.subscribe((isLoggedIn) => {
+    this.userService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = this.userService.isUserLoggedIn();
     });
   }

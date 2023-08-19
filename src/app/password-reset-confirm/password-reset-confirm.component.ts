@@ -22,7 +22,7 @@ export class PasswordResetConfirmComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe(params => {
       this.uidb64 = params['uidb64'];
       this.token = params['token'];
     });
@@ -46,11 +46,11 @@ export class PasswordResetConfirmComponent implements OnInit {
         this.f['new_password2'].value
       )
       .subscribe(
-        (response) => {
+        response => {
           this.router.navigate(['/login']);
           this.message = 'password has been reset';
         },
-        (error) => {
+        error => {
           this.message = 'password failed to reset';
         }
       );

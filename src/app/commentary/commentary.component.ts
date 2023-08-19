@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../_services/board.services';
-import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { UserInformationService } from '../_services/user.services';
 
 @Component({
   selector: 'app-commentary',
   templateUrl: './commentary.component.html',
-  styleUrls: ['./commentary.component.css']
+  styleUrls: ['./commentary.component.css'],
 })
-
-
 export class CommentaryComponent implements OnInit {
   postId!: string;
   postDetails: any;
@@ -18,28 +21,29 @@ export class CommentaryComponent implements OnInit {
   commentForm!: FormGroup;
   formData: any = {};
 
-  constructor(private route: ActivatedRoute, private boardService: BoardService, private dataService: UserInformationService) {
+  constructor(
+    private route: ActivatedRoute,
+    private boardService: BoardService,
+    private dataService: UserInformationService
+  ) {
     this.comments = [];
   }
-  
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.postId = params['postId'];
       this.loadCommentsForPost(this.postId);
-      this.loadPost()
+      this.loadPost();
     });
 
-    this.commentForm= new FormGroup({
+    this.commentForm = new FormGroup({
       body: new FormControl(''),
     });
-    
+
     this.formData = this.dataService.getData() || {};
-    console.log(this.formData)
+    console.log(this.formData);
   }
 
-
-  
   loadPost() {
     this.boardService.getPostDetails(this.postId).subscribe(
       postDetails => {
@@ -49,7 +53,6 @@ export class CommentaryComponent implements OnInit {
         console.error('Error loading post details:', error);
       }
     );
-  
   }
   loadCommentsForPost(postId: string) {
     this.boardService.getCommentsForPost().subscribe(
@@ -77,12 +80,11 @@ export class CommentaryComponent implements OnInit {
       response => {
         console.log('Comment created successfully:', response);
         this.loadCommentsForPost(commentData.post);
-        this.commentForm.reset(); 
+        this.commentForm.reset();
       },
       error => {
         console.error('Error creating comment:', error);
       }
     );
   }
-
 }

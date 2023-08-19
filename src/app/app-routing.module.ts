@@ -15,33 +15,73 @@ import { CommentaryComponent } from './commentary/commentary.component';
 import { BoardComponent } from './board/board.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard], data: { mustLogin: false } },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: false },
+  },
   // { path: '', component: BoardComponent },
-  { path: 'home', component: BoardComponent, canActivate: [AuthGuard], data: { mustLogin: true } },
-  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard], data: { mustLogin: false }},
-  { path:'chat', component:RoomComponent , canActivate: [AuthGuard], data: { mustLogin: true } },
-  { path:'chat/:roomName', component:ChatComponent , canActivate: [AuthGuard], data: { mustLogin: true } },
-  { path:'users', component:UsersComponent , canActivate: [AuthGuard], data: { mustLogin: true } },
-  { path:'invitations', component:InvitationsComponent , canActivate: [AuthGuard], data: { mustLogin: true } },
-  { path: 'commentary/:postId', component: CommentaryComponent , canActivate: [AuthGuard], data: { mustLogin: true } },
+  {
+    path: 'home',
+    component: BoardComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: true },
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: false },
+  },
+  {
+    path: 'chat',
+    component: RoomComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: true },
+  },
+  {
+    path: 'chat/:roomName',
+    component: ChatComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: true },
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: true },
+  },
+  {
+    path: 'invitations',
+    component: InvitationsComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: true },
+  },
+  {
+    path: 'commentary/:postId',
+    component: CommentaryComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: true },
+  },
 
   {
     path: 'activate-account/:key',
     component: AccountActivationComponent,
     canActivate: [AuthGuard],
-    data: { mustLogin: false }
+    data: { mustLogin: false },
   },
   {
     path: 'reset-password',
     component: PasswordResetComponent,
     canActivate: [AuthGuard],
-    data: { mustLogin: false }
+    data: { mustLogin: false },
   },
   {
     path: 'accounts/user/password/reset/confirm/:uidb64/:token',
     component: PasswordResetConfirmComponent,
     canActivate: [AuthGuard],
-    data: { mustLogin: false }
+    data: { mustLogin: false },
   },
 ];
 

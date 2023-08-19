@@ -93,7 +93,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #1DA1F2;
+  color: #1da1f2;
 }
 
 .heart-btn {
@@ -118,7 +118,7 @@
   position: relative;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -129,17 +129,17 @@ input[type="checkbox"] {
   z-index: 2;
 }
 
-input[type="checkbox"]:checked + button::before {
+input[type='checkbox']:checked + button::before {
   transform: rotate(45deg) translate(0.001em, -0.7em);
   animation: glow 0.6s ease-in 0.4s forwards;
 }
 
-input[type="checkbox"]:checked + button::after {
+input[type='checkbox']:checked + button::after {
   transform: rotate(-45deg) translate(-0.001em, -0.7em);
   animation: glow 0.6s ease-in 0.4s forwards;
 }
 
-input[type="checkbox"]:checked + button span {
+input[type='checkbox']:checked + button span {
   opacity: 0;
 }
 
@@ -149,9 +149,8 @@ input[type="checkbox"]:checked + button span {
   }
 }
 
-
 /* Create Comands */
-.profile-picture{
+.profile-picture {
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -176,7 +175,6 @@ input[type="checkbox"]:checked + button span {
   align-items: center;
   margin-bottom: 5px;
 }
-
 
 .post-input {
   flex: 1;
@@ -288,7 +286,7 @@ body {
   background-color: #1986d7;
 }
 
-.profile-section{
+.profile-section {
   display: flex;
 }
 

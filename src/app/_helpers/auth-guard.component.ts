@@ -6,7 +6,10 @@ import { UserService } from '../_services/auth_user.services';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const mustLogin = (route.data as any).mustLogin;
