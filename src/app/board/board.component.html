@@ -1,1 +1,82 @@
-<p>board works!</p>
+<form [formGroup]="text" (ngSubmit)="onSubmit()" class="container">
+  <div class="input-container">
+    <div class="profile-section">
+      <img
+        src="assets/images/icons/user.png"
+        alt="Profile Picture"
+        class="profile-picture" />
+    </div>
+
+    <div class="content-section">
+      <div class="input-section">
+        <div class="textarea-and-button">
+          <textarea
+            formControlName="body"
+            placeholder="What's happening?"
+            class="post-input"
+            cols="70"
+            rows="3"></textarea>
+          <button type="submit" class="post-button">Publish</button>
+        </div>
+        <div class="attachment-container">
+          <label class="attachment-label">
+            <img
+              src="assets/images/icons/attachment.png"
+              alt="Attachment Icon"
+              class="attachment-icon" />
+            <input
+              type="file"
+              (change)="onFileSelected($event)"
+              class="attachment-input"
+              accept="image/*" />
+          </label>
+
+          <div class="selected-file-info-container">
+            <div *ngIf="selectedFile" class="selected-file-info">
+              {{ selectedFile.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="container">
+  <div class="row">
+    <div class="post-list">
+      <div class="post" *ngFor="let post of posts! | async">
+        <div class="post-header">
+          <div class="user-avatar">
+            <img src="assets/images/icons/user.png" alt="User Avatar" />
+            <h2 class="username">
+              {{ post.owner }} {{ post.owner_last_name }}
+            </h2>
+          </div>
+
+          <p class="timestamp">{{ post.formattedTimestamp }}</p>
+        </div>
+        <div class="post-content">
+          <p class="post-text">{{ post.body }}</p>
+          <img
+            [src]="post.image"
+            alt="Post Image"
+            class="post-image"
+            *ngIf="post.image" />
+          <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>
+
+          <div class="post-actions">
+            <div></div>
+            <div class="heart-btn">
+              <input type="checkbox" (click)="likePost(post.id)" />
+              <button><span>Like</span></button>
+            </div>
+            <div><a [routerLink]="['/commentary', post.id]">Comments</a></div>
+            <div><button class="action-button share-button">Share</button></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

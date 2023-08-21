@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+    <div class="post">
+      <div *ngIf="postDetails" class="post-details">
+        <div class="post-header">
+          <div class="user-avatar">
+            <img src="assets/images/icons/user.png" alt="User Avatar" />
+            <h2 class="username">
+              {{ postDetails.owner }} {{ postDetails.owner_last_name }}
+            </h2>
+          </div>
+
+          <p class="timestamp">{{ postDetails.formattedTimestamp }}</p>
+        </div>
+        <div class="post-content">
+          <p class="post-text">{{ postDetails.body }}</p>
+          <img
+            [src]="postDetails.image"
+            alt="Post Image"
+            class="post-image"
+            *ngIf="postDetails.image" />
+          <!-- <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>  -->
+
+          <div class="post-actions">
+            <div></div>
+            <div class="heart-btn">
+              <!-- <input type ="checkbox" (click)="likePost(post.id)" /> -->
+              <button><span>Like</span></button>
+            </div>
+            <div><button class="action-button share-button">Share</button></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="container">
+    <div class="command-box">
+      <div class="command-header">
+        <div class="profile-section">
+          <img
+            src="assets/images/icons/user.png"
+            alt="Profile Picture"
+            class="profile-picture" />
+          <h2 class="username">
+            {{ formData.user.first_name }} {{ formData.user.last_name }}
+          </h2>
+        </div>
+        <div class="content-section">
+          <div class="input-section">
+            <div class="textarea-and-button">
+              <textarea
+                formControlName="body"
+                placeholder="Answer!"
+                class="post-input"
+                cols="70"
+                rows="3"></textarea>
+              <button type="submit" class="post-button">Publish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <form [formGroup]="commentForm" class="container" *ngIf="comments">
+    <div class="command-box">
+      <div class="command-header" *ngFor="let comment of comments">
+        <div class="command-box">
+          <div class="profile-section">
+            <img
+              src="assets/images/icons/user.png"
+              alt="Profile Picture"
+              class="profile-picture" />
+            <h2 class="username">
+              {{ comment.owner }} {{ comment.owner_last_name }}
+            </h2>
+          </div>
+          <div class="content-section">
+            <div class="input-section">
+              <p class="comments-text">{{ comment.body }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

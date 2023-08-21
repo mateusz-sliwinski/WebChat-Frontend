@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from '../_services/user.services';
+import { UserService } from '../_services/auth_user.services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   user!: FormGroup;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
   message: string | undefined;
 
   isModalVisible = true;
@@ -35,7 +38,7 @@ export class LoginComponent implements OnInit {
           this.message = 'login successfully.';
           this.router.navigate(['/home']);
         },
-        (error) => {
+        error => {
           console.error('Error login:', error);
           this.message = 'Error login .';
         }
