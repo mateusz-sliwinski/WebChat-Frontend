@@ -35,7 +35,7 @@ const routes: Routes = [
     data: { mustLogin: false },
   },
   {
-    path: 'chat',
+    path: 'friends',
     component: RoomComponent,
     canActivate: [AuthGuard],
     data: { mustLogin: true },
@@ -89,4 +89,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
