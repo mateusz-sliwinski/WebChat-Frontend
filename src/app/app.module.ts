@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
-import { UserService } from './_services/user.services';
-import { HttpClientModule,HttpClientXsrfModule  } from '@angular/common/http';
+import { HttpClientXsrfModule } from '@angular/common/http';
+import { UserService } from './_services/auth_user.services';
 import { RegisterComponent } from './register/register.component';
 import { AccountActivationComponent } from './account_activation/account_activation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
@@ -18,8 +18,10 @@ import { RoomComponent } from './chat-room/chat-room.component';
 import { UsersComponent } from './users/users.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { BoardComponent } from './board/board.component';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
+import { DatePipe } from '@angular/common';
+import { CommentaryComponent } from './commentary/commentary.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,13 @@ import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
     AccountActivationComponent,
     PasswordResetComponent,
     PasswordResetConfirmComponent,
-    SidebarComponent,
     ChatComponent,
+    BoardComponent,
+    SidebarComponent,
+    CommentaryComponent,
     RoomComponent,
     UsersComponent,
-    InvitationsComponent
-    BoardComponent
+    InvitationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,12 +46,20 @@ import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
     FormsModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
-      cookieName: 'csrftoken', 
+      cookieName: 'csrftoken',
       headerName: 'X-CSRFToken',
     }),
     ReactiveFormsModule,
   ],
-  providers: [UserService,  { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
+  providers: [
+    UserService,
+    DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

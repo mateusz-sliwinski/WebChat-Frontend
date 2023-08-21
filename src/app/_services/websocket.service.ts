@@ -1,144 +1,139 @@
-import { Injectable  } from '@angular/core';
-import ReconnectingWebSocket  from 'reconnecting-websocket';
+import { Injectable } from '@angular/core';
+import ReconnectingWebSocket from 'reconnecting-websocket';
 import { Observable } from 'rxjs';
-import { Subject,BehaviorSubject } from 'rxjs';
-
-
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WebSocketService {
   callbacks: any = {};
-  private chatSocket!: ReconnectingWebSocket; 
-  messages:any;
-  user:string = 'admin';
+  private chatSocket!: ReconnectingWebSocket;
+  messages: any;
+  public isConnected: boolean = false;
+  user: any;
 
-  
-  constructor() { }
+  constructor() {}
 
   connectWebSocket(roomName: string, username: string) {
     const url = 'ws://localhost:8000/ws/chat/' + roomName + '/';
+
     this.chatSocket = new ReconnectingWebSocket(url);
     this.user = username;
+
     this.chatSocket.addEventListener('open', () => {
       console.log('WebSocket connected!');
-      this.fetchMessages(username, Number(roomName));
+      this.isConnected = true;
+      this.fetchMessages(username, roomName);
     });
 
-
-    this.chatSocket.addEventListener('message', (event:any) => {
+    this.chatSocket.addEventListener('message', (event: any) => {
       this.messages = JSON.parse(event.data);
       if (this.messages['command'] === 'messages') {
-        for (let i=0; i<this.messages['messages'].length; i++) {
+        for (let i = 0; i < this.messages['messages'].length; i++) {
+          // console.log(this.messages['messages'][i]);
           this.createMessage(this.messages['messages'][i]);
         }
-      } else if (this.messages['command'] === 'new_message'){
+      } else if (this.messages['command'] === 'new_message') {
         this.createMessage(this.messages['message']);
       }
-      // console.log('Received message:', event.data);
     });
-    this.chatSocket.addEventListener('error', (event:any) => {
+    this.chatSocket.addEventListener('error', (event: any) => {
       console.error('WebSocket error:', event);
     });
-    this.chatSocket.addEventListener('close', (event:any) => {
+    this.chatSocket.addEventListener('close', (event: any) => {
       console.log('WebSocket closed:', event.code, event.reason);
     });
-
   }
 
-
-  socketNewMessage(data:any){
+  socketNewMessage(data: any) {
     const parsedData = JSON.parse(data);
     const command = parsedData.command;
-    if (Object.keys(this.callbacks).length === 0 ){
-      return
-    } 
-    if (command === 'messages'){
+    if (Object.keys(this.callbacks).length === 0) {
+      return;
+    }
+    if (command === 'messages') {
       this.callbacks[command](parsedData.messages);
     }
-    if (command === 'new_messages'){
+    if (command === 'new_messages') {
       this.callbacks[command](parsedData.message);
     }
   }
 
-  fetchMessages(username: string, chatId: number) {
-    this.sendMessage({ command: 'fetch_messages', usename: username, chatId:chatId });
+  fetchMessages(username: string, chatId: string) {
+    this.sendMessage({
+      command: 'fetch_messages',
+      usename: username,
+      chatId: chatId,
+    });
   }
 
-  newChatMessages(content:string, username: string, chatId: number) {
-    this.sendMessage({ command: 'new_message',  username: username, chatId:chatId, content:content});
+  newChatMessages(content: string, username: string, chatId: string) {
+    this.sendMessage({
+      command: 'new_message',
+      username: username,
+      chatId: chatId,
+      content: content,
+    });
   }
 
-  addCallbacks(messagesCallback: any, newMessageCallback: any){
-    this.callbacks['messages']= messagesCallback;
-    this.callbacks['new_message']= newMessageCallback;
+  addCallbacks(messagesCallback: any, newMessageCallback: any) {
+    this.callbacks['messages'] = messagesCallback;
+    this.callbacks['new_message'] = newMessageCallback;
   }
 
-  sendMessage(data:any){
-    try{
-        this.chatSocket.send(JSON.stringify(data))
-    }catch (err){
+  sendMessage(data: any) {
+    try {
+      this.chatSocket.send(JSON.stringify(data));
+    } catch (err) {
       console.log(err);
     }
   }
 
-    public subscribeToMessages() {
-      return this.chatSocket;
-    }
+  public subscribeToMessages() {
+    return this.chatSocket;
+  }
 
-    createMessage(data: any) {
-      const author = data['participant'];
+  createMessage(data: any) {
+    const author = data['participant'];
+    const msgListTag = document.createElement('li');
+    msgListTag.className = 'clearfix';
+    const divCardBody = document.createElement('div');
 
-      const msgListTag = document.createElement('li');
-      
-      const divCardBody = document.createElement('div');
-      divCardBody.className = 'card-body';
-      
-      const pMessage = document.createElement('p');
-      pMessage.className = 'mb-0';
+    const imgTag = document.createElement('img');
+
+    const pMessage = document.createElement('p');
+
+    if (author === this.user) {
+      imgTag.src = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+      pMessage.className = 'message other-message float-right';
       pMessage.textContent = data.content;
-      
-      const imgTag = document.createElement('img');
-      imgTag.src = 'http://emilcarlsson.se/assets/mikeross.png';
-      imgTag.width=60;
-      imgTag.className = 'rounded-circle d-flex align-self-start me-3 shadow-1-strong'
-
-
+      imgTag.className = 'float-right';
       divCardBody.appendChild(pMessage);
-
-      const divCard = document.createElement('div');
-      divCard.className = 'card mask-custom';
-
-      divCard.appendChild(divCardBody);
-
-   
-  
-      if (author === this.user) {
-        msgListTag.className = 'd-flex justify-content-between mb-4 sender';
-        msgListTag.appendChild(divCard);
-        msgListTag.appendChild(imgTag);
-        
-      } else {
-        msgListTag.className = 'd-flex justify-content-between mb-4 replies';
-        msgListTag.appendChild(imgTag);
-        msgListTag.appendChild(divCard);
-        
-      }
- 
-  
-      const chatLog = document.querySelector('#chat-log');
-      if (chatLog) {
-        
-        chatLog.appendChild(msgListTag);
-      }
+      divCardBody.className = 'message-data text-right';
+      msgListTag.appendChild(imgTag);
+      msgListTag.appendChild(divCardBody);
+    } else {
+      imgTag.src = 'https://bootdey.com/img/Content/avatar/avatar2.png';
+      pMessage.className = 'message other-message';
+      pMessage.textContent = data.content;
+      divCardBody.className = 'message-data';
+      divCardBody.appendChild(imgTag);
+      divCardBody.appendChild(pMessage);
+      msgListTag.appendChild(divCardBody);
     }
 
-  public closeWebSocket(){
+    const chatLog = document.querySelector('#chat-log');
+    if (chatLog) {
+      chatLog.appendChild(msgListTag);
+    }
+  }
+
+  public closeWebSocket() {
     this.chatSocket.close();
   }
 
-  public mess(){
+  public mess() {
     return this.messages;
   }
 }

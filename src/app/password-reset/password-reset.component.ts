@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from '../_services/user.services';
+import { UserService } from '../_services/auth_user.services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
 export class PasswordResetComponent implements OnInit {
   password_reset!: FormGroup;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   message: string | undefined;
 
@@ -29,10 +32,10 @@ export class PasswordResetComponent implements OnInit {
   }
   onSubmit(): void {
     this.userService.resetPassword(this.f['email'].value).subscribe(
-      (response) => {
+      response => {
         this.message = 'send link to email.';
       },
-      (error) => {
+      error => {
         this.message = 'failed to send link.';
       }
     );

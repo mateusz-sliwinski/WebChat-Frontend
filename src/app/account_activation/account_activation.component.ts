@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../_services/user.services';
+import { UserService } from '../_services/auth_user.services';
 
 @Component({
   selector: 'app-account-activation',
@@ -19,7 +19,7 @@ export class AccountActivationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params) => {
+    this.activatedRoute.paramMap.subscribe(params => {
       const key = params.get('key');
       if (key) {
         this.activateAccount(key);
@@ -37,7 +37,7 @@ export class AccountActivationComponent implements OnInit {
       () => {
         this.router.navigate(['/login']);
       },
-      (error) => {
+      error => {
         console.error('Error activating account:', error);
         this.message = 'Error activating account.';
       }

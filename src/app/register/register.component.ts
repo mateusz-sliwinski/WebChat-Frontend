@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from '../_services/user.services';
+import { UserService } from '../_services/auth_user.services';
 
 @Component({
   selector: 'app-register',
@@ -27,10 +27,11 @@ export class RegisterComponent implements OnInit {
     if (this.register.valid) {
       const formData = this.register.value;
       this.userService.create(formData).subscribe(
-        (response) => {
+        response => {
           console.log('Registration successful:', response);
+          this.register.reset();
         },
-        (error) => {
+        error => {
           console.error('Registration failed:', error);
         }
       );
