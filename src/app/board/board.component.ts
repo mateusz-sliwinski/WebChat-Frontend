@@ -16,6 +16,7 @@ export class BoardComponent {
   selectedFile!: File;
   posts!: Observable<any[]>;
   postArray: any[] = [];
+  likeArray: any[] = [];
   private likeSubject: Subject<string[]> = new Subject<string[]>();
 
   constructor(
@@ -29,6 +30,7 @@ export class BoardComponent {
       image: new FormControl(''),
       body: new FormControl(''),
     });
+    this.loadLikes();
     this.loadPosts();
   }
 
@@ -54,14 +56,35 @@ export class BoardComponent {
     );
     this.posts.subscribe(posts => {
       this.postArray = posts;
+      console.log('posty',this.postArray);
+      console.log('lajki',this.likeArray);
+
+      const likeMap = this.likeArray.reduce((map, like) => {
+        map[like.like_post] = true;
+        return map;
+      }, {});
+
+      this.postArray = this.postArray.map(post => ({
+        ...post,
+        liked: likeMap.hasOwnProperty(post.id),
+      }));
+      console.log(this.postArray);
     });
+
   }
 
-  countLikes(post: any): number {
+  countLikes(post: any): number { 
     return post.like_post.length;
   }
 
+  loadLikes() {
+    this.boardService.getLikes().subscribe((data:any) => {
+       this.likeArray = data;
+    });
+
+  }
   likePost(postId: string) {
+    console.log(postId);
     this.boardService.likePost(postId).subscribe(() => {
       const postToUpdate = this.postArray.find(post => post.id === postId);
       if (postToUpdate) {
