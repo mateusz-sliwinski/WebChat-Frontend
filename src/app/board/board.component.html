@@ -52,8 +52,8 @@
             <h2 class="username">
               {{ post.owner }} {{ post.owner_last_name }}
             </h2>
+      
           </div>
-
           <p class="timestamp">{{ post.formattedTimestamp }}</p>
         </div>
         <div class="post-content">
@@ -68,8 +68,8 @@
           <div class="post-actions">
             <div></div>
             <div class="heart-btn">
-              <input type="checkbox" (click)="likePost(post.id)" />
-              <button><span>Like</span></button>
+              <input type="checkbox" (click)="likePost(post.id)"  [checked]="post.liked"/>
+              <button ><span>Like </span></button>
             </div>
             <div><a [routerLink]="['/commentary', post.id]">Comments</a></div>
             <div><button class="action-button share-button">Share</button></div>

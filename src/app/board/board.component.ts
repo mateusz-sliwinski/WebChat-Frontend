@@ -32,6 +32,7 @@ export class BoardComponent {
     });
     this.loadLikes();
     this.loadPosts();
+
   }
 
   onFileSelected(event: any) {
@@ -50,30 +51,26 @@ export class BoardComponent {
             post.created,
             'yyyy-MM-dd HH:mm'
           );
+          post.like_post.forEach((e:any) => {  
+            if(this.isLiked(e))
+            {
+              post.liked = true;
+            }
+          });
           return { ...post, formattedTimestamp };
         });
       })
     );
     this.posts.subscribe(posts => {
       this.postArray = posts;
-      console.log('posty',this.postArray);
-      console.log('lajki',this.likeArray);
-
-      const likeMap = this.likeArray.reduce((map, like) => {
-        map[like.like_post] = true;
-        return map;
-      }, {});
-
-      this.postArray = this.postArray.map(post => ({
-        ...post,
-        liked: likeMap.hasOwnProperty(post.id),
-      }));
-      console.log(this.postArray);
     });
-
   }
 
-  countLikes(post: any): number { 
+  isLiked(postId:string) {
+    return this.likeArray.some(like => like.id.includes(postId));
+  }
+
+  countLikes(post: any): number {
     return post.like_post.length;
   }
 
@@ -84,7 +81,6 @@ export class BoardComponent {
 
   }
   likePost(postId: string) {
-    console.log(postId);
     this.boardService.likePost(postId).subscribe(() => {
       const postToUpdate = this.postArray.find(post => post.id === postId);
       if (postToUpdate) {
