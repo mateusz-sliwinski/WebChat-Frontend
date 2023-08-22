@@ -30,21 +30,6 @@ export class LoginComponent implements OnInit {
     return this.user!.controls;
   }
 
-  // onSubmit() {
-  //   this.userService
-  //     .login(this.f['email'].value, this.f['password'].value)
-  //     .subscribe(
-  //       () => {
-  //         this.message = 'login successfully.';
-  //         this.router.navigate(['/home']);
-  //       },
-  //       error => {
-  //         console.error('Error login:', error);
-  //         this.message = 'Error login .';
-  //       }
-  //     );
-  // }
-
   onSubmit() {
     this.userService.login(this.f['email'].value, this.f['password'].value)
       .subscribe(
