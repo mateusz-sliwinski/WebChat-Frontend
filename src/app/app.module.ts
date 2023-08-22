@@ -22,6 +22,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
 import { DatePipe } from '@angular/common';
 import { CommentaryComponent } from './commentary/commentary.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +43,7 @@ import { CommentaryComponent } from './commentary/commentary.component';
     RoomComponent,
     UsersComponent,
     InvitationsComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +55,8 @@ import { CommentaryComponent } from './commentary/commentary.component';
       headerName: 'X-CSRFToken',
     }),
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
     UserService,
