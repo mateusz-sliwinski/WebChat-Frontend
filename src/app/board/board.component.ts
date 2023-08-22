@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
+import { UserInformationService } from '../_services/user.services';
 
 @Component({
   selector: 'app-board',
@@ -17,11 +18,13 @@ export class BoardComponent {
   posts!: Observable<any[]>;
   postArray: any[] = [];
   private likeSubject: Subject<string[]> = new Subject<string[]>();
+  formData: any = {};
 
   constructor(
     private boardService: BoardService,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private dataService: UserInformationService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +33,7 @@ export class BoardComponent {
       body: new FormControl(''),
     });
     this.loadPosts();
+    this.formData = this.dataService.getData() || {};
   }
 
   onFileSelected(event: any) {
