@@ -48,7 +48,7 @@
       <div class="post" *ngFor="let post of posts! | async">
         <div class="post-header">
           <div class="user-avatar">
-            <img src="assets/images/icons/user.png" alt="User Avatar" />
+            <img src="{{ post.image ? post.image : '../../../../assets/images/icons/user.png' }}" alt="User Avatar" />
             <h2 class="username">
               {{ post.owner }} {{ post.owner_last_name }}
             </h2>
