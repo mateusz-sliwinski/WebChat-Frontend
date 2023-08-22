@@ -4,22 +4,40 @@
         <div class="people-nearby">
           <div class="nearby-user" *ngFor="let friend of usersList">
             <div class="row">
-              <div class="col-md-2 col-sm-2">
-                <img
-                  src={{friend.to_user.avatar}}
-                  alt="user"
-                  class="profile-photo-lg" />
-              </div>
-              <div class="col-md-7 col-sm-7">
+              <h5 *ngIf="friend.from_user.id !== user.pk; else too">
+                <div class="col-md-2 col-sm-2">
+                  <img
+                    src={{friend.from_user.avatar}}
+                    alt="user"
+                    class="profile-photo-lg" />
+                </div>
+                <div class="col-md-7 col-sm-7">
+                    <a href="#" class="profile-link">
+                      {{ friend.from_user.first_name }}
+                      {{ friend.from_user.last_name }}</a
+                    >
+                  <p>{{ friend.from_user.email }}</p>
+                  <p class="text-muted">{{ friend.from_user.date_joined }}</p>
+                </div>
+              </h5>
+              <ng-template #too>
                 <h5>
-                  <a href="#" class="profile-link"
-                    >{{ friend.to_user.first_name }}
-                    {{ friend.to_user.last_name }}</a
-                  >
+                  <div class="col-md-2 col-sm-2">
+                    <img
+                      src={{friend.to_user.avatar}}
+                      alt="user"
+                      class="profile-photo-lg" />
+                  </div>
+                  <div class="col-md-7 col-sm-7">
+                      <a href="#" class="profile-link">
+                        {{ friend.to_user.first_name }}
+                        {{ friend.to_user.last_name }}</a
+                      >
+                    <p>{{ friend.to_user.email }}</p>
+                    <p class="text-muted">{{ friend.to_user.date_joined }}</p>
+                  </div>
                 </h5>
-                <p>{{ friend.to_user.email }}</p>
-                <p class="text-muted">{{ friend.to_user.date_joined }}</p>
-              </div>
+              </ng-template>
               <div class="col-md-3 col-sm-3">
                 <button
                   class="btn btn-danger"
