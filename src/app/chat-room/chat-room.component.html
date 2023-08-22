@@ -7,7 +7,7 @@
               <h5 *ngIf="friend.from_user.id !== user.pk; else too">
                 <div class="col-md-2 col-sm-2">
                   <img
-                    src={{friend.from_user.avatar}}
+                    src="{{ friend.from_user.avatar ? friend.from_user.avatar : '../../../../assets/images/icons/user.png' }}"
                     alt="user"
                     class="profile-photo-lg" />
                 </div>
@@ -24,7 +24,7 @@
                 <h5>
                   <div class="col-md-2 col-sm-2">
                     <img
-                      src={{friend.to_user.avatar}}
+                      src="{{ friend.to_user.avatar ? friend.to_user.avatar : '../../../../assets/images/icons/user.png' }}"
                       alt="user"
                       class="profile-photo-lg" />
                   </div>
