@@ -25,6 +25,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUsersList(): void {
+    console.log(this.user)
     this.userService.usersList(this.user).subscribe(
       data => {
         this.usersList = data.filter(
@@ -40,8 +41,10 @@ export class UsersComponent implements OnInit {
 
   getUser() {
     const storedUser = localStorage.getItem('currentUser');
+    console.log(storedUser);
+    
     if (storedUser) {
-      this.user = JSON.parse(storedUser).user;
+      this.user = JSON.parse(storedUser);
     } else {
       console.log('user not found');
     }
