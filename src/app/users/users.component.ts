@@ -29,9 +29,10 @@ export class UsersComponent implements OnInit {
     this.userService.usersList(this.user).subscribe(
       data => {
         this.usersList = data.filter(
-          (user: { username: string }) =>
+          (user: { username: string, avatar: string | null}) =>
             user.username !== this.user['username']
         );
+        console.log(this.usersList)
       },
       error => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
@@ -41,7 +42,6 @@ export class UsersComponent implements OnInit {
 
   getUser() {
     const storedUser = localStorage.getItem('currentUser');
-    console.log(storedUser);
     
     if (storedUser) {
       this.user = JSON.parse(storedUser);
