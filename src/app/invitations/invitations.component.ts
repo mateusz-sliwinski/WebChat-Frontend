@@ -11,7 +11,7 @@ export class InvitationsComponent {
   user: any;
   status: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     // downloads the currently logged in user and friends list
@@ -21,7 +21,7 @@ export class InvitationsComponent {
 
   getInvitations(): void {
     // Sends post to backend and assigns friend list
-    this.userService.invitationsList(this.user.user).subscribe(
+    this.userService.invitationsList(this.user).subscribe(
       data => {
         this.friendsList = data;
       },
@@ -37,7 +37,7 @@ export class InvitationsComponent {
   updateFriendship(friendship: any, status: string): void {
     // get status and send it to friendship update view
     this.userService.updateInvitations(friendship, status).subscribe(
-      () => {},
+      () => { },
       error => {
         console.error(
           'An error occurred while downloading data from the API:',
