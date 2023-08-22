@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../_services/auth_user.services';
 import { Router } from '@angular/router';
 
@@ -22,7 +22,7 @@ export class PasswordResetComponent implements OnInit {
 
   ngOnInit(): void {
     this.password_reset = new FormGroup({
-      email: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
     });
   }
 
