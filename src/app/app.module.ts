@@ -22,6 +22,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
 import { DatePipe } from '@angular/common';
 import { CommentaryComponent } from './commentary/commentary.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CommentaryComponent } from './commentary/commentary.component';
     RoomComponent,
     UsersComponent,
     InvitationsComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
