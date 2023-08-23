@@ -25,6 +25,7 @@ import { CommentaryComponent } from './commentary/commentary.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FriendsBarWithChatButtonComponent } from './friends-bar-witch-chat-button/friends-bar-witch-chat-button.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     UsersComponent,
     InvitationsComponent,
     ConfirmationDialogComponent,
+    FriendsBarWithChatButtonComponent,
   ],
   imports: [
     BrowserModule,
