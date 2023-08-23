@@ -63,7 +63,7 @@
             alt="Post Image"
             class="post-image"
             *ngIf="post.image" />
-          <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>
+          <p class="like-count">Liczba polubień: {{  count_likes_array[post.id][0] }}</p>
 
           <div class="post-actions">
             <div></div>
