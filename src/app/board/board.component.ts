@@ -52,7 +52,7 @@ export class BoardComponent {
             'yyyy-MM-dd HH:mm'
           );
           post.like_post.forEach((e:any) => {  
-            if(this.isLiked(e))
+            if(this.likeArray.some(like => like.id.includes(e)))
             {
               post.liked = true;
             }
@@ -66,9 +66,6 @@ export class BoardComponent {
     });
   }
 
-  isLiked(postId:string) {
-    return this.likeArray.some(like => like.id.includes(postId));
-  }
 
   countLikes(post: any): number {
     return post.like_post.length;

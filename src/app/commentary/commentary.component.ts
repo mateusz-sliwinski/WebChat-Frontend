@@ -18,6 +18,7 @@ export class CommentaryComponent implements OnInit {
   postId!: string;
   postDetails: any;
   comments: any[];
+  likeArray: any[] = [];
   commentForm!: FormGroup;
   formData: any = {};
 
@@ -32,6 +33,7 @@ export class CommentaryComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.postId = params['postId'];
+      this.loadLikes();
       this.loadCommentsForPost(this.postId);
       this.loadPost();
     });
@@ -41,13 +43,19 @@ export class CommentaryComponent implements OnInit {
     });
 
     this.formData = this.dataService.getData() || {};
-    console.log(this.formData);
   }
 
+  
   loadPost() {
     this.boardService.getPostDetails(this.postId).subscribe(
       postDetails => {
         this.postDetails = postDetails;
+        postDetails.like_post.forEach((e:any) => {  
+          if(this.likeArray.some(like => like.id.includes(e)))
+          {
+            postDetails.liked = true;
+          }
+        });
       },
       error => {
         console.error('Error loading post details:', error);
@@ -86,5 +94,15 @@ export class CommentaryComponent implements OnInit {
         console.error('Error creating comment:', error);
       }
     );
+  }
+  likePost(postId: string) {
+    this.boardService.likePost(postId).subscribe(() => {
+        this.postDetails.like_post = [...this.postDetails.like_post, postId];
+    });
+  }
+  loadLikes() {
+    this.boardService.getLikes().subscribe((data:any) => {
+       this.likeArray = data;
+    });
   }
 }
