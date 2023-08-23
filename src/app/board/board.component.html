@@ -2,11 +2,10 @@
   <div class="input-container">
     <div class="profile-section">
       <img
-        src={{formData.avatar}}
+        src="{{ formData.image ? formData.image : '../../../../assets/images/icons/user.png' }}"
         alt="Profile Picture"
         class="profile-picture" />
     </div>
-
     <div class="content-section">
       <div class="input-section">
         <div class="textarea-and-button">
