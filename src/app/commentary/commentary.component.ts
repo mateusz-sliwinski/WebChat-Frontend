@@ -77,7 +77,7 @@ export class CommentaryComponent implements OnInit {
     if (this.commentForm.valid) {
       const commentData = {
         body: this.commentForm.value.body,
-        post: this.postId, // Przekazanie identyfikatora postu
+        post: this.postId,
       };
       this.createComment(commentData);
     }

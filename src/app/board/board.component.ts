@@ -1,10 +1,9 @@
-import { Component,ChangeDetectorRef, OnInit,NgZone  } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BoardService } from '../_services/board.services';
-import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-board',
@@ -20,10 +19,7 @@ export class BoardComponent {
   count_likes_array:any = {};
 
   constructor(
-    private zone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef,
     private boardService: BoardService,
-    private router: Router,
     private datePipe: DatePipe
   ) {}
 
@@ -34,8 +30,6 @@ export class BoardComponent {
     });
     this.loadLikes();
     this.loadPosts();
-    
-
   }
 
   onFileSelected(event: any) {
@@ -73,7 +67,7 @@ export class BoardComponent {
 
   loadLikes() {
     this.boardService.getLikes().subscribe((data:any) => {
-       this.likeArray = data;
+    this.likeArray = data;
     });
 
   }
