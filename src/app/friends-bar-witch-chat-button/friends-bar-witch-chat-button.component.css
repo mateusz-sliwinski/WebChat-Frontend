@@ -1,66 +1,65 @@
-    .one_friend {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 0;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .friend-details {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .friend-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .friend-name {
-    margin: 0;
-  }
-  
-  .chat-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .chat-button:hover {
-    background-color: #0056b3;
-  }
+.one_friend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
 
-  .scrolled {
-    position: fixed;
-    background-color: white;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-  }
+.friend-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .friends-container {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  
-  .scrolled .friends-bar {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd;
-    padding: 10px;
-  }
-  
-  h5 {
-    font-size: 1.25rem; /* You can adjust the font size */
-    font-weight: bold;
-    margin-bottom: 0.5rem; /* Add some spacing below the element */
-  }
+.friend-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.friend-name {
+  margin: 0;
+}
+
+.chat-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-button:hover {
+  background-color: #0056b3;
+}
+
+.scrolled {
+  position: fixed;
+  background-color: white;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.friends-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.scrolled .friends-bar {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+h5 {
+  font-size: 1.25rem; /* You can adjust the font size */
+  font-weight: bold;
+  margin-bottom: 0.5rem; /* Add some spacing below the element */
+}

@@ -6,7 +6,6 @@ import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
 import { UserInformationService } from '../_services/user.services';
 
-
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -20,7 +19,7 @@ export class BoardComponent {
   private likeSubject: Subject<string[]> = new Subject<string[]>();
   formData: any = {};
   likeArray: any[] = [];
-  count_likes_array:any = {};
+  count_likes_array: any = {};
 
   constructor(
     private boardService: BoardService,
@@ -54,12 +53,11 @@ export class BoardComponent {
             post.created,
             'yyyy-MM-dd HH:mm'
           );
-          this.count_likes_array[post.id]= [post.like_post.length, 0];
-          post.like_post.forEach((e:any) => {  
-            if(this.likeArray.some(like => like.id.includes(e)))
-            {
+          this.count_likes_array[post.id] = [post.like_post.length, 0];
+          post.like_post.forEach((e: any) => {
+            if (this.likeArray.some(like => like.id.includes(e))) {
               post.liked = true;
-              this.count_likes_array[post.id]= [post.like_post.length, 1];
+              this.count_likes_array[post.id] = [post.like_post.length, 1];
             }
           });
           return { ...post, formattedTimestamp };
@@ -72,24 +70,22 @@ export class BoardComponent {
   }
 
   loadLikes() {
-    this.boardService.getLikes().subscribe((data:any) => {
-    this.likeArray = data;
+    this.boardService.getLikes().subscribe((data: any) => {
+      this.likeArray = data;
     });
   }
   likePost(postId: string) {
     this.boardService.likePost(postId).subscribe(() => {
       for (const id in this.count_likes_array) {
         if (id === postId) {
-          if (this.count_likes_array[id][1]===0)
-          {
-            this.count_likes_array[id][0]+=1;
-            this.count_likes_array[id][1]=1;
+          if (this.count_likes_array[id][1] === 0) {
+            this.count_likes_array[id][0] += 1;
+            this.count_likes_array[id][1] = 1;
+          } else {
+            this.count_likes_array[id][0] -= 1;
+            this.count_likes_array[id][1] = 0;
           }
-          else{
-            this.count_likes_array[id][0]-=1;
-            this.count_likes_array[id][1]=0;
-          }
-          break; 
+          break;
         }
       }
     });

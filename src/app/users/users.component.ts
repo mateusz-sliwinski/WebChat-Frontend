@@ -28,20 +28,19 @@ export class UsersComponent implements OnInit {
     this.userService.usersList(this.user).subscribe(
       data => {
         this.usersList = data.filter(
-          (user: { username: string, avatar: string | null}) =>
+          (user: { username: string; avatar: string | null }) =>
             user.username !== this.user['username']
         );
       },
       error => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
       }
-
     );
   }
 
   getUser() {
     const storedUser = localStorage.getItem('currentUser');
-    
+
     if (storedUser) {
       this.user = JSON.parse(storedUser).user;
     }
@@ -50,8 +49,8 @@ export class UsersComponent implements OnInit {
   addFriend(user: any): void {
     this.userService
       .addToFriend(this.user['pk'], user['id'], this.csrfToken)
-      .subscribe(
-        () => { this.getUsersList();}
-      );
+      .subscribe(() => {
+        this.getUsersList();
+      });
   }
 }

@@ -96,11 +96,10 @@ const routes: Routes = [
     pathMatch: 'full',
     component: NotFoundComponent,
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,23 +1,37 @@
 <div class="col-3">
   <div class="friends-bar scrolled">
-    <h5>Lets chat:  </h5>
+    <h5>Lets chat:</h5>
     <ng-container *ngFor="let friend of usersList">
       <div class="friend-details">
         <ng-container *ngIf="friend.from_user.id !== user.pk; else toUser">
-          <img src="{{ friend.from_user.avatar ? friend.from_user.avatar : '../../../../assets/images/icons/user.png' }}" alt="Friend Image" class="friend-image">
+          <img
+            src="{{
+              friend.from_user.avatar
+                ? friend.from_user.avatar
+                : '../../../../assets/images/icons/user.png'
+            }}"
+            alt="Friend Image"
+            class="friend-image" />
           <div class="friend-info">
             <a class="friend-link" (click)="goToChatRoom(friend)">
-                {{ friend.from_user.first_name }} {{ friend.from_user.last_name }}
-              </a>
+              {{ friend.from_user.first_name }} {{ friend.from_user.last_name }}
+            </a>
           </div>
         </ng-container>
         <ng-template #toUser>
           <ng-container *ngIf="friend.to_user.id !== user.pk; else selfUser">
-            <img src="{{ friend.to_user.avatar ? friend.to_user.avatar : '../../../../assets/images/icons/user.png' }}" alt="Friend Image" class="friend-image">
+            <img
+              src="{{
+                friend.to_user.avatar
+                  ? friend.to_user.avatar
+                  : '../../../../assets/images/icons/user.png'
+              }}"
+              alt="Friend Image"
+              class="friend-image" />
             <div class="friend-info">
               <a class="friend-link" (click)="goToChatRoom(friend)">
                 {{ friend.to_user.first_name }} {{ friend.to_user.last_name }}
-              </a>            
+              </a>
             </div>
           </ng-container>
           <ng-template #selfUser>

@@ -8,7 +8,7 @@ describe('FriendsBarWitchChatButtonComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FriendsBarWitchChatButtonComponent]
+      declarations: [FriendsBarWitchChatButtonComponent],
     });
     fixture = TestBed.createComponent(FriendsBarWitchChatButtonComponent);
     component = fixture.componentInstance;

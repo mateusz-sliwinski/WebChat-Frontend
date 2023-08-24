@@ -6,7 +6,11 @@
           <div class="row">
             <div class="col-md-2 col-sm-2">
               <img
-                src="{{ friendship.from_user.avatar ? friendship.from_user.avatar : '../../../../assets/images/icons/user.png' }}"
+                src="{{
+                  friendship.from_user.avatar
+                    ? friendship.from_user.avatar
+                    : '../../../../assets/images/icons/user.png'
+                }}"
                 alt="user"
                 class="profile-photo-lg" />
             </div>

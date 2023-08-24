@@ -6,8 +6,6 @@ import { WebSocketService } from '../_services/websocket.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
-
-
 @Component({
   selector: 'app-room',
   templateUrl: './chat-room.component.html',
@@ -24,7 +22,7 @@ export class RoomComponent {
     private userService: UserService,
     private cookieService: CookieService,
     public webSocketService: WebSocketService,
-    private dialog: MatDialog, 
+    private dialog: MatDialog
   ) {
     this.csrfToken = this.cookieService.get('csrftoken');
   }
@@ -33,7 +31,6 @@ export class RoomComponent {
     // downloads the currently logged in user and friends list
     this.user = this.userService.getUser();
     this.getFriendsList();
-
   }
 
   refreshFriendsList(): void {
@@ -68,8 +65,6 @@ export class RoomComponent {
     );
   }
 
-
-
   updateFriendship(friendship: any, status: string): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
@@ -81,7 +76,7 @@ export class RoomComponent {
         // User confirmed the action, proceed with update
         this.userService.updateInvitations(friendship, status).subscribe(() => {
           this.getFriendsList();
-        },);
+        });
       }
     });
   }
