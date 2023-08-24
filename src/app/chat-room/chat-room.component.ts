@@ -33,7 +33,7 @@ export class RoomComponent {
 
   getFriendsList(): void {
     // Sends post to backend and assigns friend list without currently logged in
-    this.userService.friendsList(this.user.user).subscribe(
+    this.userService.friendsList(this.user).subscribe(
       data => {
         this.usersList = data;
       },

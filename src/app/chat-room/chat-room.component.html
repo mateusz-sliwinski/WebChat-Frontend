@@ -14,7 +14,7 @@
             <div class="col-md-10">
               <!-- Kolumna na treść po prawej -->
               <div class="text-and-button">
-                <h5 *ngIf="friend.from_user.id !== user.user.pk; else too">
+                <h5 *ngIf="friend.from_user.id !== user.pk; else too">
                   <a class="profile-link">
                     <p>
                       {{ friend.from_user.first_name }}

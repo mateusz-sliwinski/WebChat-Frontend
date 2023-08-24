@@ -21,7 +21,7 @@ export class InvitationsComponent {
 
   getInvitations(): void {
     // Sends post to backend and assigns friend list
-    this.userService.invitationsList(this.user.user).subscribe(
+    this.userService.invitationsList(this.user).subscribe(
       data => {
         this.friendsList = data;
       },

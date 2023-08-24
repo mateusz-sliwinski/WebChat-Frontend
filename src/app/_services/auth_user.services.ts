@@ -93,7 +93,7 @@ export class UserService {
   getUser() {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
-      this.user = JSON.parse(storedUser);
+      this.user = JSON.parse(storedUser).user;
       return this.user;
     } else {
       console.log('user not found');
@@ -106,6 +106,7 @@ export class UserService {
   }
 
   friendsList(user: any): Observable<any> {
+  console.log(user);
     const params = new HttpParams().set('pk', user.pk.toString());
     return this.http.get<any>(this.api_url + 'accounts/friends/list/', {
       params,
