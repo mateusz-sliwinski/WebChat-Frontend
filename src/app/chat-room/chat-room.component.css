@@ -81,6 +81,7 @@ img.profile-photo-lg {
 }
 .row {
   display: flex;
+  justify-content: center;
 }
 
 .container .row {
@@ -113,3 +114,12 @@ img.profile-photo-lg {
 
 /* Zmodyfikuj marginesy i szerokość kolumny */
 
+.col-md-5 {
+  width: 130px;
+}
+
+.nearby-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
