@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BoardService } from '../_services/board.services';
-import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-board',
@@ -16,11 +15,11 @@ export class BoardComponent {
   selectedFile!: File;
   posts!: Observable<any[]>;
   postArray: any[] = [];
-  private likeSubject: Subject<string[]> = new Subject<string[]>();
+  likeArray: any[] = [];
+  count_likes_array:any = {};
 
   constructor(
     private boardService: BoardService,
-    private router: Router,
     private datePipe: DatePipe
   ) {}
 
@@ -29,6 +28,7 @@ export class BoardComponent {
       image: new FormControl(''),
       body: new FormControl(''),
     });
+    this.loadLikes();
     this.loadPosts();
   }
 
@@ -48,6 +48,14 @@ export class BoardComponent {
             post.created,
             'yyyy-MM-dd HH:mm'
           );
+          this.count_likes_array[post.id]= [post.like_post.length, 0];
+          post.like_post.forEach((e:any) => {  
+            if(this.likeArray.some(like => like.id.includes(e)))
+            {
+              post.liked = true;
+              this.count_likes_array[post.id]= [post.like_post.length, 1];
+            }
+          });
           return { ...post, formattedTimestamp };
         });
       })
@@ -57,20 +65,31 @@ export class BoardComponent {
     });
   }
 
-  countLikes(post: any): number {
-    return post.like_post.length;
-  }
+  loadLikes() {
+    this.boardService.getLikes().subscribe((data:any) => {
+    this.likeArray = data;
+    });
 
+  }
   likePost(postId: string) {
     this.boardService.likePost(postId).subscribe(() => {
-      const postToUpdate = this.postArray.find(post => post.id === postId);
-      if (postToUpdate) {
-        console.log('Before update:', postToUpdate.like_post);
-        postToUpdate.like_post = [...postToUpdate.like_post, postId];
-        console.log('After update:', postToUpdate.like_post);
+      for (const id in this.count_likes_array) {
+        if (id === postId) {
+          if (this.count_likes_array[id][1]===0)
+          {
+            this.count_likes_array[id][0]+=1;
+            this.count_likes_array[id][1]=1;
+          }
+          else{
+            this.count_likes_array[id][0]-=1;
+            this.count_likes_array[id][1]=0;
+          }
+          break; 
+        }
       }
     });
   }
+
   onSubmit() {
     const formData = new FormData();
     formData.append('body', this.f['body'].value);
