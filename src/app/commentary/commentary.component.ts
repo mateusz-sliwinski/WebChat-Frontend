@@ -4,8 +4,6 @@ import { BoardService } from '../_services/board.services';
 import {
   FormControl,
   FormGroup,
-  Validators,
-  FormBuilder,
 } from '@angular/forms';
 import { UserInformationService } from '../_services/user.services';
 
