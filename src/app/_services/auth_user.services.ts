@@ -24,7 +24,7 @@ export class UserService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
     return this.http
@@ -35,13 +35,11 @@ export class UserService {
       )
       .pipe(
         map(user_all_data => {
-          console.log(user_all_data);
-
           if (user_all_data && user_all_data.access) {
-            user_all_data.user.access = user_all_data.access;
-            delete user_all_data.access;
-            delete user_all_data.refresh;
-            localStorage.setItem('currentUser', JSON.stringify(user_all_data));
+            const userData = { ...user_all_data.user, access: user_all_data.access };
+            delete userData.password;
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+
             this.isLoggedInSubject.next(true);
           }
           return user_all_data;
