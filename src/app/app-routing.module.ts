@@ -91,6 +91,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { mustLogin: true },
   },
+  {
     path: '**',
     pathMatch: 'full',
     component: NotFoundComponent,
