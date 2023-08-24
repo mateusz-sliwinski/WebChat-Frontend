@@ -22,7 +22,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
 import { DatePipe } from '@angular/common';
 import { CommentaryComponent } from './commentary/commentary.component';
+import { ReportComponent } from './report/report.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RoomComponent,
     UsersComponent,
     InvitationsComponent,
+    ReportComponent,
     NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,
