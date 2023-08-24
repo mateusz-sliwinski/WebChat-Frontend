@@ -44,4 +44,9 @@ export class BoardService {
     const endpoint = `${this.api_url}board/comments/`;
     return this.http.post(endpoint, commentData);
   }
+
+  getLikes(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.api_url}board/likes/`);
+  }
+
 }

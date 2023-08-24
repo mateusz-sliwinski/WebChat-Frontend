@@ -23,6 +23,8 @@ import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
 import { DatePipe } from '@angular/common';
 import { CommentaryComponent } from './commentary/commentary.component';
 import { ReportComponent } from './report/report.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ReportComponent } from './report/report.component';
     UsersComponent,
     InvitationsComponent,
     ReportComponent,
+    NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,

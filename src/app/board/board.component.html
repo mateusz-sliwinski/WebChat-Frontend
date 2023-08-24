@@ -52,8 +52,8 @@
             <h2 class="username">
               {{ post.owner }} {{ post.owner_last_name }}
             </h2>
+      
           </div>
-
           <p class="timestamp">{{ post.formattedTimestamp }}</p>
         </div>
         <div class="post-content">
@@ -63,15 +63,15 @@
             alt="Post Image"
             class="post-image"
             *ngIf="post.image" />
-          <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>
+          <p class="like-count">Liczba polubień: {{  count_likes_array[post.id][0] }}</p>
 
           <div class="post-actions">
             <div></div>
             <div class="heart-btn">
-              <input type="checkbox" (click)="likePost(post.id)" />
-              <button><span>Like</span></button>
+              <input type="checkbox" (click)="likePost(post.id)"  [checked]="post.liked"/>
+              <button ><span>Like </span></button>
             </div>
-            <div><a [routerLink]="['/commentary', post.id]">Comments</a></div>
+            <div><a [routerLink]="['/commentary', post.id]">Comments {{post.comments.length}}</a></div>
             <div><button class="action-button share-button">Share</button></div>
             <div></div>
           </div>
