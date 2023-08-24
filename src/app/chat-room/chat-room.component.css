@@ -112,25 +112,4 @@ img.profile-photo-lg {
 }
 
 /* Zmodyfikuj marginesy i szerokość kolumny */
-.col-md-4 {
-  flex: 0 0 calc(33.3333% - 30px); /* 30px to odstępy między kolumnami */
-  max-width: calc(33.3333% - 30px); /* 30px to odstępy między kolumnami */
-  margin-bottom: 20px; /* Dodaj odstęp między wierszami */
-}
-
-@media (max-width: 1026px) {
-  .col-md-4 {
-    flex: 0 0 100%; /* Ustaw pełną szerokość dla jednej kolumny */
-    max-width: 100%; /* Ustaw pełną szerokość dla jednej kolumny */
-  }
-}
-
-.card .col-md-2 img.profile-photo-lg {
-  max-width: 80px; /* Określ maksymalną szerokość obrazka */
-  height: auto; /* Zachowaj proporcje obrazka */
-}
-
-.one_friend {
-  display: flex;
-}
 

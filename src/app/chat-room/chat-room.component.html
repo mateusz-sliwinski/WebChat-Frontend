@@ -4,26 +4,27 @@
       <div class="people-nearby">
           <div class="nearby-user" *ngFor="let friend of usersList">
             <div class="row">
-                <div class="one_friend"  *ngIf="friend.from_user.id !== user.pk; else too">
+                <ng-container  *ngIf="friend.from_user.id !== user.pk; else too">
                   <div class="col-md-5 col-sm-2">
                   <img
                     src="{{ friend.from_user.avatar ? friend.from_user.avatar : '../../../../assets/images/icons/user.png' }}"
                     alt="user"
                     class="profile-photo-lg" />
-                </div>
-                <div class="col-md-7 col-sm-7">
-                  <h5>
-                      <a href="#" class="profile-link">
-                      {{ friend.from_user.first_name }}
-                      {{ friend.from_user.last_name }}</a>
-                  </h5>
-                      
-                    <p>{{ friend.from_user.email }}</p>
-                    <p class="text-muted">{{ friend.from_user.date_joined }}</p>
-                </div>
-              </div>
-              <ng-template #too>
-                <div class="col-md-2 col-sm-2">                  <img
+                  </div>
+                  <div class="col-md-7 col-sm-7">
+                    <h5>
+                        <a href="#" class="profile-link">
+                        {{ friend.from_user.first_name }}
+                        {{ friend.from_user.last_name }}</a>
+                    </h5>
+                        
+                      <p>{{ friend.from_user.email }}</p>
+                      <p class="text-muted">{{ friend.from_user.date_joined }}</p>
+                  </div>
+                </ng-container>
+              <ng-template  #too>
+                <div class="col-md-5 col-sm-2">
+                  <img
                     src="{{ friend.to_user.avatar ? friend.to_user.avatar : '../../../../assets/images/icons/user.png' }}"
                     alt="user"
                     class="profile-photo-lg" />
