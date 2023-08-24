@@ -20,7 +20,6 @@ export class ReportComponent {
         this.errorReportService.reportError(this.description)
           .subscribe(
             response => {
-              console.log(response.message);
               this.description = '';
               this.isReportSuccessful = true;
               this.isReportError = false;

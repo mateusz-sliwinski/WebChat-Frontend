@@ -40,9 +40,11 @@
     <div class="command-box">
       <div class="command-header">
         <div class="profile-section">
-          <img src={{formData.avatar}} alt="Profile Picture" class="profile-picture" />
+          <img src="{{ formData.avatar ? formData.avatar : '../../../../assets/images/icons/user.png' }}"
+           alt="Profile Picture" 
+           class="profile-picture" />
           <h2 class="username">
-            {{ formData.user.first_name }} {{ formData.user.last_name }}
+            {{ formData.first_name }} {{ formData.last_name }}
           </h2>
         </div>
         <div class="content-section">

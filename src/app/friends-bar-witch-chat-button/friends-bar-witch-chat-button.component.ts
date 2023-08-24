@@ -35,10 +35,9 @@ export class FriendsBarWithChatButtonComponent implements OnInit {
     this.userService.friendsList(this.user).subscribe(
       data => {
         this.usersList = data;
-        console.log(this.usersList)
       },
       error => {
-        console.error('Wystąpił błąd podczas pobierania danych z API:', error);
+        console.error('An error occurred while downloading data from the API:', error);
       }
     );
   }

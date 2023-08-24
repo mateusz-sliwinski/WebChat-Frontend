@@ -86,7 +86,6 @@ export class CommentaryComponent implements OnInit {
   createComment(commentData: any) {
     this.boardService.createComment(commentData).subscribe(
       response => {
-        console.log('Comment created successfully:', response);
         this.loadCommentsForPost(commentData.post);
         this.commentForm.reset();
       },

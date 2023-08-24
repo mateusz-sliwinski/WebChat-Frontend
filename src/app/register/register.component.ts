@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit {
       const formData = this.register.value;
       this.userService.create(formData).subscribe(
         response => {
-          console.log('Registration successful:', response);
           this.register.reset();
         },
         error => {

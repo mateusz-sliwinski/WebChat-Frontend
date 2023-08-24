@@ -38,21 +38,8 @@
                       
                     <p>{{ friend.to_user.email }}</p>
                     <p class="text-muted">{{ friend.to_user.date_joined }}</p>
-                </ng-template>
-                <div class="two-buttons-one-user">
-                  <button
-                    class="btn btn-danger"
-                    (click)="updateFriendship(friend, 'Rejected')">
-                    Delete
-                  </button>
-                  <button
-                    class="btn btn-primary pull-right"
-                    (click)="goToChatRoom(friend)">
-                    Open Chat
-                  </button>
-                </div>
-
-              </ng-template>
+                    </div>
+                  </ng-template>
               </div>
               <div class="col-md-3 col-sm-3">
                 <button
@@ -71,5 +58,3 @@
         </div>
       </div>
     </div>
-  </div>
-</div>

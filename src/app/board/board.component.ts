@@ -75,7 +75,6 @@ export class BoardComponent {
     this.boardService.getLikes().subscribe((data:any) => {
     this.likeArray = data;
     });
-
   }
   likePost(postId: string) {
     this.boardService.likePost(postId).subscribe(() => {
@@ -102,13 +101,6 @@ export class BoardComponent {
     if (this.selectedFile) {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
-    this.boardService.inputBoard(formData).subscribe(
-      response => {
-        console.log('Post created successfully:', response);
-      },
-      error => {
-        console.error('Error creating post:', error);
-      }
-    );
+    this.boardService.inputBoard(formData).subscribe();
   }
 }

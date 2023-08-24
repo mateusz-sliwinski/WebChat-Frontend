@@ -35,8 +35,6 @@ export class UserService {
       )
       .pipe(
         map(user_all_data => {
-          console.log(user_all_data);
-
           if (user_all_data && user_all_data.access) {
             user_all_data.user.access = user_all_data.access;
             delete user_all_data.access;
@@ -93,10 +91,8 @@ export class UserService {
   getUser() {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
-      this.user = JSON.parse(storedUser);
+      this.user = JSON.parse(storedUser).user;
       return this.user;
-    } else {
-      console.log('user not found');
     }
   }
 
@@ -126,7 +122,6 @@ export class UserService {
       'Content-Type': 'application/json',
       'X-CSRFToken': token,
     });
-    console.log(headers);
     const data = {
       from_user: from,
       to_user: to,

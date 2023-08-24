@@ -18,7 +18,6 @@ export class RoomComponent {
   usersList: any;
   user: any;
   csrfToken: any;
-  aaa: string = 'asdsad';
 
   constructor(
     private router: Router,
@@ -34,14 +33,18 @@ export class RoomComponent {
     // downloads the currently logged in user and friends list
     this.user = this.userService.getUser();
     this.getFriendsList();
+
+  }
+
+  refreshFriendsList(): void {
+    this.getFriendsList();
   }
 
   getFriendsList(): void {
     // Sends post to backend and assigns friend list without currently logged in
-    this.userService.friendsList(this.user.user).subscribe(
+    this.userService.friendsList(this.user).subscribe(
       data => {
         this.usersList = data;
-        console.log(this.usersList)
       },
       error => {
         console.error('Wystąpił błąd podczas pobierania danych z API:', error);
@@ -76,17 +79,9 @@ export class RoomComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // User confirmed the action, proceed with update
-        this.userService.updateInvitations(friendship, status).subscribe(
-          () => {
-            console.log('Friendship updated');
-          },
-          error => {
-            console.error('An error occurred while updating friendship:', error);
-          }
-
-        );
-      } else {
-        console.log('Update canceled');
+        this.userService.updateInvitations(friendship, status).subscribe(() => {
+          this.getFriendsList();
+        },);
       }
     });
   }

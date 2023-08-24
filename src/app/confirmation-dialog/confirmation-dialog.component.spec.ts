@@ -5,7 +5,6 @@ import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 describe('ConfirmationDialogComponent', () => {
   let component: ConfirmationDialogComponent;
   let fixture: ComponentFixture<ConfirmationDialogComponent>;
-  console.log("weszło")
 
   beforeEach(() => {
     TestBed.configureTestingModule({
