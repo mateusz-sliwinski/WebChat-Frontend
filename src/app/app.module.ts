@@ -25,7 +25,6 @@ import { CommentaryComponent } from './commentary/commentary.component';
 import { ReportComponent } from './report/report.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
