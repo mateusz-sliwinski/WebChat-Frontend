@@ -6,7 +6,7 @@
         <ng-container *ngIf="friend.from_user.id !== user.pk; else toUser">
           <img src="{{ friend.from_user.avatar ? friend.from_user.avatar : '../../../../assets/images/icons/user.png' }}" alt="Friend Image" class="friend-image">
           <div class="friend-info">
-            <a class="friend-link" href="#" (click)="goToChatRoom(friend)">
+            <a class="friend-link" (click)="goToChatRoom(friend)">
                 {{ friend.from_user.first_name }} {{ friend.from_user.last_name }}
               </a>
           </div>
@@ -15,7 +15,7 @@
           <ng-container *ngIf="friend.to_user.id !== user.pk; else selfUser">
             <img src="{{ friend.to_user.avatar ? friend.to_user.avatar : '../../../../assets/images/icons/user.png' }}" alt="Friend Image" class="friend-image">
             <div class="friend-info">
-              <a class="friend-link" href="#" (click)="goToChatRoom(friend)">
+              <a class="friend-link" (click)="goToChatRoom(friend)">
                 {{ friend.to_user.first_name }} {{ friend.to_user.last_name }}
               </a>            
             </div>
