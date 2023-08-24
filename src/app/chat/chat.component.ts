@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     public webSocketService: WebSocketService,
     private route: ActivatedRoute,
     private userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.webSocketService.isConnected) {
@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
       this.webSocketService.connectWebSocket(
         this.roomName,
-        this.user.username
+        this.user.user.username
       );
     });
   }
@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (message.length > 0) {
       this.webSocketService.newChatMessages(
         message,
-        this.user.username,
+        this.user.user.username,
         this.roomName
       );
       messageInputDom.value = '';
