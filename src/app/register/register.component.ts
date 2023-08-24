@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+
+
 import { UserService } from '../_services/auth_user.services';
 
 @Component({
@@ -9,18 +11,34 @@ import { UserService } from '../_services/auth_user.services';
 })
 export class RegisterComponent implements OnInit {
   register!: FormGroup;
+  registrationSuccess: boolean = false;
+  emailAlreadyExists: boolean = false;
 
-  constructor(private userService: UserService) {}
+
+  constructor(private userService: UserService) { }
+
 
   ngOnInit(): void {
     this.register = new FormGroup({
-      email: new FormControl(''),
-      password1: new FormControl(''),
-      password2: new FormControl(''),
-      first_name: new FormControl(''),
-      last_name: new FormControl(''),
-      birth_date: new FormControl(''),
-    });
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password1: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      password2: new FormControl('', [Validators.required]),
+      first_name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      last_name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      birth_date: new FormControl('', [Validators.required]),
+    }, { validators: this.passwordsMatchValidator });
+  }
+
+  passwordsMatchValidator(control: AbstractControl): { [key: string]: any } | null {
+    const password1 = control.get('password1')?.value;
+    const password2 = control.get('password2')?.value;
+    if (password1 !== password2) {
+      return { passwordsNotMatch: true };
+    }
+    return null;
   }
 
   onSubmit() {
@@ -35,8 +53,6 @@ export class RegisterComponent implements OnInit {
           console.error('Registration failed:', error);
         }
       );
-    } else {
-      // Form is invalid, display error messages or handle as needed
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../_services/auth_user.services';
 import { Router } from '@angular/router';
 
@@ -14,15 +14,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router
-  ) {}
+  ) { }
   message: string | undefined;
 
   isModalVisible = true;
 
   ngOnInit(): void {
     this.user = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     });
   }
 
@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService
-      .login(this.f['email'].value, this.f['password'].value)
+    this.userService.login(this.f['email'].value, this.f['password'].value)
       .subscribe(
         () => {
           this.message = 'login successfully.';
@@ -40,7 +39,11 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.error('Error login:', error);
-          this.message = 'Error login .';
+          if (error.status === 400) {
+            this.message = 'Invalid credentials. Please check your email and password.';
+          } else {
+            this.message = 'An error occurred while logging in.';
+          }
         }
       );
   }
