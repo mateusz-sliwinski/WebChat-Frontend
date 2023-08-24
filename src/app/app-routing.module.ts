@@ -13,6 +13,7 @@ import { UsersComponent } from './users/users.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { CommentaryComponent } from './commentary/commentary.component';
 import { BoardComponent } from './board/board.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,11 @@ const routes: Routes = [
     component: PasswordResetConfirmComponent,
     canActivate: [AuthGuard],
     data: { mustLogin: false },
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: NotFoundComponent,
   },
 ];
 

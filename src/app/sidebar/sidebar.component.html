@@ -1,17 +1,6 @@
 <nav class="sidebar" [ngClass]="{ close: isSidebarClosed }">
   <header>
-    <div class="image-text">
-      <span class="image">
-        <img src="logo.png" alt="" />
-      </span>
-
-      <div class="text logo-text">
-        <span class="name">Chat</span>
-        <span class="profession">page</span>
-      </div>
-    </div>
-
-    <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
+    <i class="bi bi-list sidebar-icon bigger-icon" (click)="toggleSidebar()"></i>
   </header>
   <div class="menu-bar">
     <div class="menu">
@@ -19,8 +8,8 @@
         <li class="nav-link">
           <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
             <i class="bx bx-user icon"></i>
-            
-            <span class="text nav-text">{{ user.email }}</span>
+            <span class="text nav-text flexible-text">{{ user.first_name }}</span>
+
           </a>
         </li>
         <li class="nav-link">
@@ -31,20 +20,20 @@
         </li>
         <li class="nav-link">
           <a routerLink="/friends" routerLinkActive="active" ariaCurrentWhenActive="page">
-            <i class="bx bx-chat icon"></i>
+            <i class='bx bx-group icon'></i>
             <span class="text nav-text">Friends</span>
           </a>
         </li>
 
         <li class="nav-link">
           <a routerLink="/users" routerLinkActive="active" ariaCurrentWhenActive="page">
-            <i class="bx bx-home-alt icon"></i>
+            <i class='bx bxs-user-rectangle icon'></i>
             <span class="text nav-text">Users</span>
           </a>
         </li>
         <li class="nav-link">
           <a routerLink="/invitations" routerLinkActive="active" ariaCurrentWhenActive="page">
-            <i class="bx bx-home-alt icon"></i>
+            <i class='bx bx-male-female icon'></i>
             <span class="text nav-text">Invitations</span>
           </a>
         </li>
