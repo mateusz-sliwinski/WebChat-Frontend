@@ -14,11 +14,7 @@
         </div>
         <div class="post-content">
           <p class="post-text">{{ postDetails.body }}</p>
-          <img
-            [src]="postDetails.image"
-            alt="Post Image"
-            class="post-image"
-            *ngIf="postDetails.image" />
+          <img [src]="postDetails.image" alt="Post Image" class="post-image" *ngIf="postDetails.image" />
           <!-- <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>  -->
 
           <div class="post-actions">
@@ -39,23 +35,15 @@
     <div class="command-box">
       <div class="command-header">
         <div class="profile-section">
-          <img
-            src="assets/images/icons/user.png"
-            alt="Profile Picture"
-            class="profile-picture" />
+          <img src="assets/images/icons/user.png" alt="Profile Picture" class="profile-picture" />
           <h2 class="username">
-            {{ formData.user.first_name }} {{ formData.user.last_name }}
+            {{ formData.first_name }} {{ formData.last_name }}
           </h2>
         </div>
         <div class="content-section">
           <div class="input-section">
             <div class="textarea-and-button">
-              <textarea
-                formControlName="body"
-                placeholder="Answer!"
-                class="post-input"
-                cols="70"
-                rows="3"></textarea>
+              <textarea formControlName="body" placeholder="Answer!" class="post-input" cols="70" rows="3"></textarea>
               <button type="submit" class="post-button">Publish</button>
             </div>
           </div>
@@ -69,10 +57,7 @@
       <div class="command-header" *ngFor="let comment of comments">
         <div class="command-box">
           <div class="profile-section">
-            <img
-              src="assets/images/icons/user.png"
-              alt="Profile Picture"
-              class="profile-picture" />
+            <img src="assets/images/icons/user.png" alt="Profile Picture" class="profile-picture" />
             <h2 class="username">
               {{ comment.owner }} {{ comment.owner_last_name }}
             </h2>
