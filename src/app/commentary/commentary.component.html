@@ -27,6 +27,7 @@
               <input type="checkbox" (click)="likePost(postDetails.id)"  [checked]="postDetails.liked"/>
               <button ><span>Like </span></button>
             </div>
+            <div>Comments {{postDetails.comments.length}}</div>
             <div><button class="action-button share-button">Share</button></div>
             <div></div>
           </div>

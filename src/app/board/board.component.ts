@@ -34,6 +34,7 @@ export class BoardComponent {
     });
     this.loadLikes();
     this.loadPosts();
+    
 
   }
 
