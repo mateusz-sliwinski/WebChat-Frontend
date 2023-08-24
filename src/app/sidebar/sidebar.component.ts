@@ -14,7 +14,7 @@ export class SidebarComponent {
   constructor(
     private userService: UserService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userService.isLoggedIn$.subscribe(isLoggedIn => {
@@ -27,7 +27,7 @@ export class SidebarComponent {
     this.userService.logout();
   }
 
-  isSidebarClosed = false;
+  isSidebarClosed = true;
   modeText = 'Dark mode';
 
   toggleSidebar() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../_services/auth_user.services';
 import { Router } from '@angular/router';
 
@@ -10,17 +10,19 @@ import { Router } from '@angular/router';
 })
 export class PasswordResetComponent implements OnInit {
   password_reset!: FormGroup;
+  resetError: string = '';
+  message: string = '';
 
   constructor(
     private userService: UserService,
     private router: Router
-  ) {}
+  ) { }
 
-  message: string | undefined;
+
 
   ngOnInit(): void {
     this.password_reset = new FormGroup({
-      email: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
     });
   }
 
@@ -33,10 +35,10 @@ export class PasswordResetComponent implements OnInit {
   onSubmit(): void {
     this.userService.resetPassword(this.f['email'].value).subscribe(
       response => {
-        this.message = 'send link to email.';
+        this.message = 'link was sent to your email address.';
       },
       error => {
-        this.message = 'failed to send link.';
+        this.resetError = 'failure to send email check if you entered email correctly.';
       }
     );
   }

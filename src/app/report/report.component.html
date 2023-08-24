@@ -1,0 +1,12 @@
+<!-- report.component.html -->
+
+<div class="error-report-container">
+    <div class="error-report-heading">Report the problem</div>
+    <textarea [(ngModel)]="description" placeholder="Error description" maxlength="1500"></textarea>
+    <div class="error-report-button-container">
+        <button (click)="submitReport()" [disabled]="description.trim().length === 0 || description.length > 1500">Error
+            description</button>
+    </div>
+    <div class="error-report-success" *ngIf="isReportSuccessful">The error was successfully reported.</div>
+    <div class="error-report-error" *ngIf="isReportError">An error occurred while reporting an error.</div>
+</div>

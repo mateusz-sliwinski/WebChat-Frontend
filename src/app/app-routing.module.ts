@@ -13,6 +13,8 @@ import { UsersComponent } from './users/users.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { CommentaryComponent } from './commentary/commentary.component';
 import { BoardComponent } from './board/board.component';
+import { ReportComponent } from './report/report.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -83,6 +85,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { mustLogin: false },
   },
+  {
+    path: 'report',
+    component: ReportComponent,
+    canActivate: [AuthGuard],
+    data: { mustLogin: true },
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: NotFoundComponent,
+  },
+
 ];
 
 @NgModule({

@@ -38,7 +38,7 @@ export class RoomComponent {
 
   getFriendsList(): void {
     // Sends post to backend and assigns friend list without currently logged in
-    this.userService.friendsList(this.user).subscribe(
+    this.userService.friendsList(this.user.user).subscribe(
       data => {
         this.usersList = data;
         console.log(this.usersList)
@@ -52,7 +52,6 @@ export class RoomComponent {
   goToChatRoom(friend: any): void {
     // Sent post to backend to find room for both friends and then go to it
     this.userService.getRoom(friend).subscribe(
-
       data => {
         this.room = data[0]['id'].toString();
         this.router.navigate(['/chat', this.room]);
@@ -84,6 +83,7 @@ export class RoomComponent {
           error => {
             console.error('An error occurred while updating friendship:', error);
           }
+
         );
       } else {
         console.log('Update canceled');

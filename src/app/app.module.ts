@@ -26,7 +26,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FriendsBarWithChatButtonComponent } from './friends-bar-witch-chat-button/friends-bar-witch-chat-button.component';
-
+import { ReportComponent } from './report/report.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,8 @@ import { FriendsBarWithChatButtonComponent } from './friends-bar-witch-chat-butt
     InvitationsComponent,
     ConfirmationDialogComponent,
     FriendsBarWithChatButtonComponent,
+    ReportComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -191,6 +191,7 @@ body {
   width: 100%;
   align-items: flex-start;
   border: 1px solid #ccc;
+  padding-top: 20px;
   border-radius: 5px;
   margin-right: 10px;
   min-height: 3em;

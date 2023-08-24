@@ -14,15 +14,20 @@
         </div>
         <div class="post-content">
           <p class="post-text">{{ postDetails.body }}</p>
-          <img [src]="postDetails.image" alt="Post Image" class="post-image" *ngIf="postDetails.image" />
+          <img
+            [src]="postDetails.image"
+            alt="Post Image"
+            class="post-image"
+            *ngIf="postDetails.image" />
           <!-- <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>  -->
 
           <div class="post-actions">
             <div></div>
             <div class="heart-btn">
-              <!-- <input type ="checkbox" (click)="likePost(post.id)" /> -->
-              <button><span>Like</span></button>
+              <input type="checkbox" (click)="likePost(postDetails.id)"  [checked]="postDetails.liked"/>
+              <button ><span>Like </span></button>
             </div>
+            <div>Comments {{postDetails.comments.length}}</div>
             <div><button class="action-button share-button">Share</button></div>
             <div></div>
           </div>
@@ -37,13 +42,18 @@
         <div class="profile-section">
           <img src={{formData.avatar}} alt="Profile Picture" class="profile-picture" />
           <h2 class="username">
-            {{ formData.first_name }} {{ formData.last_name }}
+            {{ formData.user.first_name }} {{ formData.user.last_name }}
           </h2>
         </div>
         <div class="content-section">
           <div class="input-section">
             <div class="textarea-and-button">
-              <textarea formControlName="body" placeholder="Answer!" class="post-input" cols="70" rows="3"></textarea>
+              <textarea
+                formControlName="body"
+                placeholder="Answer!"
+                class="post-input"
+                cols="70"
+                rows="3"></textarea>
               <button type="submit" class="post-button">Publish</button>
             </div>
           </div>
