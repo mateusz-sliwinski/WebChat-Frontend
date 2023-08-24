@@ -24,9 +24,10 @@
           <div class="post-actions">
             <div></div>
             <div class="heart-btn">
-              <!-- <input type ="checkbox" (click)="likePost(post.id)" /> -->
-              <button><span>Like</span></button>
+              <input type="checkbox" (click)="likePost(postDetails.id)"  [checked]="postDetails.liked"/>
+              <button ><span>Like </span></button>
             </div>
+            <div>Comments {{postDetails.comments.length}}</div>
             <div><button class="action-button share-button">Share</button></div>
             <div></div>
           </div>
