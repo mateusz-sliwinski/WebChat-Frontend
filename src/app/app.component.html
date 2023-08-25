@@ -2,10 +2,10 @@
   <div class="col-2 side">
     <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
   </div>
-  <div class="col-10 home">
+  <div class="col-8 home">
     <router-outlet></router-outlet>
   </div>
-  <!-- <div class="col-3 friends">
-      <app-room *ngIf="isLoggedIn"></app-room>
-    </div> -->
+  <div class="col-2 ">
+    <app-room *ngIf="isLoggedIn"></app-room>
+    </div>
 </div>

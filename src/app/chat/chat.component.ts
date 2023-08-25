@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, AfterViewInit , OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { WebSocketService } from '../_services/websocket.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,  Router, NavigationEnd  } from '@angular/router';
 import { UserService } from '../_services/auth_user.services';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat',
@@ -10,19 +11,39 @@ import { UserService } from '../_services/auth_user.services';
   encapsulation: ViewEncapsulation.None,
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  container:any;  
+  navigation:any;
   message: string = '';
   roomName: string = '';
   messages: any[] = [];
   user: any;
   socket$: any;
+  
+
+  secondUser: any;
 
   constructor(
     public webSocketService: WebSocketService,
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService
-  ) {}
+  ) {
+    const state = this.router.getCurrentNavigation()?.extras.state as { name: string };
+        if (state) {
+          this.secondUser = state.name;
+        }
+  }
 
   ngOnInit() {
+
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        const state = this.router.getCurrentNavigation()?.extras.state as { name: string };
+        if (state) {
+          this.secondUser = state.name;
+        }
+      });
     if (this.webSocketService.isConnected) {
       this.webSocketService.closeWebSocket();
       this.webSocketService.isConnected = false;
@@ -31,8 +52,8 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe(params => {
       this.roomName = params.get('roomName') as string;
       this.user = this.userService.getUser();
-
       const chatLogElement = document.getElementById('chat-log');
+
       if (chatLogElement) {
         chatLogElement.innerHTML = '';
       }
@@ -43,11 +64,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
 
+
   onChatMessageSubmit() {
     // Takes a non-empty html messag  e and sends it to the websockets
     const messageInputDom = document.getElementById(
       'chat-message-input'
-    ) as HTMLInputElement;
+    ) as HTMLInputElement;  
     const message = messageInputDom.value;
     if (message.length > 0) {
       this.webSocketService.newChatMessages(
@@ -65,3 +87,4 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.webSocketService.closeWebSocket();
   }
 }
+

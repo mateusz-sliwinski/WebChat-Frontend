@@ -106,7 +106,6 @@ export class UserService {
   }
 
   friendsList(user: any): Observable<any> {
-  console.log(user);
     const params = new HttpParams().set('pk', user.pk.toString());
     return this.http.get<any>(this.api_url + 'accounts/friends/list/', {
       params,

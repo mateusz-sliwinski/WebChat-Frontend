@@ -44,11 +44,20 @@ export class RoomComponent {
   }
 
   goToChatRoom(friend: any): void {
+    let second_user: string;
+    if (friend.from_user.id !== this.user.pk)
+    {
+      second_user = friend.from_user.first_name +' '+friend.from_user.last_name;
+    }
+    else{
+      second_user = friend.to_user.first_name +' '+ friend.to_user.last_name;;
+    }
     // Sent post to backend to find room for both friends and then go to it
     this.userService.getRoom(friend).subscribe(
+      
       data => {
         this.room = data[0]['id'].toString();
-        this.router.navigate(['/chat', this.room]);
+        this.router.navigate(['/chat', this.room], { state: { name: second_user } });
       },
       error => {
         console.error(

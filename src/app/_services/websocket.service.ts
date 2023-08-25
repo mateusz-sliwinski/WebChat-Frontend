@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import ReconnectingWebSocket from 'reconnecting-websocket';
-import { Observable } from 'rxjs';
-import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
+
   callbacks: any = {};
   private chatSocket!: ReconnectingWebSocket;
   messages: any;
