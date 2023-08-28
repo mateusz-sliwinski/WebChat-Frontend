@@ -16,9 +16,7 @@ export class PasswordResetComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router
-  ) { }
-
-
+  ) {}
 
   ngOnInit(): void {
     this.password_reset = new FormGroup({
@@ -38,7 +36,8 @@ export class PasswordResetComponent implements OnInit {
         this.message = 'link was sent to your email address.';
       },
       error => {
-        this.resetError = 'failure to send email check if you entered email correctly.';
+        this.resetError =
+          'failure to send email check if you entered email correctly.';
       }
     );
   }

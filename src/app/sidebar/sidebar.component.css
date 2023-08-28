@@ -72,7 +72,6 @@ body.dark {
   color: var(--sidebar-color);
 }
 
-
 .sidebar .icon {
   width: 60px;
   display: flex;
@@ -81,7 +80,6 @@ body.dark {
   font-size: 24px;
   color: #707070;
   /* Change the color to gray */
-
 }
 
 .sidebar .text {
@@ -93,7 +91,6 @@ body.dark {
   padding: 6px 0;
   transition: var(--tran-03);
   color: #524f4f;
-
 }
 
 .sidebar .flexible-text {

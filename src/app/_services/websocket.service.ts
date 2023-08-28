@@ -22,7 +22,6 @@ export class WebSocketService {
     this.user = username;
 
     this.chatSocket.addEventListener('open', () => {
-      console.log('WebSocket connected!');
       this.isConnected = true;
       this.fetchMessages(username, roomName);
     });
@@ -31,18 +30,11 @@ export class WebSocketService {
       this.messages = JSON.parse(event.data);
       if (this.messages['command'] === 'messages') {
         for (let i = 0; i < this.messages['messages'].length; i++) {
-          // console.log(this.messages['messages'][i]);
           this.createMessage(this.messages['messages'][i]);
         }
       } else if (this.messages['command'] === 'new_message') {
         this.createMessage(this.messages['message']);
       }
-    });
-    this.chatSocket.addEventListener('error', (event: any) => {
-      console.error('WebSocket error:', event);
-    });
-    this.chatSocket.addEventListener('close', (event: any) => {
-      console.log('WebSocket closed:', event.code, event.reason);
     });
   }
 
