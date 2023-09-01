@@ -331,3 +331,13 @@ input[type='checkbox']:checked + button span {
     background: #db291d;
   }
 }
+
+.heart-icon {
+  cursor: pointer;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.filled {
+  color: red;
+}

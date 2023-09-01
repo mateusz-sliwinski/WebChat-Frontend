@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./board.component.css'],
 })
 export class BoardComponent {
+  isFilled: boolean = false;
   text!: FormGroup;
   selectedFile!: File;
   posts!: Observable<any[]>;
@@ -31,7 +32,9 @@ export class BoardComponent {
     this.loadLikes();
     this.loadPosts();
   }
-
+  toggleHeartState() {
+    this.isFilled = !this.isFilled;
+  }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
@@ -71,10 +74,11 @@ export class BoardComponent {
     });
 
   }
-  likePost(postId: string) {
-    this.boardService.likePost(postId).subscribe(() => {
+  likePost(postId: any) {
+    postId.liked = !postId.liked;
+    this.boardService.likePost(postId.id).subscribe(() => {
       for (const id in this.count_likes_array) {
-        if (id === postId) {
+        if (id === postId.id) {
           if (this.count_likes_array[id][1]===0)
           {
             this.count_likes_array[id][0]+=1;
