@@ -22,14 +22,18 @@
           <!-- <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>  -->
 
           <div class="post-actions">
-            <div></div>
-            <div class="heart-btn">
-              <input type="checkbox" (click)="likePost(postDetails.id)"  [checked]="postDetails.liked"/>
-              <button ><span>Like </span></button>
+            <div class="likes">
+              <div  class="heart-icon"  [ngClass]="{'filled': postDetails.liked}" (click)="likePost(postDetails)">
+                <i class="fa fa-heart"></i>  {{  count_likes }}</div>
+              
             </div>
-            <div>Comments {{postDetails.comments.length}}</div>
-            <div><button class="action-button share-button">Share</button></div>
-            <div></div>
+            <div class="comments">
+              <div  class="heart-icon"><i class="fa fa-comment"></i>  {{postDetails.comments.length}}</div>
+                  
+            </div>
+        
+       
+            
           </div>
         </div>
       </div>
