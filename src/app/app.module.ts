@@ -22,6 +22,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './_helpers/HttpRequestInterceptor';
 import { DatePipe } from '@angular/common';
 import { CommentaryComponent } from './commentary/commentary.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FriendsBarWithChatButtonComponent } from './friends-bar-witch-chat-button/friends-bar-witch-chat-button.component';
 import { ReportComponent } from './report/report.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -41,9 +45,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RoomComponent,
     UsersComponent,
     InvitationsComponent,
+    ConfirmationDialogComponent,
+    FriendsBarWithChatButtonComponent,
     ReportComponent,
     NotFoundComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
       headerName: 'X-CSRFToken',
     }),
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
     UserService,

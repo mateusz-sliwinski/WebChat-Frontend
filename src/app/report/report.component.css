@@ -1,100 +1,100 @@
 .error-report-container {
-
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    animation: fadeInUp 0.5s ease;
-    margin-top: 50px;
-
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeInUp 0.5s ease;
+  margin-top: 50px;
 }
 
 .body {
-    background-color: #333;
+  background-color: #333;
 }
 
 .error-report-heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .error-report-container textarea {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    resize: vertical;
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    transition: border-color 0.3s;
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  resize: vertical;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  transition: border-color 0.3s;
 }
 
 .error-report-container textarea:focus {
-    border-color: #007bff;
+  border-color: #007bff;
 }
 
 .error-report-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .error-report-container button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 25px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .error-report-container button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .error-report-container button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .error-report-container button:disabled:hover {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
 .error-report-container button:focus {
-    outline: none;
+  outline: none;
 }
 
 .error-report-success {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #00a000;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #00a000;
 }
 
 .error-report-error {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #a00000;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #a00000;
 }
 
 /* Efekty przejścia */
 .error-report-container {
-    transform: scale(0.95);
-    opacity: 0.8;
-    transition: transform 0.3s, opacity 0.3s;
+  transform: scale(0.95);
+  opacity: 0.8;
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
 }
 
 .error-report-container:hover {
-    transform: scale(1);
-    opacity: 1;
+  transform: scale(1);
+  opacity: 1;
 }

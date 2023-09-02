@@ -4,7 +4,13 @@
       <div *ngIf="postDetails" class="post-details">
         <div class="post-header">
           <div class="user-avatar">
-            <img src="assets/images/icons/user.png" alt="User Avatar" />
+            <img
+              src="{{
+                formData.avatar
+                  ? formData.avatar
+                  : '../../../../assets/images/icons/user.png'
+              }}"
+              alt="User Avatar" />
             <h2 class="username">
               {{ postDetails.owner }} {{ postDetails.owner_last_name }}
             </h2>
@@ -19,7 +25,6 @@
             alt="Post Image"
             class="post-image"
             *ngIf="postDetails.image" />
-          <!-- <p class="like-count">Liczba polubień: {{ countLikes(post) }}</p>  -->
 
           <div class="post-actions">
             <div class="likes">
@@ -31,9 +36,6 @@
               <div  class="heart-icon"><i class="fa fa-comment"></i>  {{postDetails.comments.length}}</div>
                   
             </div>
-        
-       
-            
           </div>
         </div>
       </div>
@@ -45,11 +47,15 @@
       <div class="command-header">
         <div class="profile-section">
           <img
-            src="assets/images/icons/user.png"
+            src="{{
+              formData.avatar
+                ? formData.avatar
+                : '../../../../assets/images/icons/user.png'
+            }}"
             alt="Profile Picture"
             class="profile-picture" />
           <h2 class="username">
-            {{ formData.user.first_name }} {{ formData.user.last_name }}
+            {{ formData.first_name }} {{ formData.last_name }}
           </h2>
         </div>
         <div class="content-section">
@@ -75,7 +81,11 @@
         <div class="command-box">
           <div class="profile-section">
             <img
-              src="assets/images/icons/user.png"
+              src="{{
+                comment.owner_avatar
+                  ? comment.owner_avatar
+                  : '../../../../assets/images/icons/user.png'
+              }}"
               alt="Profile Picture"
               class="profile-picture" />
             <h2 class="username">

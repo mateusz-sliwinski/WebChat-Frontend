@@ -2,11 +2,14 @@
   <div class="input-container">
     <div class="profile-section">
       <img
-        src="assets/images/icons/user.png"
+        src="{{
+          formData.image
+            ? formData.image
+            : '../../../../assets/images/icons/user.png'
+        }}"
         alt="Profile Picture"
         class="profile-picture" />
     </div>
-
     <div class="content-section">
       <div class="input-section">
         <div class="textarea-and-button">
@@ -48,11 +51,16 @@
       <div class="post" *ngFor="let post of posts! | async">
         <div class="post-header">
           <div class="user-avatar">
-            <img src="assets/images/icons/user.png" alt="User Avatar" />
+            <img
+              src="{{
+                post.owner_avatar
+                  ? post.owner_avatar
+                  : '../../../../assets/images/icons/user.png'
+              }}"
+              alt="User Avatar" />
             <h2 class="username">
               {{ post.owner }} {{ post.owner_last_name }}
             </h2>
-      
           </div>
           <p class="timestamp">{{ post.formattedTimestamp }}</p>
         </div>
@@ -73,7 +81,6 @@
               <a [routerLink]="['/commentary', post.id]"><i class="fa fa-comment"></i>  {{post.comments.length}}</a>
   
             </div>
-           
           </div>
         </div>
       </div>

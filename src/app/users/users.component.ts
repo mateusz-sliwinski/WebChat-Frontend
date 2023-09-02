@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
     this.userService.usersList(this.user).subscribe(
       data => {
         this.usersList = data.filter(
-          (user: { username: string }) =>
+          (user: { username: string; avatar: string | null }) =>
             user.username !== this.user['username']
         );
       },
@@ -40,16 +40,17 @@ export class UsersComponent implements OnInit {
 
   getUser() {
     const storedUser = localStorage.getItem('currentUser');
+
     if (storedUser) {
       this.user = JSON.parse(storedUser).user;
-    } else {
-      console.log('user not found');
     }
   }
 
   addFriend(user: any): void {
     this.userService
       .addToFriend(this.user['pk'], user['id'], this.csrfToken)
-      .subscribe();
+      .subscribe(() => {
+        this.getUsersList();
+      });
   }
 }

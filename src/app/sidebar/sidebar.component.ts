@@ -14,7 +14,7 @@ export class SidebarComponent {
   constructor(
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.userService.isLoggedIn$.subscribe(isLoggedIn => {

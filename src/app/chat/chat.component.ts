@@ -61,10 +61,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       if (chatLogElement) {
         chatLogElement.innerHTML = '';
       }
-      this.webSocketService.connectWebSocket(
-        this.roomName,
-        this.user.username
-      );
+      this.webSocketService.connectWebSocket(this.roomName, this.user.username);
     });
   }
 

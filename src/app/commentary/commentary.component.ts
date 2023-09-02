@@ -44,14 +44,12 @@ export class CommentaryComponent implements OnInit {
     this.formData = this.dataService.getData() || {};
   }
 
-  
   loadPost() {
     this.boardService.getPostDetails(this.postId).subscribe(
       postDetails => {
         this.postDetails = postDetails;
-        postDetails.like_post.forEach((e:any) => {  
-          if(this.likeArray.some(like => like.id.includes(e)))
-          {
+        postDetails.like_post.forEach((e: any) => {
+          if (this.likeArray.some(like => like.id.includes(e))) {
             postDetails.liked = true;
           }
         });
@@ -86,7 +84,6 @@ export class CommentaryComponent implements OnInit {
   createComment(commentData: any) {
     this.boardService.createComment(commentData).subscribe(
       response => {
-        console.log('Comment created successfully:', response);
         this.loadCommentsForPost(commentData.post);
         this.commentForm.reset();
       },
@@ -95,6 +92,7 @@ export class CommentaryComponent implements OnInit {
       }
     );
   }
+
   likePost(post: any) {
     post.liked = !post.liked;
     this.boardService.likePost(post.id).subscribe(() => {
@@ -107,8 +105,8 @@ export class CommentaryComponent implements OnInit {
     });
   }
   loadLikes() {
-    this.boardService.getLikes().subscribe((data:any) => {
-       this.likeArray = data;
+    this.boardService.getLikes().subscribe((data: any) => {
+      this.likeArray = data;
     });
   }
 }

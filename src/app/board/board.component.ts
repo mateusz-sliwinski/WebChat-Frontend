@@ -3,7 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { BoardService } from '../_services/board.services';
 import { Observable, map } from 'rxjs';
 import { DatePipe } from '@angular/common';
-
+import { Subject } from 'rxjs';
+import { UserInformationService } from '../_services/user.services';
 
 @Component({
   selector: 'app-board',
@@ -16,11 +17,14 @@ export class BoardComponent {
   selectedFile!: File;
   posts!: Observable<any[]>;
   postArray: any[] = [];
+  private likeSubject: Subject<string[]> = new Subject<string[]>();
+  formData: any = {};
   likeArray: any[] = [];
-  count_likes_array:any = {};
+  count_likes_array: any = {};
 
   constructor(
     private boardService: BoardService,
+    private dataService: UserInformationService,
     private datePipe: DatePipe
   ) {}
 
@@ -31,6 +35,7 @@ export class BoardComponent {
     });
     this.loadLikes();
     this.loadPosts();
+    this.formData = this.dataService.getData() || {};
   }
   toggleHeartState() {
     this.isFilled = !this.isFilled;
@@ -51,12 +56,11 @@ export class BoardComponent {
             post.created,
             'yyyy-MM-dd HH:mm'
           );
-          this.count_likes_array[post.id]= [post.like_post.length, 0];
-          post.like_post.forEach((e:any) => {  
-            if(this.likeArray.some(like => like.id.includes(e)))
-            {
+          this.count_likes_array[post.id] = [post.like_post.length, 0];
+          post.like_post.forEach((e: any) => {
+            if (this.likeArray.some(like => like.id.includes(e))) {
               post.liked = true;
-              this.count_likes_array[post.id]= [post.like_post.length, 1];
+              this.count_likes_array[post.id] = [post.like_post.length, 1];
             }
           });
           return { ...post, formattedTimestamp };
@@ -69,10 +73,9 @@ export class BoardComponent {
   }
 
   loadLikes() {
-    this.boardService.getLikes().subscribe((data:any) => {
-    this.likeArray = data;
+    this.boardService.getLikes().subscribe((data: any) => {
+      this.likeArray = data;
     });
-
   }
   likePost(postId: any) {
     postId.liked = !postId.liked;
@@ -87,8 +90,9 @@ export class BoardComponent {
           else{
             this.count_likes_array[id][0]-=1;
             this.count_likes_array[id][1]=0;
+
           }
-          break; 
+          break;
         }
       }
     });
@@ -100,13 +104,6 @@ export class BoardComponent {
     if (this.selectedFile) {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
-    this.boardService.inputBoard(formData).subscribe(
-      response => {
-        console.log('Post created successfully:', response);
-      },
-      error => {
-        console.error('Error creating post:', error);
-      }
-    );
+    this.boardService.inputBoard(formData).subscribe();
   }
 }

@@ -48,5 +48,4 @@ export class BoardService {
   getLikes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.api_url}board/likes/`);
   }
-
 }

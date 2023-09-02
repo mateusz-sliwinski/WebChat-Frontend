@@ -19,7 +19,7 @@ export class PasswordResetConfirmComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -28,8 +28,14 @@ export class PasswordResetConfirmComponent implements OnInit {
     });
 
     this.password_reset_confirm = new FormGroup({
-      new_password1: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      new_password2: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      new_password1: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      new_password2: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
     });
   }
 
@@ -38,7 +44,6 @@ export class PasswordResetConfirmComponent implements OnInit {
   }
 
   onSubmit(): void {
-
     this.userService
       .confirmPasswordReset(
         this.uidb64,
