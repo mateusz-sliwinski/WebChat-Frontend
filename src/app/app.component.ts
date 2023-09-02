@@ -15,8 +15,4 @@ export class AppComponent {
       this.isLoggedIn = this.userService.isUserLoggedIn();
     });
   }
-
-  logout() {
-    this.userService.logout().subscribe();
-  }
 }
