@@ -76,107 +76,8 @@
   border-radius: 5px;
   margin-right: 10px;
   margin-top: 2em;
-  min-height: 3em;
   flex-wrap: wrap;
   overflow: hidden;
-}
-
-.action-button {
-  flex-grow: 1;
-  margin-right: 10px;
-  padding: 10px 0;
-  margin-bottom: 5px;
-  padding: 8px 0;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: #1da1f2;
-}
-
-.heart-btn {
-  width: 2.75em;
-  height: 0.8em;
-  font-size: 1.2em;
-  margin-left: 5em;
-}
-
-button {
-  background: transparent;
-  outline: none;
-  border: none;
-  color: #fff;
-  letter-spacing: 1px;
-  font-size: 1em;
-}
-
-.heart-btn button::before,
-.heart-btn button::after {
-  content: '';
-  position: absolute;
-  top: 0.45em;
-  width: 50%;
-  height: 100%;
-  background: #050505;
-  z-index: 0;
-  transition: 0.4s;
-}
-
-.heart-btn button::before {
-  left: 0;
-  border-radius: 2em 0 0 2em;
-}
-
-.heart-btn button::after {
-  right: 0;
-  border-radius: 0 2em 2em 0;
-}
-
-.heart-btn {
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.heart-btn button span {
-  z-index: 1;
-  display: inline-block;
-  font-size: 1em;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-  line-height: 0.5em;
-  position: relative;
-}
-
-input[type='checkbox'] {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 2;
-}
-
-input[type='checkbox']:checked + button::before {
-  transform: rotate(45deg) translate(0.001em, -0.7em);
-  animation: glow 0.6s ease-in 0.4s forwards;
-}
-
-input[type='checkbox']:checked + button::after {
-  transform: rotate(-45deg) translate(-0.001em, -0.7em);
-  animation: glow 0.6s ease-in 0.4s forwards;
-}
-
-input[type='checkbox']:checked + button span {
-  opacity: 0;
 }
 
 @keyframes glow {
@@ -335,4 +236,28 @@ body {
   margin-top: 1em;
   margin-left: 30px;
   margin-right: 30px;
+}
+.heart-icon {
+  cursor: pointer;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.filled {
+  color: red;
+}
+.likes{
+  width: 50%;
+  text-align: center;
+}
+
+.comments{
+  width: 50%;
+  text-align: center;
+}
+.comments i{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 1.2em;
 }

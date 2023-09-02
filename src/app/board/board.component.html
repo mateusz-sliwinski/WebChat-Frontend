@@ -71,26 +71,16 @@
             alt="Post Image"
             class="post-image"
             *ngIf="post.image" />
-          <p class="like-count">
-            Liczba polubień: {{ count_likes_array[post.id][0] }}
-          </p>
-
           <div class="post-actions">
-            <div></div>
-            <div class="heart-btn">
-              <input
-                type="checkbox"
-                (click)="likePost(post.id)"
-                [checked]="post.liked" />
-              <button><span>Like </span></button>
+            <div class="likes">
+              <div  class="heart-icon"  [ngClass]="{'filled': post.liked}" (click)="likePost(post)">
+                <i class="fa fa-heart"></i>  {{  count_likes_array[post.id][0] }}</div>
+              
             </div>
-            <div>
-              <a [routerLink]="['/commentary', post.id]"
-                >Comments {{ post.comments.length }}</a
-              >
+            <div class="comments">
+              <a [routerLink]="['/commentary', post.id]"><i class="fa fa-comment"></i>  {{post.comments.length}}</a>
+  
             </div>
-            <div><button class="action-button share-button">Share</button></div>
-            <div></div>
           </div>
         </div>
       </div>

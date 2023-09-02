@@ -12,6 +12,7 @@ import { UserInformationService } from '../_services/user.services';
   styleUrls: ['./board.component.css'],
 })
 export class BoardComponent {
+  isFilled: boolean = false;
   text!: FormGroup;
   selectedFile!: File;
   posts!: Observable<any[]>;
@@ -36,7 +37,9 @@ export class BoardComponent {
     this.loadPosts();
     this.formData = this.dataService.getData() || {};
   }
-
+  toggleHeartState() {
+    this.isFilled = !this.isFilled;
+  }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
@@ -74,16 +77,20 @@ export class BoardComponent {
       this.likeArray = data;
     });
   }
-  likePost(postId: string) {
-    this.boardService.likePost(postId).subscribe(() => {
+  likePost(postId: any) {
+    postId.liked = !postId.liked;
+    this.boardService.likePost(postId.id).subscribe(() => {
       for (const id in this.count_likes_array) {
-        if (id === postId) {
-          if (this.count_likes_array[id][1] === 0) {
-            this.count_likes_array[id][0] += 1;
-            this.count_likes_array[id][1] = 1;
-          } else {
-            this.count_likes_array[id][0] -= 1;
-            this.count_likes_array[id][1] = 0;
+        if (id === postId.id) {
+          if (this.count_likes_array[id][1]===0)
+          {
+            this.count_likes_array[id][0]+=1;
+            this.count_likes_array[id][1]=1;
+          }
+          else{
+            this.count_likes_array[id][0]-=1;
+            this.count_likes_array[id][1]=0;
+
           }
           break;
         }

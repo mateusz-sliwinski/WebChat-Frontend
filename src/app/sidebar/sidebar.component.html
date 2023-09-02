@@ -59,11 +59,10 @@
           <a
             routerLink="/login"
             routerLinkActive="active"
-            ariaCurrentWhenActive="page">
+            ariaCurrentWhenActive="page"
+            (click)="logout()">
             <i class="bx bx-log-out icon"></i>
-            <span class="text nav-text" *ngIf="isLoggedIn" (click)="logout()"
-              >Logout</span
-            >
+            <span class="text nav-text" *ngIf="isLoggedIn">Logout</span>
           </a>
         </li>
       </ul>

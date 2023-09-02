@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import ReconnectingWebSocket from 'reconnecting-websocket';
-import { Observable } from 'rxjs';
-import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
+
   callbacks: any = {};
   private chatSocket!: ReconnectingWebSocket;
   messages: any;
@@ -97,7 +96,7 @@ export class WebSocketService {
     const pMessage = document.createElement('p');
 
     if (author === this.user) {
-      imgTag.src = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+      imgTag.src = 'https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/external-user-interface-kiranshastry-lineal-kiranshastry.png';
       pMessage.className = 'message other-message float-right';
       pMessage.textContent = data.content;
       imgTag.className = 'float-right';
@@ -106,7 +105,7 @@ export class WebSocketService {
       msgListTag.appendChild(imgTag);
       msgListTag.appendChild(divCardBody);
     } else {
-      imgTag.src = 'https://bootdey.com/img/Content/avatar/avatar2.png';
+      imgTag.src = 'https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/external-user-interface-kiranshastry-lineal-kiranshastry.png';
       pMessage.className = 'message other-message';
       pMessage.textContent = data.content;
       divCardBody.className = 'message-data';

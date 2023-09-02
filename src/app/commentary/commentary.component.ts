@@ -4,8 +4,6 @@ import { BoardService } from '../_services/board.services';
 import {
   FormControl,
   FormGroup,
-  Validators,
-  FormBuilder,
 } from '@angular/forms';
 import { UserInformationService } from '../_services/user.services';
 
@@ -21,6 +19,7 @@ export class CommentaryComponent implements OnInit {
   likeArray: any[] = [];
   commentForm!: FormGroup;
   formData: any = {};
+  count_likes: any
 
   constructor(
     private route: ActivatedRoute,
@@ -54,6 +53,7 @@ export class CommentaryComponent implements OnInit {
             postDetails.liked = true;
           }
         });
+        this.count_likes = postDetails.like_post.length;
       },
       error => {
         console.error('Error loading post details:', error);
@@ -92,9 +92,16 @@ export class CommentaryComponent implements OnInit {
       }
     );
   }
-  likePost(postId: string) {
-    this.boardService.likePost(postId).subscribe(() => {
-      this.postDetails.like_post = [...this.postDetails.like_post, postId];
+
+  likePost(post: any) {
+    post.liked = !post.liked;
+    this.boardService.likePost(post.id).subscribe(() => {
+        if (post.liked){
+          this.count_likes+=1;
+        }
+        else{
+          this.count_likes-=1;
+        }
     });
   }
   loadLikes() {

@@ -24,7 +24,8 @@ export class SidebarComponent {
   }
 
   logout() {
-    this.userService.logout();
+    console.log('sadsadsad');
+    this.userService.logout().subscribe();
   }
 
   isSidebarClosed = true;
