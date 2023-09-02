@@ -96,9 +96,7 @@ export class CommentaryComponent implements OnInit {
     );
   }
   likePost(post: any) {
-    console.log('przed ',post.liked)
     post.liked = !post.liked;
-    console.log('po ',post.liked)
     this.boardService.likePost(post.id).subscribe(() => {
         if (post.liked){
           this.count_likes+=1;

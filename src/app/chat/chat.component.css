@@ -36,6 +36,8 @@ body {
 .chat .chat-history {
   padding: 20px;
   border-bottom: 2px solid #fff;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .chat .chat-history ul {
@@ -44,7 +46,6 @@ body {
 
 .chat .chat-history ul li {
   list-style: none;
-  margin-bottom: 30px;
 }
 
 .chat .chat-history ul li:last-child {
@@ -74,20 +75,6 @@ body {
   border-radius: 7px;
   display: inline-block;
   position: relative;
-}
-
-.chat .chat-history .message:after {
-  bottom: 100%;
-  left: 7%;
-  border: solid transparent;
-  content: ' ';
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-bottom-color: #fff;
-  border-width: 10px;
-  margin-left: -10px;
 }
 
 .chat .chat-history .my-message {
@@ -171,6 +158,8 @@ body {
 @media only screen and (min-width: 768px) and (max-width: 992px) {
   .chat-app .chat-history {
     overflow-x: auto;
+    
+    
   }
 }
 

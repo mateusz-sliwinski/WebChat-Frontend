@@ -1,4 +1,4 @@
-import { Component, AfterViewInit , OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, AfterViewInit , Renderer2, ViewChild, OnInit, OnDestroy, ViewEncapsulation, ElementRef } from '@angular/core';
 import { WebSocketService } from '../_services/websocket.service';
 import { ActivatedRoute,  Router, NavigationEnd  } from '@angular/router';
 import { UserService } from '../_services/auth_user.services';
@@ -13,6 +13,9 @@ import { filter } from 'rxjs/operators';
 export class ChatComponent implements OnInit, OnDestroy {
   container:any;  
   navigation:any;
+  @ViewChild('scrollBottom')
+  private scrollBottom!: ElementRef;
+
   message: string = '';
   roomName: string = '';
   messages: any[] = [];
@@ -35,6 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.scrollToBottom();
 
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
@@ -70,6 +74,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     const messageInputDom = document.getElementById(
       'chat-message-input'
     ) as HTMLInputElement;  
+    const chatHistory = document.getElementById('chat-log');
     const message = messageInputDom.value;
     if (message.length > 0) {
       this.webSocketService.newChatMessages(
@@ -77,11 +82,16 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.user.username,
         this.roomName
       );
+    
       messageInputDom.value = '';
     }
    
   }
-
+  scrollToBottom(): void {
+    try {
+        this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;
+    } catch(err) { }
+}
   ngOnDestroy(): void {
     // Closes connection to websokets
     this.webSocketService.closeWebSocket();
