@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FriendsBarWithChatButtonComponent } from './friends-bar-witch-chat-button/friends-bar-witch-chat-button.component';
 import { ReportComponent } from './report/report.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ConfigService } from './_services/config.services';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   providers: [
     UserService,
     DatePipe,
+    ConfigService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
@@ -74,4 +76,4 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

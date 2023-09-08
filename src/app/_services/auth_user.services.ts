@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ConfigService } from './config.services';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,12 +20,13 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
-  api_url: string = 'http://localhost:8000/';
+
+  constructor(private http: HttpClient, private configService: ConfigService) { }
+
+  api_url: string = this.configService.api_url;
   user: any;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
-
-  constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
     return this.http
@@ -116,8 +118,6 @@ export class UserService {
   }
 
   addToFriend(from: string, to: string, token: string): Observable<any> {
-    const endpoint = `${this.api_url}accounts/friends/`;
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'X-CSRFToken': token,
@@ -133,7 +133,6 @@ export class UserService {
   }
 
   updateInvitations(invitation: any, status: string): Observable<any> {
-    // Changes status to accepted
     const data = {
       from_user: invitation.from_user.id,
       to_user: invitation.to_user.id,

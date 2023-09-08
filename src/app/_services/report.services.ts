@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ConfigService } from './config.services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ErrorReportService {
-  api_url: string = 'http://localhost:8000/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private configService: ConfigService) { }
+
+  api_url: string = this.configService.api_url;
 
   reportError(description: string): Observable<any> {
     const payload = { description };

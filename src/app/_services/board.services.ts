@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ConfigService } from './config.services';
 
 const httpOptions = {
   headers: new HttpHeaders(),
@@ -11,9 +12,9 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class BoardService {
-  api_url: string = 'http://localhost:8000/';
+  constructor(private http: HttpClient, private configService: ConfigService) { }
 
-  constructor(private http: HttpClient) {}
+  api_url: string = this.configService.api_url;
 
   inputBoard(data: FormData): Observable<any> {
     const endpoint = `${this.api_url}board/posts/`;

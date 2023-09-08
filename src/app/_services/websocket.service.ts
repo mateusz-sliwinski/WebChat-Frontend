@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import ReconnectingWebSocket from 'reconnecting-websocket';
+import { ConfigService } from './config.services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
+
+  constructor(private configService: ConfigService) { }
 
   callbacks: any = {};
   private chatSocket!: ReconnectingWebSocket;
@@ -12,10 +15,9 @@ export class WebSocketService {
   public isConnected: boolean = false;
   user: any;
 
-  constructor() {}
 
   connectWebSocket(roomName: string, username: string) {
-    const url = 'ws://localhost:8000/ws/chat/' + roomName + '/';
+    const url = this.configService.chat_url + roomName + '/';
 
     this.chatSocket = new ReconnectingWebSocket(url);
     this.user = username;
